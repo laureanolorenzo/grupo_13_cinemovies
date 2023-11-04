@@ -13,3 +13,6 @@ Nota: En markdown se pueden referenciar links con titulos personalizados de la s
 Para mas info, ver: [Markdown quick reference](https://wordpress.com/support/markdown-quick-reference/)
 
 ## Juan Cotera
+
+## Laureano Lorenzo
+#### Descripcion
