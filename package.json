@@ -1,0 +1,15 @@
+{
+  "name": "grupo_13",
+  "version": "1.0.0",
+  "description": "* Una breve descripción de la oferta de productos y/o servicios ofrecidos por su\r sitio\r * También agregar una breve descripción del público al que apunta el sitio.\r ## Sitios de referencia\r En el README.md agregar un listado de al menos 5 sitios de referencia\r indicando brevemente por qué fueron elegidos\r Nota: En markdown se pueden referenciar links con titulos personalizados de la siguiente manera: \\[link](http://example.com \"Title\")\\.\r Para mas info, ver: [Markdown quick reference](https://wordpress.com/support/markdown-quick-reference/)",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
