@@ -2,9 +2,9 @@
   "name": "cinemovies",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "app.js"
+    "start": "node src/app.js"
   },
   "dependencies": {
     "express": "^4.17.1",
