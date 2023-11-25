@@ -1,5 +1,13 @@
 {
-  "devDependencies": {
-    "nodemon": "^3.0.1"
+  "name": "cinemovies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js",
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon":"^2.0.12" 
   }
 }
