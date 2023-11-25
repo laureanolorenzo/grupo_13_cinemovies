@@ -31,7 +31,7 @@ Redes Sociales
 En el README.md agregar un listado de al menos 5 sitios de referencia
 1: [Atlas cines](https://www.atlascines.com/) :
 2: [Cinemark Hoyts](https://www.cinemarkhoyts.com.ar) :
-3: [Cinepolis](https://www.cinepolis.com.ar/) :
+3: [Cinepolis](https://www.cinepolis.com.ar/) :  
 4: [Cinexo](http://www.cinemas4riogrande.com.ar/) :
 5: [Cine Star](https://www.cinestar.com.pe/) :
 
