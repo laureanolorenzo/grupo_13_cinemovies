@@ -4,3 +4,17 @@
 @import url('./register.css');
 @import url('./button.css');
 @import url('./cards-categoria.css');
+
+:root {
+  --colors-blanco: #ffffff;
+  --colors-negro: #1d1d1d;
+  --colors-violeta: #5c008f;
+  --colors-naranja: #ffb000;
+  --colors-azul: #0000e6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
