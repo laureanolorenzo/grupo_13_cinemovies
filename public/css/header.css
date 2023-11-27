@@ -1,0 +1,49 @@
+.header {
+  background-color: var(--colors-violeta);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0px;
+  align-items: center;
+}
+
+.header-logo span{
+  color: var(--colors-naranja);
+  font-weight: 700;
+  font-size: 1.2em;
+  font-family: 'Bebas Neue', system-ui;
+  letter-spacing: .2cap;
+}
+
+.menu-items {
+  display: none;
+}
+
+.burguer-menu i{
+  color: var(--colors-blanco);
+  font-size: 1em;
+}
+
+@media screen and (min-width: 768px) {
+  .menu-items {
+    display: block;
+    display: flex;
+    gap: 16px;
+  }
+
+  .menu-item {
+    list-style: none;
+  }
+
+  .menu-item a {
+    text-decoration: none;
+    color: var(--colors-blanco);
+    font-family: 'Jost', sans-serif;
+  }
+
+  .burguer-menu {
+    display: none;
+  }
+}

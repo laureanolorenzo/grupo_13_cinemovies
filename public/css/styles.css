@@ -9,7 +9,7 @@
 
 :root {
   --colors-blanco: #ffffff;
-  --colors-negro: #1d1d1d;
+  --colors-negro: #0b0b0b;
   --colors-violeta: #5c008f;
   --colors-naranja: #ffb000;
   --colors-azul: #0000e6;
@@ -19,4 +19,30 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body{
+  background-color: var(--colors-negro);
+
+}
+
+@media screen and (max-width: 767px){
+  .wrapper {
+    max-width: 393px;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+  .wrapper {
+    max-width: 720px;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .wrapper {
+    max-width: 960px;
+    margin: auto;
+  }
 }
