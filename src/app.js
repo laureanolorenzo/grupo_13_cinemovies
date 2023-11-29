@@ -4,7 +4,9 @@ const fs = require('fs');
 
 const app = express();
 
-app.use(express.static(path.resolve(__dirname, 'public')));
+const publicPath = path.join(__dirname, '../public');
+
+app.use(express.static(publicPath));
 
 const PORT = 3000;
 

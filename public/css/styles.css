@@ -22,7 +22,8 @@
 }
 
 body{
-  background-color: var(--colors-negro);
+  /* background-color: var(--colors-negro); */
+  background-color: #5c008f;
 
 }
 
