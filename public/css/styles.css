@@ -8,6 +8,7 @@
 @import url('./footer.css');
 @import url('./input.css');
 @import url('./titulo_form.css');
+@import url('./field.css');
 
 :root {
   --colors-blanco: #ffffff;

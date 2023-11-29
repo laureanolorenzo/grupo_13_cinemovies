@@ -10,5 +10,7 @@
   font-weight: bold;
   font-size: 16px;
   box-shadow: 2px 2px 20px #464447; /**/
+  /* max-width: 640px; Sino, se ve muy ancho en desktop para el login */
+  width: 95%;
 
 }

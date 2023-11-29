@@ -15,11 +15,43 @@ main {
 main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
 }
-
-/* Parte del login */
+/* FLEX MAS GRANDE */
+/* Parte del login:  */
 .login-form {
     height: 75%;
+    display: flex; /* FLEX INTERMEDIO */
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
 }
 /* Parte del "registrarme" */
+.regis-ref {
+    height: 25%;
+    display: flex;
+    justify-content: center;
+}
+.regis-ref label {
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+/* FLEX INTERMEDIO */
+
+
+/* Login button y olvide mi contrasenia */
+.login-bottom {
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%; 
+    max-width: 400px;     /* Para que no se vea tan ancho en desktop */
+    
+}

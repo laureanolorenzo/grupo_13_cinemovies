@@ -39,28 +39,25 @@
       </div>
         <main>
             <form class="login-form" action= "/" method="POST">
-                <div class="field">
-                    <label for="usuario">
-                        Usuario:
-                        <input type="text" name="usuario" id="usuario">
-                    </label>
-                </div>
-                <div class="field">
-                    <label for="contraseña">
-                        Contraseña:
-                        <input type="text" name="contraseña" id="contraseña">
-                    </label>
-                </div>
-                <button type="submit" class="button">Login</button>
-                <div>
+                  <label for="usuario" class="field">
+                      Usuario:
+                      <input type="text" name="usuario" id="usuario" class="input-text"> 
+                  </label>
+                  <label for="contraseña" class="field">
+                      Contraseña:
+                      <input type="password" name="contraseña" id="contraseña" class="input-text">
+                  </label>
+                  <div class="login-bottom">
+                    <button type="submit" class="button">Login</button>
                     <a href="#"><p>Olvidé mi contraseña</p></a>
-                </div>
+                  </div>
             </form>
-            <form action="/registro" method="GET" form class="regis-ref"></form>
-              <div class="field">
-                <p>No tienes cuenta?</p>
-                <button type="submit"> Regístrate</button>
-              </div>
+            <form action="/registro" method="GET" form class="regis-ref">
+                <label>
+                  No tienes cuenta?
+                  <button type="submit"> Regístrate</button>
+                </label>
+                
             </form>
         </main>
         <footer>
