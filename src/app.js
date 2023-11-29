@@ -26,3 +26,6 @@ for (const file of htmlFiles) {
         app.get(`/${fileName}`, (req, res) => res.sendFile(filePath));
     }
 }
+
+// Metodo post para el home (Para que al enviar el formulario login me devuelva al home)
+app.post('/',(req,res) => res.sendFile(homePath));
