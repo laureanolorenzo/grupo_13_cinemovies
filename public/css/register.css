@@ -1,0 +1,55 @@
+.registro {
+    background: rgb(87,85,88);
+    background: linear-gradient(0deg, rgba(87,85,88,1) 0%, rgba(184,23,223,1) 100%);
+}
+
+.registro p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin: auto;
+    padding-top: 10px;
+    color: var(--colors-negro);
+    text-shadow: var(--colors-naranja) 0 2px 4px;
+}
+
+.botones-registro {
+    display: flex;
+    justify-content: center;
+}
+
+.boton-google {
+    background-color: rgb(182, 59, 59);
+    border: red solid 2px;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+}
+
+.boton-facebook {
+    background-color: rgb(59, 59, 169);
+    border: blue solid 2px;
+    border-radius: 5px;
+    width: 25px;
+    height: 25px;
+    margin: 0 10%;
+}
+
+.boton-outlook {
+    background-color: rgb(28, 167, 28);
+    border-radius: 5px;
+    border: green solid 2px;
+    width: 25px;
+    height: 25px;
+}
+
+.fa-google {
+    color: #fff;
+}
+
+.fa-facebook-f {
+    color: #fff;
+}
+
+.fa-at {
+    color: #fff;
+}

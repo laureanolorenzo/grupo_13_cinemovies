@@ -4,46 +4,57 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registro</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
         
-        <main>
-            <h2>Registro</h2>
+        <main class="registro">
+            <h2 class="titulo-login">Registro</h2>
+            <p>Crear una cuenta</p>
             <section>
-                <p>Crear una cuenta</p>
-                <form action="">
-                    <input type="text" name="nombre-usuario" id="nombre-usuario" placeholder="Nombre de usuario">
-                    <input type="text" name="correo" id="correo" placeholder="Correo electrónico">
-                    <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
-                    <input type="password" name="contrasena-repetida" id="contrasena-repetida" placeholder="Repetir contraseña">
-                    <button type="submit">Registrarse</button>
+                <form class="section-input" action="">
+                    <label for="nombre-usuario">Nombre de usuario</label>
+                    <input class="input-text" type="text" name="nombre-usuario" id="nombre-usuario">
+                    <label for="correo">Correo electrónico</label>
+                    <input class="input-text" type="text" name="correo" id="correo">
+                    <label for="contrasena">Contraseña</label>
+                    <input class="input-text" type="password" name="contrasena" id="contrasena">
+                    <label for="contrasena-repetida">Repetir contraseña</label>
+                    <input class="input-text" type="password" name="contrasena-repetida" id="contrasena-repetida">
+                    <button class="button" type="submit">Registrarse</button>
                 </form>
             </section>
-            <section>
-                <button>Registrarse con Facebook</button>
-                <button>Registrarse con Google</button>
-                <button>Registrarse con Outlook</button>
+            <section class="botones-registro">
+                <button class="boton-google"><i class="fa-brands fa-google"></i></button>
+                <button class="boton-facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                <button class="boton-outlook"><i class="fa-solid fa-at"></i></button>
             </section>
         </main>
 
         <footer>
-            <section>
-                <p>CINEMOVIES</p>
-            </section>
-            <section>
-                <div>
-                    <i class="fa-brands fa-instagram">instagram</i>
-                </div>
-                <div>
-                    <i class="fa-brands fa-x-twitter">twitter</i>
-                </div>
-                <div>
-                    <i class="fa-regular fa-envelope">correo</i>
-                </div>
-            </section>
-            <section>
-                Copyright © 2023-2023 Cinemovies
-            </section>
+            <div class="wrapper">
+                <section>
+                    <p class="logo-footer">CINEMOVIE</p>
+                </section>
+                <section class="iconos-footer">
+                    <div>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <div>
+                        <i class="fa-brands fa-twitter"></i>
+                    </div>
+                    <div>
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+                </section>
+                <section class="copyright">
+                    Copyright © 2023-2023 Cinemovies
+                </section>
+            </div>
         </footer>
 
     </body>

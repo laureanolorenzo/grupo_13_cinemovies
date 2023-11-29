@@ -1,0 +1,47 @@
+footer {
+    background-color: black;
+}
+
+.logo-footer {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    /* MODIFICAR COLORES */
+    color: var(--colors-naranja);                     
+    text-shadow: #F04E24 0px 4px 4px;
+    padding: 15px;
+    text-align: center;
+}
+
+.iconos-footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.fa-instagram {
+    color: var(--colors-naranja);                     
+    text-shadow: #F04E24 0px 4px 4px;
+    font-size: 24px;
+}
+
+.fa-twitter {
+    color: var(--colors-naranja);                     
+    text-shadow: #F04E24 0px 4px 4px;
+    font-size: 24px;
+}
+
+.fa-envelope {
+    color: var(--colors-naranja);                     
+    text-shadow: #F04E24 0px 4px 4px;
+    font-size: 24px;
+}
+
+.copyright {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    /* MODIFICAR COLORES */
+    color: var(--colors-naranja);                     
+    text-shadow: #F04E24 0px 4px 4px;
+    padding: 15px;
+    text-align: center;
+}
