@@ -34,11 +34,11 @@
           </div>
         </div>
       </header>
-        <div class="title-underline">
-            <h1 class="titulo-login">Iniciar Sesión</h1>
-        </div>
+      <div class="title-underline">
+        <h2 class="titulo-login">Iniciar Sesión</h1>
+      </div>
         <main>
-            <form class="login" action= "/" method="POST">
+            <form class="login-form" action= "/" method="POST">
                 <div class="field">
                     <label for="usuario">
                         Usuario:
@@ -51,17 +51,17 @@
                         <input type="text" name="contraseña" id="contraseña">
                     </label>
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit" class="button">Login</button>
                 <div>
                     <a href="#"><p>Olvidé mi contraseña</p></a>
                 </div>
             </form>
-            <div class="field">
-                <form action="/registro" method="GET">
-                    <p>No tienes cuenta?</p>
-                    <button type="submit"> Regístrate</button>
-                </form>
-            </div>
+            <form action="/registro" method="GET" form class="regis-ref"></form>
+              <div class="field">
+                <p>No tienes cuenta?</p>
+                <button type="submit"> Regístrate</button>
+              </div>
+            </form>
         </main>
         <footer>
             <p>Lorem ipsum dolor sit amet consectetur</p>

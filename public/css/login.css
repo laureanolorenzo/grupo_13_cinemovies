@@ -1,7 +1,25 @@
+/* Color del fondo */
 .login-body {
-    background-image: linear-gradient("530089", "565656");
-    background-color: red;
+    background: linear-gradient( #AC1BD0 0% ,#8F28A9 20%, #763686 40%, #684171 60%, #5E4A63 80%, hsl(0, 0%, 34%) 100%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
 }
-.titulo-login {
-    color: red;
+main {
+    padding: 16px;
+    height: 80%;
 }
+
+
+/* Main */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Parte del login */
+.login-form {
+    height: 75%;
+}
+/* Parte del "registrarme" */

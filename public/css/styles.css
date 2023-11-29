@@ -6,6 +6,8 @@
 @import url('./cards-categoria.css');
 @import url('./header.css');
 @import url('./footer.css');
+@import url('./input.css');
+@import url('./titulo_form.css');
 
 :root {
   --colors-blanco: #ffffff;
@@ -22,9 +24,7 @@
 }
 
 body{
-  /* background-color: var(--colors-negro); */
-  background-color: #5c008f;
-
+  background-color: var(--colors-negro);
 }
 
 @media screen and (max-width: 767px){

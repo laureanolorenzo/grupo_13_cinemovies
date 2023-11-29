@@ -1,0 +1,17 @@
+.title-underline {
+    width: 100vw;
+    margin: 40px 8px 8px 8px;;
+    /* margin-top: 40px; */
+}
+
+
+
+.titulo-login {
+    height: 36px;
+    text-align: bottom;
+    font-size: 1.5em;
+    width: 95%;
+    margin-left: 0px;
+    border-bottom: solid var(--colors-blanco) 3px;
+    color: var(--colors-blanco);
+}

@@ -2,7 +2,13 @@
   text-decoration: none;
   color: white;
   border: none;
-  background-color: red;
+  background-color: #B418DC;
   padding: 8px;
-  border-radius: 4px;
+  border-radius: 16px;
+  /*ESTO LO AGREGO PARA QUE PAREZCA EL DE FIGMA*/
+  width: 90%;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 2px 2px 20px #464447; /**/
+
 }
