@@ -10,7 +10,7 @@
 @import url('./titulo_form.css');
 @import url('./field.css');
 @import url('./home.css');
-
+@import url('./categorias.css');
 :root {
   --colors-blanco: #ffffff;
   --colors-negro: #0b0b0b;
