@@ -40,7 +40,6 @@
   .menu-item a {
     text-decoration: none;
     color: var(--colors-blanco);
-    font-family: 'Jost', sans-serif;
   }
 
   .burguer-menu {

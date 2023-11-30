@@ -9,6 +9,7 @@
 @import url('./input.css');
 @import url('./titulo_form.css');
 @import url('./field.css');
+@import url('./home.css');
 
 :root {
   --colors-blanco: #ffffff;
@@ -16,35 +17,44 @@
   --colors-violeta: #5c008f;
   --colors-naranja: #ffb000;
   --colors-azul: #0000e6;
+  --colors-gris: #868686;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Jost', sans-serif;
 }
 
 body{
   background-color: var(--colors-negro);
 }
 
-@media screen and (max-width: 767px){
+.wrapper {
+  max-inline-size: 1366px;
+  padding-inline-end: 16px;
+  padding-inline-start: 16px;
+  margin: auto;
+}
+
+/* @media screen and (max-width: 767px){
   .wrapper {
-    max-width: 393px;
+    width: 393px;
     margin: auto;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px){
   .wrapper {
-    max-width: 720px;
+    width: 720px;
     margin: auto;
   }
 }
 
 @media screen and (min-width: 1024px){
   .wrapper {
-    max-width: 960px;
+    width: 960px;
     margin: auto;
   }
-}
+} */
