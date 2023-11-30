@@ -102,6 +102,7 @@
 .product-price h4{
   color: var(--colors-blanco);
   font-weight: 400;
+  flex-shrink: 0;
 }
 
 .product-price a {
