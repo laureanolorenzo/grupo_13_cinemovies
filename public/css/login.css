@@ -12,10 +12,11 @@ main {
 
 
 /* Main */
-main {
+.main-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 32px;
 }
 /* FLEX MAS GRANDE */
 /* Parte del login:  */
@@ -25,21 +26,27 @@ main {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-
+    gap: 40px;
 }
 /* Parte del "registrarme" */
 .regis-ref {
-    height: 25%;
+    /* height: 25%; */
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 .regis-ref label {
-    height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin-top: 2em;
+    color : var(--colors-naranja);
+    /* text-shadow: #F04E24 0px 4px 4px; */
+    margin-top: 16px;
+    gap: 8px;
+    font-size: 1.2em;
+    max-width: 400px;
+    width: 100%;
 }
 /* FLEX INTERMEDIO */
 
@@ -48,10 +55,19 @@ main {
 .login-bottom {
     display: flex;
     flex-direction: column;
-    height: 20%;
+    gap: 24px;
     justify-content: space-around;
     align-items: center;
     width: 100%; 
-    max-width: 400px;     /* Para que no se vea tan ancho en desktop */
-    
+    max-width: 400px;     /* Para que no se vea tan ancho en desktop */   
+    font-size: 1.2em;
+}
+.login-bottom a p {
+    color: var(--colors-naranja);
+    text-decoration: underline;
+    text-decoration-color: var(--colors-naranja);
+}
+/* Boton de registrate. No uso la clase "button" porque debe ser distinto a los otros botones */
+.regis-ref label button {
+    background-color: #121212;
 }

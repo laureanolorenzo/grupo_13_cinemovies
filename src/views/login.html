@@ -34,35 +34,34 @@
           </div>
         </div>
       </header>
-      <div class="title-underline">
-        <h2 class="titulo-login">Iniciar Sesión</h1>
-      </div>
-        <main>
-            <form class="login-form" action= "/" method="POST">
-                  <label for="usuario" class="field">
-                      Usuario:
-                      <input type="text" name="usuario" id="usuario" class="input-text"> 
-                  </label>
-                  <label for="contraseña" class="field">
-                      Contraseña:
-                      <input type="password" name="contraseña" id="contraseña" class="input-text">
-                  </label>
-                  <div class="login-bottom">
-                    <button type="submit" class="button">Login</button>
-                    <a href="#"><p>Olvidé mi contraseña</p></a>
-                  </div>
-            </form>
-            <form action="/registro" method="GET" form class="regis-ref">
-                <label>
-                  No tienes cuenta?
-                  <button type="submit"> Regístrate</button>
-                </label>
-                
-            </form>
+        <main class="main">
+          <div class="wrapper">
+            <div class="main-content">
+              <div class="title-underline">
+                <h2 class="titulo-login">Iniciar Sesión</h1>
+              </div>
+                <form class="login-form" action= "/" method="POST">
+                      <label for="usuario" class="field">
+                          Usuario:
+                          <input type="text" name="usuario" id="usuario" class="input-text"> 
+                      </label>
+                      <label for="contraseña" class="field">
+                          Contraseña:
+                          <input type="password" name="contraseña" id="contraseña" class="input-text">
+                      </label>
+                      <div class="login-bottom">
+                        <button type="submit" class="button">Login</button>
+                        <a href="#"><p>Olvidé mi contraseña</p></a>
+                      </div>
+                </form>
+                <form action="/registro" method="GET" form class="regis-ref">
+                    <label>
+                      No tienes cuenta?
+                      <button type="submit" class="button"> Regístrate</button>
+                    </label>
+              </form>
+            </div>
+          </wrapper>
         </main>
-        <footer>
-            <p>Lorem ipsum dolor sit amet consectetur</p>
-        </footer>
-        
 </body>
 </html>
