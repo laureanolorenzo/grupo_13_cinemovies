@@ -1,12 +1,5 @@
-
 .home-main {
   background: var(--colors-naranja);
-}
-
-.carrusel {
-  background-image: url('/images/cover1.jpeg');
-  background-size: cover;
-  height: 200px;
 }
 
 /*CATEGORIAS*/
