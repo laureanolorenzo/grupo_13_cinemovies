@@ -22,10 +22,10 @@
             </div>
             <nav class="nav">
               <ul class="menu-items">
-                <li class="menu-item"><a href="/">Kiosco</a></li>
-                <li class="menu-item"><a href="/">Carrito</a></li>
-                <li class="menu-item"><a href="/">Login</a></li>
-                <li class="menu-item"><a href="/">Registro</a></li>
+                <li class="menu-item"><a href="/kiosco">Kiosco</a></li>
+                <li class="menu-item"><a href="/carrito">Carrito</a></li>
+                <li class="menu-item"><a href="/login">Login</a></li>
+                <li class="menu-item"><a href="/registro">Registro</a></li>
               </ul>
             </nav>
             <div class="burguer-menu">
@@ -50,18 +50,39 @@
                           <input type="password" name="contraseña" id="contraseña" class="input-text">
                       </label>
                       <div class="login-bottom">
-                        <button type="submit" class="button">Login</button>
+                        <button type="submit" class="button" id="login-btn">Login</button>
                         <a href="#"><p>Olvidé mi contraseña</p></a>
                       </div>
                 </form>
                 <form action="/registro" method="GET" form class="regis-ref">
                     <label>
                       No tienes cuenta?
-                      <button type="submit" class="button"> Regístrate</button>
+                      <button type="submit" class="button" id="login-rg-btn"> Regístrate</button>
                     </label>
               </form>
             </div>
           </wrapper>
         </main>
+        <footer>
+          <div class="wrapper">
+              <section>
+                  <p class="logo-footer">CINEMOVIE</p>
+              </section>
+              <section class="iconos-footer">
+                  <div>
+                      <i class="fa-brands fa-instagram"></i>
+                  </div>
+                  <div>
+                      <i class="fa-brands fa-twitter"></i>
+                  </div>
+                  <div>
+                      <i class="fa-regular fa-envelope"></i>
+                  </div>
+              </section>
+              <section class="copyright">
+                  Copyright © 2023-2023 Cinemovies
+              </section>
+          </div>
+      </footer>
 </body>
 </html>

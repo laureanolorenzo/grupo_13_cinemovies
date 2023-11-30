@@ -1,7 +1,26 @@
-.registro {
+/* Agrego algunas cosas Eze. Despues revisalas */
+.register-body { /*Para que el fondo ocupe toda la pantalla y el footer quede abajo*/
+    height: 100vh;
+    position: relative;
     background: rgb(87,85,88);
     background: linear-gradient(0deg, rgba(87,85,88,1) 0%, rgba(184,23,223,1) 100%);
 }
+footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+
+
+
+
+/* ----------------------------------------  */
+/* Esto te lo comento porque le puse el fondo al body. Fijate como te gusta! */
+/* .registro {
+    background: rgb(87,85,88);
+    background: linear-gradient(0deg, rgba(87,85,88,1) 0%, rgba(184,23,223,1) 100%);
+} */
 
 .registro p {
     font-family: Arial, Helvetica, sans-serif;

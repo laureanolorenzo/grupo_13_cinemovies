@@ -16,7 +16,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 32px;
+    gap: 16px;
 }
 /* FLEX MAS GRANDE */
 /* Parte del login:  */
@@ -26,7 +26,7 @@ main {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
 }
 /* Parte del "registrarme" */
 .regis-ref {
