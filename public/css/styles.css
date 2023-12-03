@@ -59,3 +59,19 @@ body{
     margin: auto;
   }
 } */
+
+/*cambiando la barra de scroll*/
+
+::-webkit-scrollbar {
+  inline-size: .5rem;
+  block-size: .5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--colors-blanco);
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--colors-naranja);
+}
