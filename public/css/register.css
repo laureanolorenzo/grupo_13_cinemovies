@@ -1,13 +1,12 @@
 .register-body {
-    height: 120vh; /* cambiar para la vista en pc */
+    height: 100vh; /* cambiar para la vista en pc */
     position: relative;
     background: rgb(87,85,88);
     background: linear-gradient(0deg, rgba(87,85,88,1) 0%, rgba(184,23,223,1) 100%);
 }
 
 footer {
-    position: absolute;
-    bottom: 0px;
+    /* bottom: 0px; */
     width: 100%;
 }
 
