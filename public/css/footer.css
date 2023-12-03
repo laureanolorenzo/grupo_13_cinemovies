@@ -1,7 +1,6 @@
 footer {
     background-color: black;
-    position: fixed;
-    bottom: 0px;
+    position: sticky;
 }
 
 .logo-footer {
