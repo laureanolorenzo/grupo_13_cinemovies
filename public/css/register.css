@@ -60,3 +60,10 @@ footer {
 .fa-at {
     color: #fff;
 }
+
+
+/* Agrego estilo a los botones de acceso con gmail, */
+.botones-registro > button:hover {
+    cursor: pointer;
+    filter: brightness(130%);
+}
