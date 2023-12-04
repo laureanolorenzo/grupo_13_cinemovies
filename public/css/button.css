@@ -20,4 +20,5 @@
 #login-btn:hover, #login-rg-btn:hover {
   cursor: pointer;
   transform: scale(1.05);
+  /* filter: brightness(130%); */
 }

@@ -13,46 +13,46 @@
     <body class="register-body">
         <header class="header">
             <div class="wrapper">
-                <div class="header-content">
-        <div class="header-logo">
-          <span>CINEMOVIE</span>
-        </div>
-        <nav class="nav">
-          <ul class="menu-items">
-            <li class="menu-item"><a href="/">Kiosco</a></li>
-            <li class="menu-item"><a href="/">Carrito</a></li>
-            <li class="menu-item"><a href="/login">Login</a></li>
-            <li class="menu-item"><a href="/registro">Registro</a></li>
-          </ul>
-        </nav>
-        <div class="burguer-menu">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-      </div>
-    </div>
-  </header>
+              <div class="header-content">
+                <div class="header-logo">
+                  <span>CINEMOVIE</span>
+                </div>
+                <nav class="nav">
+                  <ul class="menu-items">
+                    <li class="menu-item"><a href="/"><i class="fa-solid fa-store"></i></a></li>
+                    <li class="menu-item"><a href="/"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    <li class="menu-item"><a href="/login">Login</a></li>
+                    <li class="menu-item"><a href="/registro">Registro</a></li>
+                  </ul>
+                </nav>
+                <div class="burguer-menu">
+                  <i class="fa-solid fa-bars"></i>
+                </div>
+              </div>
+            </div>
+          </header>
         <main>
             <div class="wrapper">
                 <div class="registro">
                     <h2 class="titulo-login">Registro</h2>
                     <p>Crear una cuenta</p>
                     <section>
-                        <form class="section-input" action="">
+                        <form class="section-input" action="/register" method="post">
                             <label for="nombre-usuario" class="field">
                                 Nombre de usuario:
-                                <input class="input-text" type="text" name="nombre-usuario" id="nombre-usuario">
+                                <input class="input-text" type="text" name="nombre-usuario" id="nombre-usuario" minlength="3" oninvalid="this.setCustomValidity('*El usuario ingresado no es válido. Debe contener al menos 3 caracteres.')">
                             </label>
                             <label for="correo" class="field">
                                 Correo electrónico:
-                                <input class="input-text" type="text" name="correo" id="correo">
+                                <input class="input-text" type="text" name="correo" id="correo" minlength="1" oninvalid="this.setCustomValidity('*Por favor ingrese un correo electrónico válido')">
                             </label>
                             <label for="contrasena" class="field">
                                 Contraseña:
-                                <input class="input-text" type="password" name="contrasena" id="contrasena">
+                                <input class="input-text" type="password" name="contrasena" id="contrasena" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
                             </label>
                             <label for="contrasena-repetida" class="field">
                                 Repetir contraseña:
-                                <input class="input-text" type="password" name="contrasena-repetida" id="contrasena-repetida">
+                                <input class="input-text" type="password" name="contrasena-repetida" id="contrasena-repetida" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
                             </label>
                             <div class="field">
                                 <button class="button" type="submit" id = "login-rg-btn">Registrarse</button>
