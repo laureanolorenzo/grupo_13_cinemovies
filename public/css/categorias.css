@@ -6,32 +6,32 @@ main {
 }
 
 .seccionCategorias {
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     margin-bottom: 10px;
     justify-content: space-between;
-    border-bottom: solid red 3px;
-    font-style: bold;
-    padding: 2%;
+    border-bottom: solid var(--colors-blanco) 3px;
+    color: var(--colors-blanco);
+    
 }
 
 .Buscar {
-    border: solid red 1px;
+    border: none;
     display: block;
-    margin: 20px;
+    margin: 7px;
+    padding: 5px;
     border-radius: 4px;
 }
 
 .lista-categorias {
-    border: solid red 2px;
-    padding: 0px;
-    font-style: italic;
+    padding: 8px;
+    box-shadow: 6px 12px 50px -2px rgba(0, 0, 0, 0.75);
 }
 
 ;
 
 ul {
     padding: 0;
-    /* También podrías querer quitar el margin */
     margin: 0;
 }
 
@@ -75,7 +75,7 @@ ul {
 .boton-ver {
     color: #ffffff;
     padding: 0.75rem;
-    background-color: #03264C;
+    background-color: #000000;
     border-radius: 4px;
     width: 85px;
     font-size: 15px;
@@ -90,7 +90,7 @@ ul {
 
 @media(min-width: 426px) {
     .contenido-pelicula {
-        border: solid blue 1px;
+        border: solid rgb(18, 18, 79) 1px;
         justify-content: space-between;
         width: 100%;
         align-items: center;
@@ -103,6 +103,7 @@ ul {
     .sin-padding {
         display: flex;
         align-items: center;
+        margin-top: 13px;
     }
 
     .linea{
@@ -123,6 +124,7 @@ ul {
         display: block;
         text-align: left;
         padding: 0 20px;
+        margin-top: 21px;
     }
 
     .poster {
@@ -140,7 +142,7 @@ ul {
 
     .boton-ver{
         position: relative;
-        left:48%;
+        left:45%;
         margin-top: 28px;
         margin-bottom: 30px;
     }
