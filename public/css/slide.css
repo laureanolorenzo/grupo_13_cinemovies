@@ -65,7 +65,7 @@ body {
   height: 10px;
   position: absolute;
   bottom: 24px;
-  z-index: 99;
+  z-index: 10;
   left: 30px;
 }
 
@@ -325,7 +325,7 @@ body {
     height: 10px;
     position: absolute;
     bottom: 24px;
-    z-index: 99;
+    z-index: 10;
     left: 30px;
   }
 }
