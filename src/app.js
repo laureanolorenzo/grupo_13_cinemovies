@@ -16,6 +16,7 @@ app.listen(PORT, () => {
 
 let homePath = path.resolve(__dirname, 'views/home.html');
 app.get('/', (req, res) => res.sendFile(homePath)); //View del home
+app.get('/home', (req, res) => res.sendFile(homePath)); 
 
 // Resto de los archivos. Con esto ya deberían funcionar sin importar el nombre que se les ponga.
 const htmlFiles = fs.readdirSync(path.resolve(__dirname, 'views'));
@@ -31,3 +32,5 @@ for (const file of htmlFiles) {
 
 // Metodo post para el home (Para que al enviar el formulario login me devuelva al home)
 app.post('/',(req,res) => res.sendFile(homePath));
+app.post('/login', (req,res) => res.sendFile(homePath));
+app.post('/register', (req,res) => res.sendFile(homePath));

@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.header-logo {
+  text-decoration: none;
+}
+
 .header-logo span{
   color: var(--colors-naranja);
   font-weight: 700;
@@ -21,10 +25,25 @@
   display: none;
 }
 
-.burguer-menu i{
+/*MENU LATERAL*/
+
+
+#check {
+  /* display: none; */
+}
+
+.burguer-menu i {
   color: var(--colors-blanco);
   font-size: 1em;
 }
+
+#check:checked ~ .menu-items {
+  /* left: 0; */
+  display: block;
+  border: 1px solid red;
+}
+
+/*----------*/
 
 @media screen and (min-width: 768px) {
   .menu-items {

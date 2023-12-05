@@ -4,46 +4,72 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registro</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body class="register-body">
-        
-        <main class="wrapper">
-            <div class="registro">
-                <h2 class="titulo-login">Registro</h2>
-                <p>Crear una cuenta</p>
-                <section>
-                    <form class="section-input" action="">
-                        <label for="nombre-usuario" class="field">
-                            Nombre de usuario:
-                            <input class="input-text" type="text" name="nombre-usuario" id="nombre-usuario">
-                        </label>
-                        <label for="correo" class="field">
-                            Correo electrónico:
-                            <input class="input-text" type="text" name="correo" id="correo">
-                        </label>
-                        <label for="contrasena" class="field">
-                            Contraseña:
-                            <input class="input-text" type="password" name="contrasena" id="contrasena">
-                        </label>
-                        <label for="contrasena-repetida" class="field">
-                            Repetir contraseña:
-                            <input class="input-text" type="password" name="contrasena-repetida" id="contrasena-repetida">
-                        </label>
-                        <div class="field">
-                            <button class="button" type="submit" id = "login-rg-btn">Registrarse</button>
-                        </div>
-                    </form>
-                </section>
-                <section class="botones-registro">
-                    <button class="boton-google"><i class="fa-brands fa-google"></i></button>
-                    <button class="boton-facebook"><i class="fa-brands fa-facebook-f"></i></button>
-                    <button class="boton-outlook"><i class="fa-solid fa-at"></i></button>
-                </section>
+        <header class="header">
+            <div class="wrapper">
+              <div class="header-content">
+                <div class="header-logo">
+                  <span>CINEMOVIE</span>
+                </div>
+                <nav class="nav">
+                  <ul class="menu-items">
+                    <li class="menu-item"><a href="/"><i class="fa-solid fa-store"></i></a></li>
+                    <li class="menu-item"><a href="/"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                    <li class="menu-item"><a href="/login">Login</a></li>
+                    <li class="menu-item"><a href="/registro">Registro</a></li>
+                  </ul>
+                </nav>
+                <div class="burguer-menu">
+                  <i class="fa-solid fa-bars"></i>
+                </div>
+              </div>
+            </div>
+          </header>
+        <main>
+            <div class="wrapper">
+                <div class="registro">
+                    <h2 class="titulo-login">Registro</h2>
+                    <p>Crear una cuenta</p>
+                    <section>
+                        <form class="section-input" action="/register" method="post">
+                            <label for="nombre-usuario" class="field">
+                                Nombre de usuario:
+                                <input class="input-text" type="text" name="nombre-usuario" id="nombre-usuario" minlength="3" oninvalid="this.setCustomValidity('*El usuario ingresado no es válido. Debe contener al menos 3 caracteres.')">
+                            </label>
+                            <label for="correo" class="field">
+                                Correo electrónico:
+                                <input class="input-text" type="text" name="correo" id="correo" minlength="1" oninvalid="this.setCustomValidity('*Por favor ingrese un correo electrónico válido')">
+                            </label>
+                            <label for="contrasena" class="field">
+                                Contraseña:
+                                <input class="input-text" type="password" name="contrasena" id="contrasena" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
+                            </label>
+                            <label for="contrasena-repetida" class="field">
+                                Repetir contraseña:
+                                <input class="input-text" type="password" name="contrasena-repetida" id="contrasena-repetida" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
+                            </label>
+                            <div class="field">
+                                <button class="button" type="submit" id = "login-rg-btn">Registrarse</button>
+                            </div>
+                        </form>
+                    </section>
+                    <section class="botones-registro">
+                        <button class="boton-google"><i class="fa-brands fa-google"></i></button>
+                        <button class="boton-facebook"><i class="fa-brands fa-facebook-f"></i></button>
+                        <button class="boton-outlook"><i class="fa-solid fa-at"></i></button>
+                    </section>
+                </div>
             </div>
         </main>
 
@@ -68,6 +94,5 @@
                 </section>
             </div>
         </footer>
-
     </body>
 </html>

@@ -8,6 +8,10 @@
   padding-block: 24px;
 }
 
+.categoria {
+  text-decoration: none;
+}
+
 .categoria-title, .kiosco-title {
   display: flex;
   align-items: center;
@@ -34,8 +38,23 @@
   flex-shrink: 0; /*para que las etiquetas a tomen el ancho que le damos*/
 }
 
-.background-img {
+.backg-accion {
   background-image: url('/images/cover-accion.jpeg');
+}
+
+.backg-aventura {
+  background-image: url('/images/cover-aventura.jpg');
+}
+
+.backg-drama {
+  background-image: url('/images/cover-drama.jpg');
+}
+
+.backg-romance {
+  background-image: url('/images/cover-romance.jpg');
+}
+
+.background-img {
   background-size: cover;
   height: 203px;
   border-radius: 8px 8px 0 0;
