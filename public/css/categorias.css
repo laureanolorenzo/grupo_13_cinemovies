@@ -1,3 +1,148 @@
-body{
-    background-color: white;
+main {
+    font-style: bold;
+    background: linear-gradient( #AC1BD0 0% ,#8F28A9 20%, #763686 40%, #684171 60%, #5E4A63 80%, hsl(0, 0%, 34%) 100%);
+    height: 80%;
+    padding: 16px;
+}
+
+.seccionCategorias {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    border-bottom: solid red 3px;
+    font-style: bold;
+    padding: 2%;
+}
+
+.Buscar {
+    border: solid red 1px;
+    display: block;
+    margin: 20px;
+    border-radius: 4px;
+}
+
+.lista-categorias {
+    border: solid red 2px;
+    padding: 0px;
+    font-style: italic;
+}
+
+;
+
+ul {
+    padding: 0;
+    /* También podrías querer quitar el margin */
+    margin: 0;
+}
+
+.alineacion-movil {
+    text-align: center;
+}
+
+.lista-general {
+    margin: none;
+    text-align: center;
+    padding: 0px;
+}
+
+.titulo-pelicula {
+    left: 45px;
+    margin-bottom: 18px;
+    font-size: 35px;
+}
+
+.poster {
+    width: 162px;
+    border-radius: 15px;
+    box-shadow: 6px 12px 50px -2px rgba(0, 0, 0, 0.75);
+}
+
+.cajas {
+    display: flex;
+}
+
+.texto-caja {
+    display: none;
+    text-align: left;
+    position: relative;
+    bottom: 205px;
+    left: 9px;
+    font-style: normal;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+.boton-ver {
+    color: #ffffff;
+    padding: 0.75rem;
+    background-color: #03264C;
+    border-radius: 4px;
+    width: 85px;
+    font-size: 15px;
+    border: 0;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.sin-padding{
+    display: none;
+}
+
+@media(min-width: 426px) {
+    .contenido-pelicula {
+        border: solid blue 1px;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        border-radius: 16px;
+        position: relative;
+        right: 8px;
+        box-shadow: 6px 12px 50px -2px rgba(0, 0, 0, 0.75);
+    }
+
+    .sin-padding {
+        display: flex;
+        align-items: center;
+    }
+
+    .linea{
+        margin-bottom: 1em;
+    }
+
+
+    .contenido{
+        display: flex;
+        width: 100%;
+    }
+
+    .texto-caja {
+        display: block;
+    }
+
+    .alineacion-movil {
+        display: block;
+        text-align: left;
+        padding: 0 20px;
+    }
+
+    .poster {
+        box-shadow: none;
+        width: 20%;
+    }
+
+    .texto-caja {
+        display: block;
+    }
+
+    .description {
+        display: flex;
+    }
+
+    .boton-ver{
+        position: relative;
+        left:48%;
+        margin-top: 28px;
+        margin-bottom: 30px;
+    }
+
 }
