@@ -11,6 +11,7 @@
 @import url('./field.css');
 @import url('./home.css');
 @import url('./slide.css');
+@import url('./promociones.css');
 
 :root {
   --colors-blanco: #ffffff;

@@ -1,0 +1,70 @@
+header{
+    width: 100%;
+}
+main{
+    background: var(--colors-violeta);
+    width: 100%;
+}
+.main{
+    width: 90%;
+    margin: auto;
+}
+.header-logo span a{ 
+    color: var(--colors-naranja);
+    font-weight: 700;
+    font-size: 1.2em;
+    font-family: 'Bebas Neue', system-ui;
+    letter-spacing: .2cap;
+    text-decoration: none;
+}
+.encabezado.header{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    text-align: center;
+    background-color: #b366dd;
+    font-size: 95%;
+}
+.encabezado.header i{
+    font-size: 30px;
+}
+.tarjeta img{
+    width: 100%;
+    vertical-align: top;
+}
+.tarjeta{
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.texto-de-promo{
+    border-top: 1px solid white;
+    background-color: var(--colors-gris);
+    text-align: center;
+    padding: 15px;
+}
+.texto-de-promo p{
+    color: white;
+}
+/*----------VERSION TABLET/DESKTOP--------- */
+@media(min-width:481px){
+    .cards{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+    .tarjeta{
+        width: 45%;
+    }
+    .texto-de-promo{
+        font-size: 13px;
+    }
+}
+
+@media(min-width:769px){
+    .tarjeta{
+        width: 24%;
+    }
+}
