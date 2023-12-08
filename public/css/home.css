@@ -1,18 +1,15 @@
-
 .home-main {
   background: var(--colors-naranja);
-}
-
-.carrusel {
-  background-image: url('/images/cover1.jpeg');
-  background-size: cover;
-  height: 200px;
 }
 
 /*CATEGORIAS*/
 
 .categorias, .kiosco {
   padding-block: 24px;
+}
+
+.categoria {
+  text-decoration: none;
 }
 
 .categoria-title, .kiosco-title {
@@ -41,8 +38,23 @@
   flex-shrink: 0; /*para que las etiquetas a tomen el ancho que le damos*/
 }
 
-.background-img {
+.backg-accion {
   background-image: url('/images/cover-accion.jpeg');
+}
+
+.backg-aventura {
+  background-image: url('/images/cover-aventura.jpg');
+}
+
+.backg-drama {
+  background-image: url('/images/cover-drama.jpg');
+}
+
+.backg-romance {
+  background-image: url('/images/cover-romance.jpg');
+}
+
+.background-img {
   background-size: cover;
   height: 203px;
   border-radius: 8px 8px 0 0;
@@ -79,8 +91,8 @@
   justify-content: space-between;
 }
 
-.product-title {
-}
+/* .product-title {
+} */
 
 .product-title h4 {
   color: var(--colors-blanco);

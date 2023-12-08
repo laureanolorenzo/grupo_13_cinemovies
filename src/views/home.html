@@ -11,32 +11,70 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <!-- <link rel="stylesheet" href="../../public/css/styles.css"> -->
   <title>Cinemovies</title>
 </head>
 <body>
   <header class="header">
     <div class="wrapper">
       <div class="header-content">
-        <div class="header-logo">
-          <span>CINEMOVIE</span>
-        </div>
         <nav class="nav">
+          <input type="checkbox" id="check">
+          <label for="check" class="burguer-menu">
+            <i class="fa-solid fa-bars"></i>
+          </label>
+          <a href="/" class="header-logo">
+            <span>CINEMOVIE</span>
+          </a>
           <ul class="menu-items">
-            <li class="menu-item"><a href="/">Kiosco</a></li>
-            <li class="menu-item"><a href="/">Carrito</a></li>
+            <li class="menu-item"><a href="/kiosco"><i class="fa-solid fa-store"></i></a></li>
+            <li class="menu-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <li class="menu-item"><a href="/promociones">Promociones</a></li>
             <li class="menu-item"><a href="/login">Login</a></li>
             <li class="menu-item"><a href="/registro">Registro</a></li>
           </ul>
         </nav>
-        <div class="burguer-menu">
-          <i class="fa-solid fa-bars"></i>
-        </div>
       </div>
     </div>
   </header>
   <div class="home-main">
     <div class="carrusel">
-
+      <div id="slider">
+        <div class="slides">
+          <div class="slider">
+            <div class="image">
+              <img src="/images/cover1.jpeg">
+            </div>
+          </div>
+          <div class="slider">
+            <div class="image">
+              <img src="/images/cover2.jpeg">
+            </div>
+          </div>
+          <div class="slider">
+            <div class="legend"></div>
+            <div class="image">
+              <img src="/images/cover3.jpeg">
+            </div>
+          </div>
+          <div class="slider">
+            <div class="legend"></div>
+            <div class="image">
+              <img src="/images/cover4.jpeg">
+            </div>
+          </div>
+        </div>
+        <div class="switch">
+          <ul>
+            <li>
+              <div class="on"></div>
+            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="wrapper">
       <div class="home-main_content">
@@ -47,25 +85,25 @@
           </div>
           <div class="categoria-list">
             <a href="#" class="categoria">
-              <div class="background-img">
+              <div class="background-img backg-accion">
                 <!-- colocar con background-image -->
               </div>
               <h4>acción</h4>
             </a>
             <a href="#" class="categoria">
-              <div class="background-img">
+              <div class="background-img backg-aventura">
                 <!-- colocar con background-image -->
               </div>
               <h4>aventura</h4>
             </a>
             <a href="#" class="categoria">
-              <div class="background-img">
+              <div class="background-img backg-drama">
                 <!-- colocar con background-image -->
               </div>
               <h4>drama</h4>
             </a>
             <a href="#" class="categoria">
-              <div class="background-img">
+              <div class="background-img backg-romance">
                 <!-- colocar con background-image -->
               </div>
               <h4>romance</h4>
@@ -85,11 +123,11 @@
               <div class="kiosco-product-details">
                 <div class="product-title">
                   <h4>Popcorn & CocaCola</h4>
-                  <span>mediano</span>
+                  <span>normal</span>
                 </div>
                 <div class="product-price">
                   <h4>$ 2000</h4>
-                  <a href="#" class="button">Ordenar</a>
+                  <a href="#">Ordenar</a>
                 </div>
               </div>
             </div>
@@ -104,7 +142,7 @@
                 </div>
                 <div class="product-price">
                   <h4>$ 2000</h4>
-                  <a href="#" class="button">Ordenar</a>
+                  <a href="#">Ordenar</a>
                 </div>
               </div>
             </div>
@@ -113,6 +151,28 @@
       </div>
     </div>
   </div>
+
+  <footer>
+    <div class="wrapper">
+      <section>
+        <p class="logo-footer">CINEMOVIE</p>
+      </section>
+      <section class="iconos-footer">
+        <div>
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+        <div>
+          <i class="fa-brands fa-twitter"></i>
+        </div>
+        <div>
+          <i class="fa-regular fa-envelope"></i>
+        </div>
+      </section>
+      <section class="copyright">
+        Copyright © 2023-2023 Cinemovies
+      </section>
+    </div>
+  </footer>
 </body>
 </html>
 

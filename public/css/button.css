@@ -12,5 +12,13 @@
   box-shadow: 2px 2px 20px #464447; /**/
   /* max-width: 640px; Sino, se ve muy ancho en desktop para el login */
   width: 95%;
+  transition: transform 300ms; /*Solo se va a usar para botones de login. Cambiar si se desea*/
 
+}
+
+/* Botonos de login y registrarse */
+#login-btn:hover, #login-rg-btn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  /* filter: brightness(130%); */
 }

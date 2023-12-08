@@ -2,8 +2,8 @@
 .login-body {
     background: linear-gradient( #AC1BD0 0% ,#8F28A9 20%, #763686 40%, #684171 60%, #5E4A63 80%, hsl(0, 0%, 34%) 100%);
     background-size: cover;
-    background-repeat: no-repeat;
     height: 100vh;
+    width: 100%;
 }
 main {
     padding: 16px;
@@ -16,7 +16,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 32px;
+    gap: 16px;
 }
 /* FLEX MAS GRANDE */
 /* Parte del login:  */
@@ -26,7 +26,7 @@ main {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    gap: 40px;
+    gap: 32px;
 }
 /* Parte del "registrarme" */
 .regis-ref {

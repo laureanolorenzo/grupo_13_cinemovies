@@ -1,12 +1,19 @@
-.registro {
+.register-body {
+    height: 100vh; /* cambiar para la vista en pc */
+    position: relative;
     background: rgb(87,85,88);
     background: linear-gradient(0deg, rgba(87,85,88,1) 0%, rgba(184,23,223,1) 100%);
+}
+
+footer {
+    /* bottom: 0px; */
+    width: 100%;
 }
 
 .registro p {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    margin: auto;
+    text-align: center;
     padding-top: 10px;
     color: var(--colors-negro);
     text-shadow: var(--colors-naranja) 0 2px 4px;
@@ -52,4 +59,11 @@
 
 .fa-at {
     color: #fff;
+}
+
+
+/* Agrego estilo a los botones de acceso con gmail, */
+.botones-registro > button:hover {
+    cursor: pointer;
+    filter: brightness(130%);
 }
