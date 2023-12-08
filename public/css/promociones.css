@@ -1,7 +1,7 @@
 header{
     width: 100%;
 }
-main{
+.main-promos {
     background: var(--colors-violeta);
     width: 100%;
 }
