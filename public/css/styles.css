@@ -12,6 +12,7 @@
 @import url('./home.css');
 @import url('./slide.css');
 @import url('./categorias.css');
+@import url('./promociones.css');
 
 :root {
   --colors-blanco: #ffffff;
