@@ -1,8 +1,8 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     margin: 20px;
     background: var(--colors-naranja);
-}
+} */
 
 .container {
     max-width: 800px;
@@ -17,7 +17,7 @@ h1, p {
     text-align: center;
 }
 
-img {
+.container img {
     max-width: 100%;
     height: auto;
     margin: 20px 0;
