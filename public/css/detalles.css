@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: var(--colors-naranja);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, p {
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.details {
+    margin-top: 20px;
+}
+
+.rating {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.reserve-button,
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    background-color: var(--colors-violeta);
+    color: var(--colors-blanco);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.back-button {
+    float: right;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-title h2 {
+    color: var(--colors-blanco);
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.product-description {
+    color: var(--colors-gris);
+    text-align: center;
+    margin-top: 10px;
+}
+
+.product-price {
+    color: var(--colors-blanco);
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.product-price a {
+    text-decoration: none;
+    color: var(--colors-blanco);
+    background-color: var(--colors-violeta);
+    padding: 8px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
