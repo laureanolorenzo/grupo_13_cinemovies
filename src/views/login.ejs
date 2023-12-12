@@ -49,6 +49,9 @@
                           Contraseña:
                           <input type="password" name="contraseña" id="contraseña" class="input-text" minlength="3" oninvalid="this.setCustomValidity('*Por favor ingrese una contraseña válida (debe contener al menos 3 caracteres)')">
                       </label>
+                      <% if (errormsg.length) { %>
+                        <p style="background-color: white; color: red;"><%= errormsg %> </p>
+                      <% } %>
                       <div class="login-bottom">
                         <button type="submit" class="button" id="login-btn">Login</button>
                         <a href="#"><p>Olvidé mi contraseña</p></a>
