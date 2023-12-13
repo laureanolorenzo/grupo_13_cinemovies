@@ -73,7 +73,16 @@ main {
 }
 
 
+
 #error-msg {
+    background-color: var(--colors-gris);
+    color: var(--colors-negro);
+    font-size: 1em;
+    padding: 4px;
+}
+
+/* Hacer que aparezca el mensaje si no se encuentra al usuario */
+/* #error-msg {
     visibility: hidden;
     background-color: var(--colors-gris);
     color: var(--colors-negro);
@@ -81,6 +90,6 @@ main {
     padding: 4px;
     transition: visibility 1s linear;
 }
-#login-btn:active + #error-msg {
+#login-btn:focus + #error-msg {
     visibility: visible;
-}
+} */
