@@ -71,3 +71,16 @@ main {
 .regis-ref label button {
     background-color: #121212;
 }
+
+
+#error-msg {
+    visibility: hidden;
+    background-color: var(--colors-gris);
+    color: var(--colors-negro);
+    font-size: 1em;
+    padding: 4px;
+    transition: visibility 1s linear;
+}
+#login-btn:active + #error-msg {
+    visibility: visible;
+}
