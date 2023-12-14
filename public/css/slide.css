@@ -31,7 +31,7 @@ body {
 
 .slides {
   width: 400%;
-  height: 100%;
+  /* height: 100%; */
   position: relative;
   -webkit-animation: slide 30s infinite;
   -moz-animation: slide 30s infinite;

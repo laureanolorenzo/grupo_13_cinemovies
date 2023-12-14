@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body class="login-body">
+  <%- include('./partials/header') %>
+        <main class="main">
+          <div class="wrapper">
+            <div class="main-content">
+              <div class="title-underline">
+                <h2 class="titulo-login">Iniciar Sesión</h1>
+              </div>
+                <form class="login-form" action= "/login" method="post">
+                      <label for="usuario" class="field">
+                          Usuario:
+                          <input type="text" name="usuario" id="usuario" class="input-text" minlength="3" oninvalid="this.setCustomValidity('*Por favor ingrese un nombre de usuario válido (debe contener al menos 3 caracteres)')"> 
+                      </label>
+                      <label for="contraseña" class="field">
+                          Contraseña:
+                          <input type="password" name="contraseña" id="contraseña" class="input-text" minlength="3" oninvalid="this.setCustomValidity('*Por favor ingrese una contraseña válida (debe contener al menos 3 caracteres)')">
+                      </label>
+                      <% if (errormsg.length) { %>
+                        <p id="error-msg"><%= errormsg %> </p>
+                      <% } %>
+                      <div class="login-bottom">
+                        <button type="submit" class="button" id="login-btn">Login</button>
+
+                        <!-- <p id="error-msg"><%= errormsg %> </p> -->
+                        <a href="#"><p>Olvidé mi contraseña</p></a>
+                      </div>
+                </form>
+                <form action="/registro" method="GET" form class="regis-ref">
+                    <label>
+                      No tienes cuenta?
+                      <button type="submit" class="button" id="login-rg-btn"> Regístrate</button>
+                    </label>
+              </form>
+            </div>
+          </wrapper>
+        </main>
+        <%- include('./partials/footer') %>
+</body>
+</html>

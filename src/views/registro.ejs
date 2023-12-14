@@ -42,22 +42,22 @@
                     <h2 class="titulo-login">Registro</h2>
                     <p>Crear una cuenta</p>
                     <section>
-                        <form class="section-input" action="/register" method="post">
-                            <label for="nombre-usuario" class="field">
+                        <form class="section-input" action="/registro" method="post">
+                            <label for="user" class="field">
                                 Nombre de usuario:
-                                <input class="input-text" type="text" name="nombre-usuario" id="nombre-usuario" minlength="3" oninvalid="this.setCustomValidity('*El usuario ingresado no es válido. Debe contener al menos 3 caracteres.')">
+                                <input class="input-text" type="text" name="user" id="nombre-usuario" minlength="3" oninvalid="this.setCustomValidity('*El usuario ingresado no es válido. Debe contener al menos 3 caracteres.')">
                             </label>
-                            <label for="correo" class="field">
+                            <label for="email" class="field">
                                 Correo electrónico:
-                                <input class="input-text" type="text" name="correo" id="correo" minlength="1" oninvalid="this.setCustomValidity('*Por favor ingrese un correo electrónico válido')">
+                                <input class="input-text" type="text" name="email" id="correo" minlength="1" oninvalid="this.setCustomValidity('*Por favor ingrese un correo electrónico válido')">
                             </label>
-                            <label for="contrasena" class="field">
+                            <label for="password" class="field">
                                 Contraseña:
-                                <input class="input-text" type="password" name="contrasena" id="contrasena" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
+                                <input class="input-text" type="password" name="password" id="contrasena" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
                             </label>
-                            <label for="contrasena-repetida" class="field">
+                            <label for="password" class="field">
                                 Repetir contraseña:
-                                <input class="input-text" type="password" name="contrasena-repetida" id="contrasena-repetida" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
+                                <input class="input-text" type="password" name="password" id="contrasena-repetida" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
                             </label>
                             <div class="field">
                                 <button class="button" type="submit" id = "login-rg-btn">Registrarse</button>
