@@ -1,11 +1,75 @@
-.carrito {
-
+.division-carrito {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px 5% 25px 5%;
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
 }
 
-.carrito_container {
-
+.lista-carrito {
+    display: flex;
+    justify-content: left;
+    padding: 5px;
+    margin: 15px 0 15px 0;
 }
 
-.carrito_container-titulo {
-  
+.producto-carrito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    width: 30%;
+    padding: 5px;
+    margin-right: 25px;
+    border-radius: 15px;
+    border: solid #868686 2px;
+}
+
+.producto-carrito img {
+    width: 60%;
+    height: 65%;
+}
+
+.logos-carrito {
+    display: flex;
+    font-size: 30px;
+    padding: 5px;
+}
+
+.fa-cc-visa,
+.fa-cc-mastercard {
+    margin: 2px;
+}
+
+.total-pagar {
+    font-weight: bold;
+    text-align: center;
+}
+
+.boton-carrito {
+    text-align: center;
+    margin: 15px 25% 25px 25%;
+}
+
+
+@media(min-width:481px){
+    .division-carrito {
+        margin: 15px 5% 25px 5%;
+    }
+    
+    .logos-carrito {
+        font-size: 40px;
+    }
+}
+
+@media(min-width:769px){
+    .division-carrito {
+        margin: 15px 15% 25px 15%;
+        padding: 30px;
+    }
+
+    .producto-carrito {
+        width: 25%;
+    }
 }

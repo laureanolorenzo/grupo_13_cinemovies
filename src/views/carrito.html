@@ -1,67 +1,58 @@
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/styles.css">
-        <!-- <link rel="stylesheet" href="../../public/css/styles.css"> -->
-        <title>Cinemovies</title>
-      </head>
-    <body>
-        <header class="header">
-            <div class="wrapper">
-              <div class="header-content">
-                <div class="header-logo">
-                  <span>CINEMOVIE</span>
-                </div>
-                <nav class="nav">
-                  <ul class="menu-items">
-                    <li class="menu-item"><a href="/">Kiosco</a></li>
-                    <li class="menu-item"><a href="/">Carrito</a></li>
-                    <li class="menu-item"><a href="/login">Login</a></li>
-                    <li class="menu-item"><a href="/registro">Registro</a></li>
-                  </ul>
-                </nav>
-                <div class="burguer-menu">
-                  <i class="fa-solid fa-bars"></i>
-                </div>
-              </div>
-      
-            </div>
-          </header>
-          <main><div class="wrapper" > 
-            
-          </div> </main>
-            
-          <footer>
-            <div class="wrapper">
-              <section>
-                <p class="logo-footer">CINEMOVIE</p>
-              </section>
-              <section class="iconos-footer">
-                <div>
-                  <i class="fa-brands fa-instagram"></i>
-                </div>
-                <div>
-                  <i class="fa-brands fa-twitter"></i>
-                </div>
-                <div>
-                  <i class="fa-regular fa-envelope"></i>
-                </div>
-              </section>
-              <section class="copyright">
-                Copyright © 2023-2023 Cinemovies
-              </section>
-            </div>
-          </footer>    
-    </body>
-
-    </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+<body class="carrito-body">
+    
+    <main class="main-carrito">
+        <div class="wrapper">
+            <h2 class="titulo-login">Carrito</h2>
+            <section class="division-carrito">
+                <h3>Productos seleccionados</h3>
+                <div class="lista-carrito">
+                    <div class="producto-carrito">
+                        <p>Pochoclos</p>
+                        <img src="/images/pochoclos.png" alt="Pochoclos">
+                        <p>$1000</p>
+                        <button class="button">Eliminar</button>
+                    </div>
+                    <div class="producto-carrito">
+                        <p>Gran Torino</p>
+                        <img src="/images/gran-torino.png" alt="Poster Gran Torino">
+                        <p>$2500</p>
+                        <button class="button">Eliminar</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="division-carrito">
+                <h3>Formas de pago</h3>
+                <div class="lista-carrito">
+                    <div class="producto-carrito">
+                        <p>Débito o crédito</p>
+                        <div class="logos-carrito">
+                            <a href="">
+                                <i class="fa-brands fa-cc-visa"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa-brands fa-cc-mastercard"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <p class="total-pagar">Total a pagar: $3500</p>
+            </section>
+
+            <section class="boton-carrito">
+                <button class="button">Pagar</button>
+            </section>
+        </div>
+    </main>
+
+</body>
+</html>
