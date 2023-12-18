@@ -10,9 +10,14 @@ main {
     display: flex;
     margin-bottom: 10px;
     justify-content: space-between;
+    align-items: center;
     border-bottom: solid var(--colors-blanco) 3px;
     color: var(--colors-blanco);
     
+}
+
+.trailer{
+    display: none;
 }
 
 .Buscar {
@@ -101,9 +106,12 @@ ul {
     }
 
     .sin-padding {
+        color:#ffffff;
         display: flex;
         align-items: center;
         margin-top: 13px;
+        position: relative;
+        left: 54px;
     }
 
     .linea{
@@ -114,6 +122,12 @@ ul {
     .contenido{
         display: flex;
         width: 100%;
+    }
+
+    .trailer{
+        width:"560";
+        height:"315";
+        
     }
 
     .texto-caja {
@@ -146,5 +160,52 @@ ul {
         margin-top: 28px;
         margin-bottom: 30px;
     }
+
+    /* Estilos generales */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    right: 480px;
+    top: 3px;
+  }
+  
+  /* Estilos del botón */
+  .dropbtn {
+    background-color: #6e1984;
+    color: white;
+    padding: 7px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  /* Estilos del contenido desplegable */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  /* Mostrar el contenido desplegable al pasar el ratón por encima */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Estilos de los enlaces del contenido desplegable */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Estilos de los enlaces al pasar el ratón por encima */
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
 
 }

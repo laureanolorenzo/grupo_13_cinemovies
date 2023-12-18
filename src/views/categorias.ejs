@@ -16,32 +16,43 @@
 </head>
 
 <body>
-  <header>
-    <div class="wrapper">
-      <div class="header-content">
-        <div class="header-logo">
-          <span>CINEMOVIE</span>
+    <header class="header">
+        <div class="wrapper">
+          <div class="header-content">
+            <nav class="nav">
+              <input type="checkbox" id="check">
+              <label for="check" class="burguer-menu">
+                <i class="fa-solid fa-bars"></i>
+              </label>
+              <a href="/" class="header-logo">
+                <span>CINEMOVIE</span>
+              </a>
+              <ul class="menu-items">
+                <li class="menu-item"><a href="/kiosco"><i class="fa-solid fa-store"></i></a></li>
+                <li class="menu-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                <li class="menu-item"><a href="/promociones">Promociones</a></li>
+                <li class="menu-item"><a href="/login">Login</a></li>
+                <li class="menu-item"><a href="/registro">Registro</a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
-        <nav class="nav">
-          <ul class="menu-items">
-            <li class="menu-item"><a href="/">Kiosco</a></li>
-            <li class="menu-item"><a href="/">Carrito</a></li>
-            <li class="menu-item"><a href="/login">Login</a></li>
-            <li class="menu-item"><a href="/registro">Registro</a></li>
-          </ul>
-        </nav>
-        <div class="burguer-menu">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-      </div>
-    </div>
-  </header>
+      </header>
   <main>
     <main>
       <div class="seccionCategorias">
-          <h1>Categorias</h1>
-          <input type="text" class="Buscar" placeholder="Buscar Película">
+        <h1>Estrenos</h1>
+        <div class="dropdown">
+            <button class="dropbtn"><use>selec</use></button>
+            <div class="dropdown-content">
+              <a href="#">Estrenos</a>
+              <a href="#">Accion</a>
+              <a href="#">Clasicos</a>
+            </div>
+          </div>
+        <input type="text" class="Buscar" placeholder="Buscar Película">
       </div>
+
       <section class="lista-categorias">
           <div class="alineacion-movil">
               <h3 class="titulo-pelicula">Napoleon</h3>
@@ -58,6 +69,9 @@
                               <li class="linea" >Actores: Joaquin Phoenix, Vanessa Kirby, Ludivine Sagnier</li>
                               <li class="linea" >Origen: Reino Unido, Estados Unidos</li>
                           </ul>
+                      </div>
+                      <div class="trailer">
+                        <iframe width="560" height="315" src="https://www.youtube.com/watch?v=NjMJwewmcfA" frameborder="0" allowfullscreen></iframe>
                       </div>
                   </div>
               </div>
@@ -139,25 +153,25 @@
   </main>
   <footer>
     <div class="wrapper">
-        <section>
-            <p class="logo-footer">CINEMOVIE</p>
-        </section>
-        <section class="iconos-footer">
-            <div>
-                <i class="fa-brands fa-instagram"></i>
-            </div>
-            <div>
-                <i class="fa-brands fa-twitter"></i>
-            </div>
-            <div>
-                <i class="fa-regular fa-envelope"></i>
-            </div>
-        </section>
-        <section class="copyright">
-            Copyright © 2023-2023 Cinemovies
-        </section>
+      <section>
+        <p class="logo-footer">CINEMOVIE</p>
+      </section>
+      <section class="iconos-footer">
+        <div>
+          <i class="fa-brands fa-instagram"></i>
+        </div>
+        <div>
+          <i class="fa-brands fa-twitter"></i>
+        </div>
+        <div>
+          <i class="fa-regular fa-envelope"></i>
+        </div>
+      </section>
+      <section class="copyright">
+        Copyright © 2023-2023 Cinemovies
+      </section>
     </div>
-</footer>
+  </footer>
 
 </body>
 
