@@ -93,6 +93,8 @@ ul {
     display: none;
 }
 
+
+
 @media(min-width: 426px) {
     .contenido-pelicula {
         border: solid rgb(18, 18, 79) 1px;

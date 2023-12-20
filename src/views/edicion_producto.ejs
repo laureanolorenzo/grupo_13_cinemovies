@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+    <body>
+        <%- include('./partials/header') %>
+            <main>
+                <form>
+                    <label>Categoria
+                        <input type="text" name="category" id="categoria">
+                    </label>
+                    <label>Año
+                        <input type="number" name="year" min="1900" max="2023" step="1" value="2016" />
+                    </label>
+                    <label>Director
+                        <input type="text" name="director" id="director">
+                    </label>
+                    <label>Reparto
+                        <input type="text" name="cast" id="reparto">
+                    </label>
+                    <label>Descripción
+                        <input type="text" name="description" id="descripcion">
+                    </label>
+                    <label>Puntuación
+                        <input type="text" name="rating" id="puntacion">
+                    </label>
+                    <label>Imagen
+                        <input type="file" name="image" id="imagen">
+                    </label>
+                </form>
+            </main>
+            <%- include('./partials/footer') %>
+    </body>
+
+</html>
