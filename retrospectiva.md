@@ -27,3 +27,28 @@ Entregar el sprint sobre la fecha.
 
 ##### Lo que deberíamos dejar de hacer:
 * No procrastinar con las reuniones y tener fechas definidas de antemano (para entregar el sprint con más margen de tiempo).
+
+—--------------------------------------------------------------------------
+### Retrospectiva Sprint 3 
+
+La devolución de Mati nos motivó a seguir esforzándonos, aunque el módulo se complicó un poco. Incluso algunos compañeros dejaron el curso y eso nos complicó un poco.
+
+#### Lo que hicimos bien:
+* Aportamos ideas creativas desde cada perspectiva
+* Mantuvimos buena comunicación incluso en los momentos más arduos.
+* Apoyarnos entre nosotros cuando surge alguna dificultad.
+
+#### Lo que hicimos mal:
+* Seguimos sin reunirnos en forma periódica (sin definir fechas semanales), aunque sí tuvimos varias conferencias.
+* No llegamos a completar el sprint a tiempo.
+* Nos atrasamos algo con el curso en sí, lo que complicó también el proyecto en grupo
+* Lo que deberíamos empezar a hacer:
+* Definir  mejor las tareas antes de lanzarnos a trabajar.
+* Dividir más las tareas de acuerdo a las habilidades y horarios de cada miembro.
+* Programar reuniones semanales estrictas.
+* Empezar a encarar los sprints desde el primer momento para que no se acumule al final.
+* Buscar ayuda externa ante ciertas complicaciones
+
+
+Lo que deberíamos dejar de hacer:
+* No procrastinar con las reuniones y tener fechas definidas de antemano (para entregar el sprint con más margen de tiempo).
