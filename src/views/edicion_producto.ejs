@@ -9,27 +9,34 @@
                 <div class="wrapper">
 
                     <form class="section-input" method="POST" action="edicion_producto/process">
-                        <label class="field">Categoria
-                            <input type="text" name="category" id="categoria" class="input-text">
+                        <label class="field">Título
+                            <input type="text" class="input-text" name="title" id="titulo" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
-                        <label class="field">Año
-                            <input type="date" name="year" min="1900" max="2023" step="1" value="2016" class="input-text" />
+                        <label class="field" for="year"> Año
+                            <input type="number" name="year" id="year" min="1980" max="2023" value="2023" class="input-text">
+                        </label>
+                        <label class="field" for="descripcion"> Descripción
+                            <input type="text" class="input-text" name="description" id="descripcion" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
                         <label class="field">Director
-                            <input type="text" class="input-text" name="director" id="director">
+                            <input type="text" class="input-text" name="director" id="director" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
                         <label class="field">Reparto
-                            <input type="text" class="input-text" name="cast" id="reparto">
-                        </label>
-                        <label class="field">Descripción
-                            <input type="text" class="input-text" name="description" id="descripcion">
+                            <input type="text" class="input-text" name="cast" id="reparto" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
                         <label class="field">Puntuación
-                            <input type="text" class="input-text" name="rating" id="puntacion">
+                            <input type="text" class="input-text" name="rating" id="puntacion" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
-                        <label class="field">Imagen
+                        <label class="field" for="categoria">Categoria
+                            <select name="category" id="categoria" class="input-text">
+                                <option value="" disabled selected hidden>Seleccionar</option>
+                            <% for (const i of estructuraMovie['categories']) { %>
+                                <option value ="<%= i %>"><%= i %></option>
+                            <% } %>
+                        </label>
+                        <label class="field">Imagen</label>
                             <input type="file" class="input-text" name="image" id="imagen">
-                        </label>
+                        
 
                         <div class="field">
                             <button class="button" type="submit" id = "login-rg-btn">Crear</button>

@@ -1,2 +1,13 @@
 [
+  {
+    "title": "El señor de los anillos",
+    "year": "2018",
+    "description": "Lorem",
+    "director": "Gandalf",
+    "cast": "Frodo, Sam",
+    "rating": "6",
+    "category": "Acción",
+    "image": "",
+    "id": 1
+  }
 ]

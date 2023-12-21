@@ -1,9 +1,17 @@
 const fs = require ('fs');
 const path = require ('path');
+let anio = [];
+for (i = 1980; i <= 2023; i++) {
+    anio.push(i)
+}
 
 const edicion_productoController = {
     edicion_productoView(req,res) {
-        res.render('edicion_producto'); // Incluir objeto (que venga de JSON con los datos de cada producto)
+        const estructuraMovie = {
+            categories : ['Acción','Terror','Drama','Comedia','Romance'],
+            year : anio
+        }
+        res.render('edicion_producto',{estructuraMovie}); // Incluir objeto (que venga de JSON con los datos de cada producto)
     },
 
     edicion_productoProcess(req,res, next) {
