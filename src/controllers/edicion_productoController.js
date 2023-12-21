@@ -6,9 +6,32 @@ const edicion_productoController = {
         res.render('edicion_producto'); // Incluir objeto (que venga de JSON con los datos de cada producto)
     },
 
-    edicion_productoProcess(req,res) {
-        let movies = fs.readFileSync(path.resolve(__dirname, '../datos/movies.json'), 'utf-8');
-        let moviesObj = JSON.parse(movies);
+    edicion_productoProcess(req,res, next) {
+        if (req.body) {
+            const moviesPath = path.resolve(__dirname, '../datos/movies.json');
+            const movies = fs.readFileSync(moviesPath, 'utf-8');
+            let lastId;
+            let moviesObj;
+            if (movies.length === 0) {
+                moviesObj = [];
+                lastId = 0;
+            } else {
+                moviesObj = JSON.parse(movies);
+                lastId = moviesObj[moviesObj.length - 1].id;
+
+            }
+            let newMovie = req.body;
+            newMovie['id'] = lastId + 1;
+            moviesObj.push(newMovie);
+            fs.writeFileSync(moviesPath,JSON.stringify(moviesObj,null,2));
+            res.redirect('/');
+            console.log(moviesObj);
+        } else {
+            next(new Error('Se ha producido un error. Por favor vuelva a intentarlo.'))
+        }
+
+        
+
 
     },
 }

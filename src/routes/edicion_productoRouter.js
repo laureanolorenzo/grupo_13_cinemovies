@@ -4,4 +4,6 @@ const edicion_productoController = require('../controllers/edicion_productoContr
 
 router.get('/edicion_producto', edicion_productoController.edicion_productoView);
 
+router.post('/edicion_producto/process', edicion_productoController.edicion_productoProcess);
+
 module.exports = router;
