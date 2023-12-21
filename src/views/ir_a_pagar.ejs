@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <%- include('./partials/head') %>
+
 <body>
 
     <%- include('./partials/header') %>
 
-    <main class="ir-a-pagar-body">
+    <main class="main-pagar">
 
         <section>
-            <div>
-                <form action="">
-                    <div>
-                        <label for="opcion-tarjeta">Tipo de tarjeta</label>
-                        <select name="opcion-tarjeta" id="opcion-tarjeta">
-                            <option value="" disabled selected>Elija su tarjeta</option>
-                            <optgroup label="Mastercard">
-                                <option value="mastercard-debito">Mastercard Débito</option>
-                                <option value="mastercard-credito">Mastercard Crédito</option>
-                            </optgroup>
-                            <optgroup label="Visa">
-                                <option value="visa-debito">Visa Débito</option>
-                                <option value="visa-credito">Visa Crédito</option>
-                            </optgroup>
-                        </select>
-                    </div>
+            <div class="div-pagar">
+                <form class="form-pagar" action="">
+                    <section class="section-datos">
+                        <div class="datos-pagar">
+                            <label class="label-pagar" for="opcion-tarjeta">Tipo de tarjeta</label>
+                            <select class="input-pagar" name="opcion-tarjeta" id="opcion-tarjeta">
+                                <option value="" disabled selected>Elija su tarjeta</option>
+                                <optgroup label="Mastercard">
+                                    <option value="mastercard-debito">Mastercard Débito</option>
+                                    <option value="mastercard-credito">Mastercard Crédito</option>
+                                </optgroup>
+                                <optgroup label="Visa">
+                                    <option value="visa-debito">Visa Débito</option>
+                                    <option value="visa-credito">Visa Crédito</option>
+                                </optgroup>
+                            </select>
+                        </div>
+    
+                        <div class="datos-pagar">
+                            <label class="label-pagar" for="nombre-completo">Nombre Completo</label>
+                            <input class="input-pagar" type="text" name="nombre-completo" id="nombre-completo">
+                        </div>
+    
+                        <div class="datos-pagar">
+                            <label class="label-pagar" for="numero-tarjeta">Nº de tarjeta</label>
+                            <input class="input-pagar" type="text" name="numero-tarjeta" id="numero-tarjeta">
+                        </div>
+    
+                        <div class="datos-pagar">
+                            <label class="label-pagar" for="vencimiento">Fecha de vencimiento</label>
+                            <input class="input-pagar" type="text" name="vencimiento" id="vencimiento">
+                        </div>
+    
+                        <div class="datos-pagar">
+                            <label class="label-pagar" for="codigo-seguridad">Código de seguridad</label>
+                            <input class="input-pagar" type="text" name="codigo-seguridad" id="codigo-seguridad">
+                        </div>
+    
+                        <div class="datos-pagar">
+                            <label class="label-pagar" for="cuotas">Cuotas</label>
+                            <input class="input-pagar" type="text" name="cuotas" id="cuotas">
+                        </div>
+                    </section>
 
-                    <div>
-                        <label for="nombre-completo">Nombre Completo</label>
-                        <input type="text" name="nombre-completo" id="nombre-completo">
-                    </div>
-
-                    <div>
-                        <label for="numero-tarjeta">Nº de tarjeta</label>
-                        <input type="text" name="numero-tarjeta" id="numero-tarjeta">
-                    </div>
-
-                    <div>
-                        <label for="vencimiento">Fecha de vencimiento</label>
-                        <input type="text" name="vencimiento" id="vencimiento">
-                    </div>
-
-                    <div>
-                        <label for="codigo-seguridad">Código de seguridad</label>
-                        <input type="text" name="codigo-seguridad" id="codigo-seguridad">
-                    </div>
-
-                    <div>
-                        <label for="cuotas">Cuotas</label>
-                        <input type="text" name="cuotas" id="cuotas">
-                    </div>
-
-                    <div class="boton-carrito">
-                        <button class="button">Pagar</button>
-                    </div>
+                    <section class="section-boton">
+                        <div class="boton-carrito">
+                            <button class="button">Pagar</button>
+                        </div>
+                    </section>
                 </form>
             </div>
         </section>
