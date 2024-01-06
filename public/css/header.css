@@ -13,19 +13,7 @@
   z-index: 20;
 }
 
-.header-logo {
-  position: absolute;
-  text-decoration: none;
-  margin: 31.5px 0px;
-}
 
-.header-logo span{
-  color: var(--colors-naranja);
-  font-weight: 700;
-  font-size: 1.2em;
-  font-family: 'Bebas Neue', system-ui;
-  letter-spacing: .2cap;
-}
 
 
 .menu-items {
@@ -84,4 +72,47 @@
   #check:checked~.menu-items {
     left: 0;
   }
+}
+
+
+/* Esto lo modifique para agregar transitoriamente el boton de crear pelicula */
+
+
+
+.nav-left {
+  display: flex;
+  gap: 16px;
+  position: absolute;
+  text-decoration: none;
+  margin: 31.5px 0px;
+  width: 400px;
+}
+
+
+.header-logo {
+  /* position: absolute; */
+  text-decoration: none;
+  /* margin: 31.5px 0px; */
+}
+
+.header-logo span{
+  color: var(--colors-naranja);
+  font-weight: 700;
+  font-size: 1.2em;
+  font-family: 'Bebas Neue', system-ui;
+  letter-spacing: .2cap;
+}
+
+.header-create {
+  text-decoration: none;
+  color: white;
+  margin: 31.5px 0px;
+}
+.header-create span{
+  color: var(--colors-blanco);
+  font-weight: 700;
+  font-size: 0.8em;
+  letter-spacing: .2cap;
+  position: absolute;
+  top: 2px;
 }

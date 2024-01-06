@@ -8,7 +8,7 @@ for (i = 1980; i <= 2023; i++) {
 const edicion_productoController = {
     edicion_productoView(req,res) {
         const estructuraMovie = {
-            categories : ['Acción','Terror','Drama','Comedia','Romance'],
+            categories : ['Acción','Terror','Drama','Comedia','Romance'], // Nuevas categorias deben ir acá!
             year : anio
         }
         res.render('edicion_producto',{estructuraMovie}); // Incluir objeto (que venga de JSON con los datos de cada producto)
