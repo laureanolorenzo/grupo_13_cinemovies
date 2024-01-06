@@ -3,6 +3,11 @@
 <%- include('./partials/head') %>
 <body>
   <%- include('./partials/header') %>
+    <% if(datos){%>
+        <div>
+            <%= JSON.stringify(datos) %>
+        </div>
+    <% } %> 
     <div class="container">
         <h1>Nombre de la Película</h1>
         <img src="/images/cover1.jpeg" alt="Imagen de la Película">

@@ -37,10 +37,6 @@ const crear_productoController = {
         } else {
             next(new Error('Se ha producido un error. Por favor vuelva a intentarlo.'))
         }
-
-        
-
-
     },
 }
 
