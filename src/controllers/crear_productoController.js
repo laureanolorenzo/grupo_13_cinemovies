@@ -5,16 +5,16 @@ for (i = 1980; i <= 2023; i++) {
     anio.push(i)
 }
 
-const edicion_productoController = {
-    edicion_productoView(req,res) {
+const crear_productoController = {
+    crear_productoView(req,res) {
         const estructuraMovie = {
             categories : ['Acción','Terror','Drama','Comedia','Romance'], // Nuevas categorias deben ir acá!
             year : anio
         }
-        res.render('edicion_producto',{estructuraMovie}); // Incluir objeto (que venga de JSON con los datos de cada producto)
+        res.render('crear_producto',{estructuraMovie}); // Incluir objeto (que venga de JSON con los datos de cada producto)
     },
 
-    edicion_productoProcess(req,res, next) {
+    crear_productoProcess(req,res, next) {
         if (req.body) {
             const moviesPath = path.resolve(__dirname, '../datos/movies.json');
             const movies = fs.readFileSync(moviesPath, 'utf-8');
@@ -44,4 +44,4 @@ const edicion_productoController = {
     },
 }
 
-module.exports = edicion_productoController;
+module.exports = crear_productoController;
