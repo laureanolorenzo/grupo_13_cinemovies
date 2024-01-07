@@ -15,6 +15,13 @@
                         <label class="field" for="year"> Año
                             <input type="number" name="year" id="year" min="1980" max="2023" value="2023" class="input-text">
                         </label>
+                        <label class="field" for="estreno">Estreno
+                            <select name="estreno" id="estreno" class="input-text">
+                                <option value="" disabled selected hidden>Seleccionar</option>
+                                <option value="si" >Si</option>
+                                <option value="no" >No</option>
+                            </select>
+                        </label>
                         <label class="field" for="descripcion"> Descripción
                             <input type="text" class="input-text" name="description" id="descripcion" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
@@ -27,6 +34,9 @@
                         <label class="field">Puntuación
                             <input type="number" class="input-text" name="rating" id="puntacion" min="1" max= "5" placeholder="5"  oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
+                        <!-- <label class="field">Estreno
+                            <input type="checkbox" class="input-text" name="estreno" id="estreno"   oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                        </label> -->
                         <!-- <label class="field" for="rating">Rating #### NO FUNCIONA!
                             <select name="rating" id="rating" class="input-text">
                                 <option value="" disabled selected hidden>Seleccionar</option>
@@ -44,8 +54,6 @@
                         </label>
                         <label class="field">Imagen</label>
                             <input type="file" class="input-text" name="image" id="imagen">
-                        
-
                         <div class="field">
                             <button class="button" type="submit" id = "login-rg-btn">Crear</button>
                         </div>

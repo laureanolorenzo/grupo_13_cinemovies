@@ -31,5 +31,17 @@
     "category": "Drama",
     "id": 3,
     "image": "sdasd1704598024573.jpg"
+  },
+  {
+    "title": "Avengers",
+    "year": "2021",
+    "estreno": "no",
+    "description": "ASasasfs",
+    "director": "sdfsdf",
+    "cast": "sdfsdf",
+    "rating": "3",
+    "category": "Drama",
+    "id": 4,
+    "image": "Avengers-1704661456144.jpg"
   }
 ]
