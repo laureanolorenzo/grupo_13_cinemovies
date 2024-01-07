@@ -34,6 +34,7 @@ const rutaKiosco = require('./routes/kioscoRouter');
 const rutaPromociones = require('./routes/promocionesRouter');
 const rutaPagar = require('./routes/ir_a_pagarRouter');
 const rutacrearProducto = require ('./routes/crear_productoRouter');
+const rutaEditarProducto = require ('./routes/editar_productoRouter');
 
 // Usos de los routers
 
@@ -56,6 +57,8 @@ app.use(rutaPromociones);
 app.use(rutaPagar);
 
 app.use(rutacrearProducto);
+
+app.use(rutaEditarProducto);
 // Servidor
 const PORT = 3000;
 
