@@ -2,7 +2,11 @@
 <html lang="en">
 <%- include('./partials/head') %>
 <body>
+  <!-- Error por si el usuario no es admin y quiere crear. Verificar luego -->
   <%- include('./partials/header') %>
+  <% if (!(typeof errorMsg == "undefined")) { %>
+    <script>window.alert(errorMsg)</script>
+  <% } %>
   <div class="home-main">
     <div class="carrusel">
       <div id="slider">

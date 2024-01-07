@@ -5,9 +5,31 @@
     "description": "Lorem",
     "director": "Gandalf",
     "cast": "Frodo, Sam",
-    "rating": "6",
+    "rating": "5",
     "category": "Acción",
-    "image": "",
+    "image": "cover1.jpeg",
     "id": 1
+  },
+  {
+    "title": "El Senior de los anillos",
+    "year": "2023",
+    "description": "fghfghfgh",
+    "director": "sdfss",
+    "cast": "asas",
+    "rating": "",
+    "category": "Comedia",
+    "id": 2,
+    "image": "1704597888623.jpg"
+  },
+  {
+    "title": "sdasd",
+    "year": "2023",
+    "description": "asdasd",
+    "director": "asdasd",
+    "cast": "asdasd",
+    "rating": "",
+    "category": "Drama",
+    "id": 3,
+    "image": "sdasd1704598024573.jpg"
   }
 ]

@@ -3,36 +3,31 @@
 <%- include('./partials/head') %>
 <body>
   <%- include('./partials/header') %>
-    <% if(datos){%>
-        <div>
-            <%= JSON.stringify(datos) %>
-        </div>
-    <% } %> 
-    <div class="container">
-        <h1>Nombre de la Película</h1>
-        <img src="/images/cover1.jpeg" alt="Imagen de la Película">
+    <main>
+        <div class="container">
+            <h1><%= datos.title%></h1>
+            <img src="/images/movies/<%= datos.image %>" alt="Imagen de la Película">
 
-        <div class="details">
-            <p><strong>Género:</strong> Acción</p>
-            <p><strong>Año:</strong> 2022</p>
-            <p><strong>Director:</strong> Nombre del Director</p>
-            <p><strong>Reparto:</strong> Actor1, Actor2, Actor3</p>
-            <p><strong>Descripción:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tincidunt...</p>
-        </div>
-
-        <div class="rating">
-            <p><strong>Puntuación:</strong></p>
-            <div id="star-rating">
-                ★★★★☆
+            <div class="details">
+                <p><strong>Género:</strong> <%= datos.category %></p>
+                <p><strong>Año:</strong> <%= datos.year %> </p>
+                <p><strong>Director:</strong> <%= datos.director %></p>
+                <p><strong>Reparto:</strong> <%= datos.cast %></p>
+                <p><strong>Descripción:</strong> <%= datos.description %> </p>
             </div>
+
+            <div class="rating">
+                <p><strong>Puntuación:</strong></p>
+                <div id="star-rating">
+                    <%= datos.rating %>
+                </div>
+            </div>
+
+            <button class="reserve-button">Reservar</button>
+            <a href="/" class="back-button">Volver</a>
+
         </div>
-
-        <button class="reserve-button">Reservar</button>
-        <a href="/" class="back-button">Volver</a>
-
-    </div>
-
+    </main>
     <%- include('./partials/footer') %>
-    </body>
-
+</body>
 </html>

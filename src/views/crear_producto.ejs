@@ -8,7 +8,7 @@
             <main>
                 <div class="wrapper">
 
-                    <form class="section-input" method="POST" action="crear_producto/process">
+                    <form class="section-input" method="POST" action="crear_producto/process" enctype="multipart/form-data">
                         <label class="field">Título
                             <input type="text" class="input-text" name="title" id="titulo" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
@@ -25,8 +25,16 @@
                             <input type="text" class="input-text" name="cast" id="reparto" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
                         <label class="field">Puntuación
-                            <input type="text" class="input-text" name="rating" id="puntacion" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                            <input type="number" class="input-text" name="rating" id="puntacion" min="1" max= "5" placeholder="5"  oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
+                        <!-- <label class="field" for="rating">Rating #### NO FUNCIONA!
+                            <select name="rating" id="rating" class="input-text">
+                                <option value="" disabled selected hidden>Seleccionar</option>
+                            <% for (const x of estructuraMovie['ratings']) { %>
+                                <option value ="<%= x %>"><%= x %></option>
+                            <% } %>
+                        </label> -->
+                        <!-- <br><br><br> <div></div> -->
                         <label class="field" for="categoria">Categoria
                             <select name="category" id="categoria" class="input-text">
                                 <option value="" disabled selected hidden>Seleccionar</option>

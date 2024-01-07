@@ -1,18 +1,26 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const methodOverride = require('method-override');
+
 
 const app = express();
 
 const publicPath = path.join(__dirname, '../public');
 
 app.use(express.static(publicPath));
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
 
 // Para poder acceder a la info de post
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
+
+// Method override
+app.use(methodOverride('_method'));
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+
 
 
 // Rutas
