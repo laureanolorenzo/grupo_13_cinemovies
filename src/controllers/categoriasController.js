@@ -11,24 +11,27 @@ const categoriasController = {
         const categoriesJson = fs.readFileSync(categoriesRuta, {'encoding': 'utf-8'});
         let categories = JSON.parse(categoriesJson);
 
+        const moviesJson = fs.readFileSync(moviesRuta, {'encoding': 'utf-8'});
+        let movies = JSON.parse(moviesJson);
+
         if (!(req.params.categoria)) {
-             res.redirect('/'); //Luego cambiar!!!
+             res.render('categorias', {datos: movies}); //Luego cambiar!!!
         }
         let categId = req.params.categoria;
         categoriaParaMostrar = categories.find(x => x.categoria == categId);
+        
         if (categoriaParaMostrar === undefined) {
             res.send('No se encontro la categoria');
         }
         //Peliculas
-        const moviesJson = fs.readFileSync(moviesRuta, {'encoding': 'utf-8'});
-        let movies = JSON.parse(moviesJson);
+
         
         movies = movies.filter(movie => movie.category == categoriaParaMostrar.title);
 
-        if (!movies.length) {
-            res.send('No se encontro la categoria');
-        }
-        res.send(movies);
+
+
+        
+        //res.send(movies);
         // res.render('categorias',{datos:movies}); // Luego incluir datos de cada categoria en particular!!
     },
 

@@ -5,6 +5,6 @@ const categoriasController = require('../controllers/categoriasController');
 // router.get('/categorias', categoriasController.categoriasView);
 
 
-router.get ('/categorias/:categoria', categoriasController.categoriasView);
+router.get ('/categorias/:categoria?', categoriasController.categoriasView);
 
 module.exports = router;

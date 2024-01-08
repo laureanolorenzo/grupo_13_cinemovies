@@ -1,4 +1,4 @@
-[
+    [
     {
     "categoria": "accion",
     "title":"Acción"
@@ -6,5 +6,13 @@
     {
     "categoria": "drama",
     "title":"Drama"
+    },
+    {
+    "categoria": "estrenos",
+    "title":"Estrenos"
+    },
+    {
+    "categoria": "romance",
+    "title":"Romance"
     }
-]
+    ]
