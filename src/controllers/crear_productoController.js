@@ -43,6 +43,7 @@ const crear_productoController = {
             newMovie['id'] = lastId + 1;
             moviesObj.push(newMovie);
             newMovie['image'] = file['filename'];
+            newMovie['duration'] =  newMovie['duration'] + " minutos";
             fs.writeFileSync(moviesPath,JSON.stringify(moviesObj,null,2));
             res.redirect('/');
             // console.log(moviesObj);
