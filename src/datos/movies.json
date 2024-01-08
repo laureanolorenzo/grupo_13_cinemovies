@@ -43,5 +43,16 @@
     "category": "Drama",
     "id": 4,
     "image": "Avengers-1704661456144.jpg"
+  },
+  {
+    "title": "Oppenheimer",
+    "year": "2023",
+    "description": "Durante la Segunda Guerra Mundial, el teniente general Leslie Groves designa al físico J. Robert Oppenheimer para un grupo de trabajo que está desarrollando el Proyecto Manhattan, cuyo objetivo consiste en fabricar la primera bomba atómica.",
+    "director": "Christopher Nolan",
+    "cast": "Cillian Murphy, Emily Blunt, Robert Downey Jr.",
+    "rating": "",
+    "category": "Drama",
+    "id": 5,
+    "image": "Oppenheimer-1704725617084.jpg"
   }
 ]
