@@ -16,17 +16,20 @@ const categoriasController = {
 
         if (!(req.params.categoria)) {
              res.render('categorias', {datos: movies}); //Luego cambiar!!!
+        } else {
+            let categId = req.params.categoria;
+            let categoriaParaMostrar = categories.find(x => x.categoria == categId);
+            if (categoriaParaMostrar === undefined) {
+                res.send('No se encontro la categoria');
+            }
+            movies = movies.filter(movie => movie.category == categoriaParaMostrar.title);
         }
-        let categId = req.params.categoria;
-        categoriaParaMostrar = categories.find(x => x.categoria == categId);
         
-        if (categoriaParaMostrar === undefined) {
-            res.send('No se encontro la categoria');
-        }
+
         //Peliculas
 
         
-        movies = movies.filter(movie => movie.category == categoriaParaMostrar.title);
+        
 
 
 
