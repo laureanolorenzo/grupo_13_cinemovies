@@ -73,20 +73,5 @@
     "category": "Drama",
     "id": 5,
     "image": "ElGranPez-1704814289798.jpeg"
-  },
-  {
-    "title": "El Señor De Los Anillos: La Comunidad Del Anillo",
-    "year": "2001",
-    "estreno": "no",
-    "description": "Frodo Bolsón es un hobbit al que su tío Bilbo hace portador del poderoso Anillo Único, capaz de otorgar un poder ilimitado al que la posea, con la finalidad de destruirlo. Sin embargo, fuerzas malignas muy poderosas quieren arrebatárselo.",
-    "director": "Peter Jackson",
-    "cast": "Elijah Wood, Ian McKellen, Orlando Bloom",
-    "rating": "",
-    "clasificacion_edad": "Apta para mayores de 13",
-    "duration": "178 minutos",
-    "origin": " Nueva Zelanda - Estados Unidos",
-    "category": "Acción",
-    "id": 6,
-    "image": "ElSeñorDeLosAnillos:LaComunidadDelAnillo-1704814792964.jpeg"
   }
 ]
