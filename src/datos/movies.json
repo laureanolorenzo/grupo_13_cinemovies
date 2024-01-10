@@ -2,16 +2,17 @@
   {
     "title": "Oppenheimer",
     "year": "2023",
+    "estreno": "si",
     "description": "Durante la Segunda Guerra Mundial, el teniente general Leslie Groves designa al físico J. Robert Oppenheimer para un grupo de trabajo que está desarrollando el Proyecto Manhattan, cuyo objetivo consiste en fabricar la primera bomba atómica.",
     "director": "Christopher Nolan",
     "cast": "Cillian Murphy, Emily Blunt, Robert Downey Jr.",
     "rating": "4",
+    "clasificacion_edad": "Apta para mayores de 13",
+    "duration": "180 minutos",
+    "origin": "Reino Unido, Estados Unidos",
     "category": "Drama",
     "id": 1,
-    "image": "-1704813924928.jpg",
-    "origin": "Reino Unido, Estados Unidos",
-    "duration": "180 minutos",
-    "clasificacion_edad": "Apta para mayores de 13 años"
+    "image": "Oppenheimer-1704895653762.jpg"
   },
   {
     "title": "LA LA LAND",
