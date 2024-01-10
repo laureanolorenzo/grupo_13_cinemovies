@@ -25,9 +25,10 @@ let multerDiskStorage = multer.diskStorage({ //Se guarda como variable para usar
 })
 const fileUpload = multer({storage: multerDiskStorage});
 
+const multipleUpload = fileUpload.fields([{name: 'image', maxCount: 1}, {name: 'banner', maxCount: 1}]);
 
 router.get('/crear_producto', crear_productoController.crear_productoView);
 
-router.post('/crear_producto/process', fileUpload.single('image'), crear_productoController.crear_productoProcess);
+router.post('/crear_producto/process', multipleUpload, crear_productoController.crear_productoProcess);
 
 module.exports = router;

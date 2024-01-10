@@ -35,14 +35,20 @@ const crear_productoController = {
 
             }
             let newMovie = req.body;
-            const file = req.file;
-            if (!file) {
-                res.send('Por favor suba una imagen para su película'); // Buscar una mejor forma de validarlo!
+            const file = req.files;
+            // if (!file) {
+            //     res.send('Por favor suba una imagen para su película'); // Buscar una mejor forma de validarlo!
             //    return next(new Error('Por favor suba una imagen para su película'));
-            }
+            // }
             newMovie['id'] = lastId + 1;
             moviesObj.push(newMovie);
-            newMovie['image'] = file['filename'];
+            // newMovie['image'] = file['filename'];            
+            if (file.image !=undefined && file.banner !=undefined) {
+                newMovie['image'] = file.image[0].filename;
+                newMovie['banner'] = file.banner[0].filename;
+            } else {
+                res.send('Debe agregar un póster y un banner para la película');
+            };
             fs.writeFileSync(moviesPath,JSON.stringify(moviesObj,null,2));
             res.redirect('/');
             // console.log(moviesObj);

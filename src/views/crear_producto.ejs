@@ -18,7 +18,7 @@
                         <label class="field" for="estreno">Estreno
                             <select name="estreno" id="estreno" class="input-text">
                                 <option value="" disabled selected hidden>Seleccionar</option>
-                                <option value="si" >Si</option>
+                                <option value="si">Si</option>
                                 <option value="no" >No</option>
                             </select>
                         </label>
@@ -45,15 +45,24 @@
                             <% } %>
                         </label> -->
                         <!-- <br><br><br> <div></div> -->
-                        <label class="field" for="categoria">Categoria
+                        
+                        <label class="field" for="categoria">Categoría
                             <select name="category" id="categoria" class="input-text">
                                 <option value="" disabled selected hidden>Seleccionar</option>
                             <% for (const i of estructuraMovie['categories']) { %>
                                 <option value ="<%= i %>"><%= i %></option>
                             <% } %>
+                            </select>
                         </label>
-                        <label class="field">Imagen</label>
-                            <input type="file" class="input-text" name="image" id="imagen">
+
+                        <label for="imagen" class="field">Póster de la película
+                            <input type="file" name="image" id="imagen" class="input-text">
+                        </label>
+
+                        <label for="banner" class="field">Banner de la película
+                            <input type="file" name="banner" id="banner" class="input-text">
+                        </label>
+
                         <div class="field">
                             <button class="button" type="submit" id = "login-rg-btn">Crear</button>
                         </div>

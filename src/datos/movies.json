@@ -43,5 +43,31 @@
     "category": "Drama",
     "id": 4,
     "image": "Avengers-1704661456144.jpg"
+  },
+  {
+    "title": "titulo prueba",
+    "year": "2023",
+    "estreno": "no",
+    "description": "prueba banner",
+    "director": "clint eastwood",
+    "cast": "ryan gosling",
+    "rating": "5",
+    "category": "Drama",
+    "id": 5,
+    "image": "tituloPrueba-1704925817817.jpg",
+    "banner": "tituloPrueba-1704925817821.jpg"
+  },
+  {
+    "title": "Gran Torino",
+    "year": "2008",
+    "estreno": "no",
+    "description": "Gran Torino es una película estadounidense de género dramático del año 2008, dirigida, producida y protagonizada por Clint Eastwood.",
+    "director": "Clint Eastwood",
+    "cast": "Clint Eastwood",
+    "rating": "5",
+    "category": "Drama",
+    "id": 6,
+    "image": "GranTorino-1704927854874.jpg",
+    "banner": "GranTorino-1704927854878.jpg"
   }
 ]
