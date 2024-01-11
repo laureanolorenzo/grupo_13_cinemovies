@@ -80,7 +80,7 @@ ul {
 .boton-ver {
     color: #ffffff;
     padding: 0.75rem;
-    background-color: #000000;
+    background-color: #5c008f;
     border-radius: 4px;
     width: 85px;
     font-size: 15px;
@@ -100,6 +100,15 @@ ul {
     display: none;
 }
 
+.titulo-pelicula{
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 45px;
+    /* MODIFICAR COLORES */
+    color: #ffb000;                     
+    text-shadow: #F04E24 0px 4px 4px;
+    padding: 15px;
+}
 
 
 @media(min-width: 426px) {
