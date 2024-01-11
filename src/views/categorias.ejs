@@ -58,6 +58,8 @@
             <%}%>
           </div>
        <% } %>
+       <% if ((datos.length == 0)) { %>
+        <!-- Pelicula por default -->
           <div class="alineacion-movil">
               <h3 class="titulo-pelicula">Napoleon</h3>
               <div class="contenido-pelicula">
@@ -82,7 +84,7 @@
               <div>
                   <button class="boton-ver" type="button"> VER </button>
               </div>
-
+        <% } %>
   </main>
   <%- include('./partials/footer') %>
 

@@ -88,5 +88,21 @@
     "category": "Acción",
     "image": "TheCreator-1705008540403.jpg",
     "id": 6
+  },
+  {
+    "title": "Moonfall",
+    "year": "2022",
+    "estreno": "no",
+    "description": "Moonfall (conocida como Moonfall: Impacto lunar en Hispanoamérica) es una película chino-alemana estadounidense de acción y ciencia ficción de 2022 perteneciente a los géneros space opera y ciencia ficción apocalíptica",
+    "director": "Roland Emmerich",
+    "cast": "Halle Berry, Patrick Wilson, John Bradley, Michael Peña, Charlie Plummer, Kelly Yu y Donald Sutherland",
+    "rating": "4",
+    "clasificacion_edad": "Apta para todo público",
+    "duration": "130 minutos",
+    "origin": "China, Alemania, Estados Unidos",
+    "category": "Aventura",
+    "image": "Moonfall-1705015432728.jpg",
+    "banner": "Moonfall-1705015432800.jpg",
+    "id": 7
   }
 ]

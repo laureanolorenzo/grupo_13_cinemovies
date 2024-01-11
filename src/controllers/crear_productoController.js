@@ -1,16 +1,24 @@
 const { log } = require('console');
 const fs = require ('fs');
 const path = require ('path');
+// Variables
 let anio = [];
 for (i = 1980; i <= 2023; i++) {
     anio.push(i)
 }
 
+// Funciones utiles
+function listCategories() {
+    const categories = JSON.parse(fs.readFileSync(path.join(__dirname,'../datos/categories.json'),{'encoding':'utf-8'}));
+    return categories.map(x => x['title']);
+}
+
 const crear_productoController = {
     crear_productoView(req,res) {
+        listCategories();
         const admin = true;
         const estructuraMovie = {
-            categories : ['Acción','Terror','Drama','Comedia','Romance'], // Nuevas categorias deben ir acá!
+            categories : listCategories(), // Nuevas categorias deben ir acá!
             year : anio,
             ratings: ['1','2','3','4','5']
         }
@@ -40,8 +48,6 @@ const crear_productoController = {
             //     res.send('Por favor suba una imagen para su película'); // Buscar una mejor forma de validarlo!
             //    return next(new Error('Por favor suba una imagen para su película'));
             // }
-            newMovie['id'] = lastId + 1;
-            moviesObj.push(newMovie);
             // newMovie['image'] = file['filename'];            
             if (file.image !=undefined && file.banner !=undefined) {
                 newMovie['image'] = file.image[0].filename;
@@ -50,12 +56,12 @@ const crear_productoController = {
                 res.send('Debe agregar un póster y un banner para la película');
             };
             newMovie['duration'] =  newMovie['duration'] + " minutos";
+            newMovie['id'] = lastId + 1;
+            moviesObj.push(newMovie);
             fs.writeFileSync(moviesPath,JSON.stringify(moviesObj,null,2));
             res.redirect('/');
-            // console.log(moviesObj);
 
-            console.log(req.body);
-            console.log(req.file);
+
         } else {
             next(new Error('Se ha producido un error. Por favor vuelva a intentarlo.'));
         }
