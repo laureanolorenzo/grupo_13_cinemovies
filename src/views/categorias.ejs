@@ -8,19 +8,48 @@
 
     <main class="main-categorias">
       <div class="seccionCategorias">
-        <h1>Estrenos</h1>
+        <h1>Películas</h1>
         <div class="dropdown">
             <button class="dropbtn"><use>selec</use></button>
             <div class="dropdown-content">
-              <a href="#">Estrenos</a>
-              <a href="#">Accion</a>
-              <a href="#">Clasicos</a>
+              <a href="#" category="estrenos" id="seleccion-categoria">Estrenos</a>
+              <a href="#"category="accion" id="seleccion-categoria">Acción</a>
+              <a href="#"category="clasicos" id="seleccion-categoria">Clásicos</a>
+              <a href="/categorias/drama"category="drama" id="seleccion-categoria">Drama</a>
             </div>
           </div>
         <input type="text" class="Buscar" placeholder="Buscar Película">
       </div>
 
-      <section class="lista-categorias">
+      <section class="categorias">
+        <% if (datos){ %>
+            <!-- <h2> datos</h2> -->
+            <% for (const peli of datos) {%>
+                <div class="alineacion-movil">
+                    <h3 class="titulo-pelicula"><%= peli.title %></h3>
+                    <div class="contenido-pelicula">
+                        <div class="contenido">
+                            <img class="poster" src="images/movies/<%= peli.image%>">
+                            <div class="sin-padding">
+                                <ul>
+                                    <li class="linea" >Clasificación: <%= peli.clasificacion_edad %></li>
+                                    <li class="linea" >Duración: <%= peli.duration %></li>
+                                    <li class="linea" >Género: <%= peli.category %></li>
+                                    <li class="linea" >Director: <%= peli.director %></li>
+                                    <li class="linea" >Cast: <%= peli.cast %></li>
+                                    <li class="linea" >Origen: <%= peli.origin %></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        
+                        <a href="detalle_producto/<%= peli.id %>"><button class="boton-ver" type="button"> VER </button></a>
+                    </div>
+
+            <%}%>
+       <% } %>
           <div class="alineacion-movil">
               <h3 class="titulo-pelicula">Napoleon</h3>
               <div class="contenido-pelicula">
@@ -30,7 +59,6 @@
                           <ul>
                               <li class="linea" >Calificación: Apta para mayores de 13 años</li>
                               <li class="linea" >Duración: 158 minutos</li>
-                              <li class="linea" >Titulo Original: Napoleon</li>
                               <li class="linea" >Género: Histórica , Biográfica</li>
                               <li class="linea" >Director: Ridley Scott</li>
                               <li class="linea" >Actores: Joaquin Phoenix, Vanessa Kirby, Ludivine Sagnier</li>
@@ -46,77 +74,7 @@
               <div>
                   <button class="boton-ver" type="button"> VER </button>
               </div>
-          </div>
-          <div class="alineacion-movil">
-              <h3 class="titulo-pelicula">Napoleon</h3>
-              <div class="contenido-pelicula">
-                  <div class="contenido">
-                      <img class="poster" src="images/napoleon-poster-64ad1f6325a8b.jpg">
-                      <div class="sin-padding">
-                          <ul>
-                              <li class="linea" >Calificación: Apta para mayores de 13 años</li>
-                              <li class="linea" >Duración: 158 minutos</li>
-                              <li class="linea" >Titulo Original: Napoleon</li>
-                              <li class="linea" >Género: Histórica , Biográfica</li>
-                              <li class="linea" >Director: Ridley Scott</li>
-                              <li class="linea" >Actores: Joaquin Phoenix, Vanessa Kirby, Ludivine Sagnier</li>
-                              <li class="linea" >Origen: Reino Unido, Estados Unidos</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
 
-              <div>
-                  <button class="boton-ver" type="button"> VER </button>
-              </div>
-          </div>
-          <div class="alineacion-movil">
-              <h3 class="titulo-pelicula">Napoleon</h3>
-              <div class="contenido-pelicula">
-                  <div class="contenido">
-                      <img class="poster" src="images/napoleon-poster-64ad1f6325a8b.jpg">
-                      <div class="sin-padding">
-                          <ul>
-                              <li class="linea" >Calificación: Apta para mayores de 13 años</li>
-                              <li class="linea" >Duración: 158 minutos</li>
-                              <li class="linea" >Titulo Original: Napoleon</li>
-                              <li class="linea" >Género: Histórica , Biográfica</li>
-                              <li class="linea" >Director: Ridley Scott</li>
-                              <li class="linea" >Actores: Joaquin Phoenix, Vanessa Kirby, Ludivine Sagnier</li>
-                              <li class="linea" >Origen: Reino Unido, Estados Unidos</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-
-              <div>
-                  <button class="boton-ver" type="button"> VER </button>
-              </div>
-          </div>
-          <div class="alineacion-movil">
-              <h3 class="titulo-pelicula">Napoleon</h3>
-              <div class="contenido-pelicula">
-                  <div class="contenido">
-                      <img class="poster" src="images/napoleon-poster-64ad1f6325a8b.jpg">
-                      <div class="sin-padding">
-                          <ul>
-                              <li class="linea" >Calificación: Apta para mayores de 13 años</li>
-                              <li class="linea" >Duración: 158 minutos</li>
-                              <li class="linea" >Titulo Original: Napoleon</li>
-                              <li class="linea" >Género: Histórica , Biográfica</li>
-                              <li class="linea" >Director: Ridley Scott</li>
-                              <li class="linea" >Actores: Joaquin Phoenix, Vanessa Kirby, Ludivine Sagnier</li>
-                              <li class="linea" >Origen: Reino Unido, Estados Unidos</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-
-              <div>
-                  <button class="boton-ver" type="button"> VER </button>
-              </div>
-          </div>
-      </section>
   </main>
   <%- include('./partials/footer') %>
 

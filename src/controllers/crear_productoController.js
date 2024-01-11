@@ -49,6 +49,7 @@ const crear_productoController = {
             } else {
                 res.send('Debe agregar un póster y un banner para la película');
             };
+            newMovie['duration'] =  newMovie['duration'] + " minutos";
             fs.writeFileSync(moviesPath,JSON.stringify(moviesObj,null,2));
             res.redirect('/');
             // console.log(moviesObj);

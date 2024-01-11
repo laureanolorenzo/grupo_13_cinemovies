@@ -34,6 +34,20 @@
                         <label class="field">Puntuación
                             <input type="number" class="input-text" name="rating" id="puntacion" min="1" max= "5" placeholder="5"  oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
+                        <label class="field" for="clasificacion_edad">Clasificación
+                            <select name="clasificacion_edad" id="clasificacion_edad" class="input-text">
+                                <option value="" disabled selected hidden>Seleccionar</option>
+                                <option value="Apta para todo público" >Apta para todo público</option>
+                                <option value="Apta para mayores de 13" >Apta para mayores de 13</option>
+                                <option value="Apta para mayores de 18" >Apta para mayores de 18</option>
+                            </select>
+                        </label>
+                        <label class="field" for="duration"> Duración (en minutos)
+                            <input type="number" name="duration" id="duration" min="1" max="300" value="120" class="input-text">
+                        </label>
+                        <label class="field">Origen
+                            <input type="text" class="input-text" name="origin" id="origin" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                        </label>
                         <!-- <label class="field">Estreno
                             <input type="checkbox" class="input-text" name="estreno" id="estreno"   oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label> -->

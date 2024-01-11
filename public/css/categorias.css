@@ -80,19 +80,35 @@ ul {
 .boton-ver {
     color: #ffffff;
     padding: 0.75rem;
-    background-color: #000000;
+    background-color: #5c008f;
     border-radius: 4px;
     width: 85px;
     font-size: 15px;
     border: 0;
     margin-top: 8px;
     margin-bottom: 8px;
+    transition: transform 300ms;
+}
+.boton-ver:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    /* filter: brightness(130%); */
+    /* filter: brightness(130%); */
 }
 
 .sin-padding{
     display: none;
 }
 
+.titulo-pelicula{
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 45px;
+    /* MODIFICAR COLORES */
+    color: #ffb000;                     
+    text-shadow: #F04E24 0px 4px 4px;
+    padding: 15px;
+}
 
 
 @media(min-width: 426px) {
