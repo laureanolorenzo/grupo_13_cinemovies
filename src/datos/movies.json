@@ -73,5 +73,20 @@
     "category": "Drama",
     "id": 5,
     "image": "ElGranPez-1704814289798.jpeg"
+  },
+  {
+    "title": "The Creator",
+    "year": "2023",
+    "estreno": "si",
+    "description": "The Creator (conocida como Resistencia en Hispanoamérica) es una película de ciencia ficción estadounidense de 2023 producida y dirigida por Gareth Edwards, quien coescribió el guion con Chris Weitz. La película está protagonizada por John David Washington, Gemma Chan, Ken Watanabe, Sturgill Simpson, Allison Janney y Madeleine Yuna Voyles (en su debut cinematográfico). Ambientada en 2070, tras una detonación nuclear en Los Ángeles y una guerra contra la inteligencia artificial, un exagente de las fuerzas especiales es reclutado para cazar y matar al \"Creador\", quien ha desarrollado un arma misteriosa con el poder de poner fin a la guerra.",
+    "director": "Gareth Edwards",
+    "cast": "John David Washington, Gemma Chan, Ken Watanabe, Sturgill Simpson, Allison Janney ",
+    "rating": "3",
+    "clasificacion_edad": "Apta para mayores de 13",
+    "duration": "133 minutos",
+    "origin": "Estados Unidos",
+    "category": "Acción",
+    "image": "TheCreator-1705008540403.jpg",
+    "id": 6
   }
 ]

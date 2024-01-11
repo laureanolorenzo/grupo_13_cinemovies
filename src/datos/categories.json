@@ -22,5 +22,9 @@
     "title":"Romance",
     "backgroundClass": "background-img backg-romance",
     "id":4
-    }
+    },
+    { "categoria": "comedia",
+    "title":"Comedia",
+    "backgroundClass": "background-img backg-comedy",
+    "id":5}
     ]

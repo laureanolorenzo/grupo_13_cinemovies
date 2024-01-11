@@ -53,6 +53,10 @@
 .backg-romance {
   background-image: url('/images/cover-romance.jpg');
 }
+.backg-comedy {
+  background-image: url('/images/cover-comedy.jpg');
+}
+
 
 .background-img {
   background-size: cover;

@@ -15,7 +15,7 @@ const categoriasController = {
         let movies = JSON.parse(moviesJson);
 
         if (!(req.params.categoria)) {
-             res.render('categorias', {datos: movies,todas:true}); //Luego cambiar!!!
+             res.render('categorias', {datos: movies,todas:true,categories:categories}); //Luego cambiar!!!
         } else {
             let categId = req.params.categoria;
             let categoriaParaMostrar = categories.find(x => x.categoria == categId);
@@ -33,13 +33,6 @@ const categoriasController = {
         
 
         //Peliculas
-
-        
-        
-
-
-
-        
         //res.send(movies);
         // res.render('categorias',{datos:movies}); // Luego incluir datos de cada categoria en particular!!
     },
