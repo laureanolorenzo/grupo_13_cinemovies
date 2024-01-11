@@ -15,6 +15,7 @@
             <div class="dropdown-content">
               <% if (typeof categories !== 'undefined') { %> 
                 <% for (const categ of categories) {%>
+                  
                   <li><a href="/categorias/<%= categ.categoria %>" category="estrenos" id="seleccion-categoria"><%= categ.title %></a></li>
                 <% } %>
               <% } %>
@@ -50,11 +51,8 @@
                             </div>
                         </div>
                       </div>
-                    
-
                     <div>
-                        
-                        <a href="detalle_producto/<%= peli.id %>"><button class="boton-ver" type="button"> VER </button></a>
+                        <a href="/detalle_producto/<%= peli.id %>"><button class="boton-ver" type="button"> VER </button></a>
                     </div>
 
             <%}%>
