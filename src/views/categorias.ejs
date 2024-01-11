@@ -24,8 +24,9 @@
       <section class="categorias">
         <% if (datos){ %>
             <!-- <h2> datos</h2> -->
+          <div class="alineacion-movil">
             <% for (const peli of datos) {%>
-                <div class="alineacion-movil">
+                
                     <h3 class="titulo-pelicula"><%= peli.title %></h3>
                     <div class="contenido-pelicula">
                         <div class="contenido">
@@ -41,7 +42,8 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                      </div>
+                    
 
                     <div>
                         
@@ -49,6 +51,7 @@
                     </div>
 
             <%}%>
+          </div>
        <% } %>
           <div class="alineacion-movil">
               <h3 class="titulo-pelicula">Napoleon</h3>

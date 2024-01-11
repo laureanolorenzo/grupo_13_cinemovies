@@ -52,3 +52,34 @@ La devolución de Mati nos motivó a seguir esforzándonos, aunque el módulo se
 
 Lo que deberíamos dejar de hacer:
 * No procrastinar con las reuniones y tener fechas definidas de antemano (para entregar el sprint con más margen de tiempo).
+
+
+—--------------------------------------------------------------------------
+### Retrospectiva Sprint 4 
+
+La devolución de Mati nos hizo ver que estuvimos medio flojos en el sprint 3,  así que intentamos corregir lo que faltaba antes de seguir con el 4.
+
+### Lo que hicimos bien:
+* Nos dividimos las tareas más eficientemente.
+* Mantuvimos buena comunicación incluso en los momentos más arduos.
+* Trabajamos más en forma conjunta (en lugar de asincrónica).
+
+### Lo que hicimos mal:
+* Seguimos sin reunirnos en forma periódica (sin definir fechas semanales), aunque sí tuvimos varias conferencias, denuevo.
+* No llegamos a completar el sprint a tiempo? Quizás, se entrega al momento de escribirse esta retrospectiva.
+* Nos atrasamos algo con el curso en sí, lo que complicó también el proyecto en grupo (el módulo 5 nos complicó denuevo).
+### Lo que deberíamos empezar a hacer:
+* Planificar con mayor anticipación, incluyendo aspectos técnicos que luego haráb más o menos difícil avanzar con el proyecto (ejemplo la estructura del sitio nos complicó un poco el tema de las rutas).
+* Programar reuniones semanales estrictas.
+* Empezar a encarar los sprints desde el primer momento para que no se acumule al final. Nos cuesta este punto...
+* Buscar ayuda externa ante ciertas complicaciones: por suerte pudimos resolver la mayoría de dificultades técnicas que encontramos.
+* 
+### Lo que deberíamos dejar de hacer:
+* Procrastinar con las reuniones. 
+* No tener fechas definidas de antemano (para entregar el sprint con más margen de tiempo, de nuevo).
+* Lanzarnos a codear sin definir bien las tareas a realizar. 
+
+### Aclaraciones sobre la entrega:
+* Agregamos un botón para "crear película" que sirve para acceder a la creación de un producto nuevo. 
+* No tenemos la ruta "/productos" (por el propio diseño de nuestro negocio). Las rutas del CRUD parten del home, y se acceden a través de la vista de cada producto específico (por ejemplo, el usuario admin puede ir a una categoría, acceder a la vista de una película en particular, y cilckear en editar o borrar).
+* Seguimos trabajando en cuestiones de "calidad de experiencia" (de a poco) que está relacionada también con aspectos de sprints anteriores. 
