@@ -1,18 +1,26 @@
     [
     {
     "categoria": "accion",
-    "title":"Acción"
+    "title":"Acción",
+    "backgroundClass": "background-img backg-accion",
+    "id":1
+    },
+    {
+    "categoria": "aventura",
+    "title":"Aventura",
+    "backgroundClass": "background-img backg-aventura",
+    "id":2
     },
     {
     "categoria": "drama",
-    "title":"Drama"
-    },
-    {
-    "categoria": "estrenos",
-    "title":"Estrenos"
+    "title":"Drama",
+    "backgroundClass": "background-img backg-drama",
+    "id":3
     },
     {
     "categoria": "romance",
-    "title":"Romance"
+    "title":"Romance",
+    "backgroundClass": "background-img backg-romance",
+    "id":4
     }
     ]

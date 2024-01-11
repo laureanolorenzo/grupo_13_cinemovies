@@ -54,30 +54,43 @@
             <a href="/categorias">ver todas</a>
           </div>
           <div class="categoria-list">
-            <a href="/detalle_producto" class="categoria">
-              <div class="background-img backg-accion">
-                <!-- colocar con background-image -->
-              </div>
-              <h4>acción</h4>
-            </a>
-            <a href="/detalle_producto" class="categoria">
-              <div class="background-img backg-aventura">
-                <!-- colocar con background-image -->
-              </div>
-              <h4>aventura</h4>
-            </a>
-            <a href="/detalle_producto" class="categoria">
-              <div class="background-img backg-drama">
-                <!-- colocar con background-image -->
-              </div>
-              <h4>drama</h4>
-            </a>
-            <a href="/detalle_producto" class="categoria">
-              <div class="background-img backg-romance">
-                <!-- colocar con background-image -->
-              </div>
-              <h4>romance</h4>
-            </a>
+            <!-- Aca creo que es mejor usar ejs y ya directamente darle funcionalidad -->
+            <!-- El atributo categ creo que se debe reemplazar por id en algun momento -->
+            <% if (categs) { %>
+              <% for (const categ of categs) { %>
+                <a href="/categorias/<%= categ.categoria %>" class="categoria">
+                  <div class="<%= categ.backgroundClass %>">
+                    <!-- colocar con background-image -->
+                  </div>
+                  <h4><%= categ.title %></h4>
+                </a>
+              <% } %>
+            <% } else { %>
+              <a href="/detalle_producto" class="categoria">
+                <div class="background-img backg-accion">
+                  <!-- colocar con background-image -->
+                </div>
+                <h4>acción</h4>
+              </a>
+              <a href="/detalle_producto" class="categoria">
+                <div class="background-img backg-aventura">
+                  <!-- colocar con background-image -->
+                </div>
+                <h4>aventura</h4>
+              </a>
+              <a href="/detalle_producto" class="categoria">
+                <div class="background-img backg-drama">
+                  <!-- colocar con background-image -->
+                </div>
+                <h4>drama</h4>
+              </a>
+              <a href="/detalle_producto" class="categoria">
+                <div class="background-img backg-romance">
+                  <!-- colocar con background-image -->
+                </div>
+                <h4>romance</h4>
+              </a>
+            <% } %>
           </div>
         </div>
         <div class="kiosco">

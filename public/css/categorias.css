@@ -13,8 +13,47 @@
     align-items: center;
     border-bottom: solid var(--colors-blanco) 3px;
     color: var(--colors-blanco);
-    
 }
+    /* Estilos generales */ 
+.dropdown {
+    display: flex;
+    position: relative;
+    display: inline-block;
+    /* gap: 100px; */
+    align-items: center;
+}
+.seccionIntermedia { /* Lo agregue porque sino en mi compu se veia muy feo. Hace falta arreglar para la version movil!!*/
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+/* .dropdown a {
+    position: absolute;
+} */
+/* .dropdown {
+    position: relative; 
+    display: inline-block;
+    right: 480px;
+    top: 3px;
+  } */
+  
+  /* Estilos del botón */
+  .dropbtn {
+    background-color: #6e1984;
+    color: white;
+    padding: 7px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 48px;
+    /* height: 50%; */
+    /* position: absolute; */
+    /* left: 100px; */
+    /* top: 10px; */
+    /* width: 128px; */
+  }
+
 
 .trailer{
     display: none;
@@ -179,24 +218,7 @@ ul {
         margin-bottom: 30px;
     }
 
-    /* Estilos generales */
-.dropdown {
-    position: relative;
-    display: inline-block;
-    right: 480px;
-    top: 3px;
-  }
-  
-  /* Estilos del botón */
-  .dropbtn {
-    background-color: #6e1984;
-    color: white;
-    padding: 7px;
-    font-size: 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-  }
+
   
   /* Estilos del contenido desplegable */
   .dropdown-content {

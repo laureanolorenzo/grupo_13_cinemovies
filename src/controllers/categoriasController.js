@@ -15,14 +15,20 @@ const categoriasController = {
         let movies = JSON.parse(moviesJson);
 
         if (!(req.params.categoria)) {
-             res.render('categorias', {datos: movies}); //Luego cambiar!!!
+             res.render('categorias', {datos: movies,todas:true}); //Luego cambiar!!!
         } else {
             let categId = req.params.categoria;
             let categoriaParaMostrar = categories.find(x => x.categoria == categId);
             if (categoriaParaMostrar === undefined) {
                 res.send('No se encontro la categoria');
             }
-            movies = movies.filter(movie => movie.category == categoriaParaMostrar.title);
+            
+            let filteredMovies = movies.filter(movie => (movie.category == categoriaParaMostrar.title));
+            // console.log(movies);
+            // console.log(categoriaParaMostrar);
+            // console.log(filteredMovies);
+            // res.send(filteredMovies);
+            res.render('categorias', {datos: filteredMovies,todas:false,categories:categories});
         }
         
 

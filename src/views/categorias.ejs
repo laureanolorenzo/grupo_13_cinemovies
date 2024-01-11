@@ -8,29 +8,36 @@
 
     <main class="main-categorias">
       <div class="seccionCategorias">
-        <h1>Películas</h1>
-        <div class="dropdown">
+        <div class="seccionIntermedia">
+          <h1>Películas</h1>
+          <div class="dropdown">
             <button class="dropbtn"><use>selec</use></button>
             <div class="dropdown-content">
-              <a href="#" category="estrenos" id="seleccion-categoria">Estrenos</a>
-              <a href="#"category="accion" id="seleccion-categoria">Acción</a>
-              <a href="#"category="clasicos" id="seleccion-categoria">Clásicos</a>
-              <a href="/categorias/drama"category="drama" id="seleccion-categoria">Drama</a>
+              <% if (typeof categories !== 'undefined') { %> 
+                <% for (const categ of categories) {%>
+                  <li><a href="/categorias/<%= categ.categoria %>" category="estrenos" id="seleccion-categoria"><%= categ.title %></a></li>
+                <% } %>
+              <% } %>
+              <!-- <a href="/categorias/estrenos" category="estrenos" id="seleccion-categoria">Estrenos</a>
+              <a href="/categorias/accion"category="accion" id="seleccion-categoria">Acción</a>
+              <a href="/categorias/clasicos"category="clasicos" id="seleccion-categoria">Clásicos</a>
+              <a href="/categorias/drama"category="drama" id="seleccion-categoria">Drama</a> -->
             </div>
           </div>
+        </div>
         <input type="text" class="Buscar" placeholder="Buscar Película">
       </div>
 
       <section class="categorias">
         <% if (datos){ %>
-            <!-- <h2> datos</h2> -->
           <div class="alineacion-movil">
             <% for (const peli of datos) {%>
                 
                     <h3 class="titulo-pelicula"><%= peli.title %></h3>
                     <div class="contenido-pelicula">
                         <div class="contenido">
-                            <img class="poster" src="images/movies/<%= peli.image%>">
+
+                          <img class="poster" src="<%= todas ? '':'../'%>images/movies/<%= peli.image %>">
                             <div class="sin-padding">
                                 <ul>
                                     <li class="linea" >Clasificación: <%= peli.clasificacion_edad %></li>
@@ -57,16 +64,16 @@
               <h3 class="titulo-pelicula">Napoleon</h3>
               <div class="contenido-pelicula">
                   <div class="contenido">
-                      <img class="poster" src="images/napoleon-poster-64ad1f6325a8b.jpg">
-                      <div class="sin-padding">
-                          <ul>
-                              <li class="linea" >Calificación: Apta para mayores de 13 años</li>
-                              <li class="linea" >Duración: 158 minutos</li>
-                              <li class="linea" >Género: Histórica , Biográfica</li>
-                              <li class="linea" >Director: Ridley Scott</li>
-                              <li class="linea" >Actores: Joaquin Phoenix, Vanessa Kirby, Ludivine Sagnier</li>
-                              <li class="linea" >Origen: Reino Unido, Estados Unidos</li>
-                          </ul>
+                    <img class="poster" src="<%= todas?'':'../'%>images/napoleon-poster-64ad1f6325a8b.jpg">
+                    <div class="sin-padding">
+                        <ul>
+                            <li class="linea" >Calificación: Apta para mayores de 13 años</li>
+                            <li class="linea" >Duración: 158 minutos</li>
+                            <li class="linea" >Género: Histórica , Biográfica</li>
+                            <li class="linea" >Director: Ridley Scott</li>
+                            <li class="linea" >Actores: Joaquin Phoenix, Vanessa Kirby, Ludivine Sagnier</li>
+                            <li class="linea" >Origen: Reino Unido, Estados Unidos</li>
+                        </ul>
                       </div>
                       <div class="trailer">
                         <iframe width="560" height="315" src="https://www.youtube.com/watch?v=NjMJwewmcfA" frameborder="0" allowfullscreen></iframe>
