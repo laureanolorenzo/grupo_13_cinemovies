@@ -15,7 +15,6 @@ function listCategories() {
 
 const crear_productoController = {
     crear_productoView(req,res) {
-        listCategories();
         const admin = true;
         const estructuraMovie = {
             categories : listCategories(), // Nuevas categorias deben ir acá!
@@ -52,14 +51,15 @@ const crear_productoController = {
             if (file.image !=undefined && file.banner !=undefined) {
                 newMovie['image'] = file.image[0].filename;
                 newMovie['banner'] = file.banner[0].filename;
+                newMovie['duration'] =  newMovie['duration'] + " minutos";
+                newMovie['id'] = lastId + 1;
+                moviesObj.push(newMovie);
+                fs.writeFileSync(moviesPath,JSON.stringify(moviesObj,null,2));
+                res.redirect('/');
             } else {
                 res.send('Debe agregar un póster y un banner para la película');
+                // Para despues podemos hacer una vista con un boton que te lleve devuelta al form con los datos ya cargados.
             };
-            newMovie['duration'] =  newMovie['duration'] + " minutos";
-            newMovie['id'] = lastId + 1;
-            moviesObj.push(newMovie);
-            fs.writeFileSync(moviesPath,JSON.stringify(moviesObj,null,2));
-            res.redirect('/');
 
 
         } else {
