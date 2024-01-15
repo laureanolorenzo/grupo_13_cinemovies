@@ -24,7 +24,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 // Rutas
-const rutaHome = require('./routes/mainRouter');
 const rutaLogin = require('./routes/loginRouter');
 const rutaRegister = require('./routes/registerRouter');
 const rutaCarrito = require('./routes/carritoRouter');
@@ -35,6 +34,10 @@ const rutaPromociones = require('./routes/promocionesRouter');
 const rutaPagar = require('./routes/ir_a_pagarRouter');
 const rutacrearProducto = require ('./routes/crear_productoRouter');
 const rutaEditarProducto = require ('./routes/editar_productoRouter');
+
+// Rutas principales > Estas deberian quedar unicamente
+const rutaHome = require('./routes/mainRouter');
+const rutaProducto = require('./routes/productoRouter');
 
 // Usos de los routers
 
@@ -59,6 +62,11 @@ app.use(rutaPagar);
 app.use(rutacrearProducto);
 
 app.use(rutaEditarProducto);
+
+// Uso de los routers principales
+
+app.use(rutaProducto);
+
 // Servidor
 const PORT = 3000;
 

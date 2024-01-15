@@ -24,6 +24,7 @@ const categoriasController = {
             }
             
             let filteredMovies = movies.filter(movie => (movie.category == categoriaParaMostrar.title));
+            // TNEER 2 METODOS DISTINTOS EN EL CONTROLADOR. Uno filtrado y otro no. No mezclar las funcionalidades
             // console.log(movies);
             // console.log(categoriaParaMostrar);
             // console.log(filteredMovies);
