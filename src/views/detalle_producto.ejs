@@ -23,14 +23,15 @@
                 </div>
             </div>
 
-            <input type="text" name="id_pelicula" id="id_pelicula" value="0" hidden>
-
             <div class="buttons-detalle">
                 <button class="reserve-button">Reservar</button>
 
                 <form method="POST" action="/detalle_producto/<%=idPelicula%>?_method=DELETE">
                     <button type="submit" class="delete-button">Eliminar producto</button>
                 </form>
+
+                <!-- <p><%=idPelicula%>ASFDFAA</p> -->
+                <a href="/editar_producto/<%=idPelicula%>" class= "delete-button">Editar</a>
 
                 <a href="/" class="back-button">Volver</a>
             </div>

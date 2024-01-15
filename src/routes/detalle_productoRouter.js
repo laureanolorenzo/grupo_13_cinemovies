@@ -7,4 +7,6 @@ router.get('/detalle_producto/:id', detalle_productoController.detalle_productoV
 
 router.delete('/detalle_producto/:id', detalle_productoController.borrar_producto);
 
+
+
 module.exports = router;
