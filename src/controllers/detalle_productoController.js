@@ -95,36 +95,46 @@ const detalle_productoController = {
     
         //Buscamos la pelicula a editar
         let idParams = req.params.id; 
-        let idAEditar = jsonPeliculas.find(jsonPeliculas => jsonPeliculas.id = idParams); 
-        //console.log(idAEditar);
-    
-        //Creamos la pelicula nueva que va a reemplazar(nos guardamos todos los datos que llegan por req.params)
-        idEditado = {
-            id: idAEditar.id,
-            titulo: req.body.titulo,
-            año: req.body.año,
-            estreno: req.body.estreno,
-            descripcion: req.body.descripcion, 
-            director: req.body.director, 
-            reparto: req.body.reparto,
-            puntuacion: req.body.puntuacion,
-            clasificacion: req.body.clasificacion, 
-            duracion: req.body.duracion,
-            origen: req.body.origen,
-            categoria: req.body.categoria,
-            imagen: req.file != undefined ? req.file.
-            filename: idAEditar.imagen
-        }
-        
-    
-        //Buscamos la posisicon de la pelicula a reemplazar dentro del json
-        let posicionPelicula = jsonPeliculas.findIndex(jsonPeliculas => {return jsonPeliculas.id == idParams})
-        //console.log(posicionPelicula);
-        
-        //Reemplazamos 
-        jsonPeliculas[posicionPelicula] = idEditado;
+        //res.send(idParams)
+        let peliAEditar = jsonPeliculas.find(peli => peli.id == idParams); 
 
-        res.redirect('/');
+        //console.log(idAEditar);
+        //console.log(idParams);
+        //console.log(req.params.id);
+        if(typeof peliAEditar == "undefined" ){
+            res.send("No se encontro la pelicula");
+        }else{
+            
+            //Creamos la pelicula nueva que va a reemplazar(nos guardamos todos los datos que llegan por req.body)
+            let peliEditada = {
+                id: peliAEditar.id,
+                title: req.body.title,
+                year: req.body.year,
+                estreno: req.body.estreno,
+                description: req.body.description, 
+                director: req.body.director, 
+                cast: req.body.cast,
+                rating: req.body.rating,
+                clasificacion_edad: req.body.clasificacion_edad, 
+                duration: req.body.duration,
+                origin: req.body.origin,
+                category: req.body.category,
+                image: req.file != undefined ? req.file : peliAEditar.image,
+                
+            }
+        
+            //Buscamos la posisicon de la pelicula a reemplazar dentro del json
+            let posicionPelicula = jsonPeliculas.findIndex(x => x.id == idParams)
+            //console.log(posicionPelicula);
+            
+            //Reemplazamos 
+            jsonPeliculas[posicionPelicula] = peliEditada;
+    
+            fs.writeFileSync(movies, JSON.stringify(jsonPeliculas, null, " "));
+    
+            res.redirect('/'); 
+        } 
+    
     
     }
     
@@ -132,4 +142,4 @@ const detalle_productoController = {
 
 module.exports = detalle_productoController;
 
-//console.log(detalle_productoController.editar_productoView());
+//console.log(detalle_productoController.editar_producto());

@@ -11,9 +11,8 @@
 </head>
 <body>
 
-    <h1>Hola estas editando: <%=peliAEditar.title%></h1>
-    <p><%=peliAEditar.image%></p>
-    <form action="/editar_producto/<%=peliAEditar%>?_method=PUT" method="POST">
+    <h1>Estas editando: <%=peliAEditar.title%></h1>
+    <form action="/editar_producto/<%=peliAEditar.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
 
         <label class="field">Título
             <input type="text" class="input-text" name="title" value="<%=peliAEditar.title%>" id="titulo" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
@@ -76,7 +75,7 @@
         </label>
 
         <div class="field">
-            <button class="button" type="submit" id = "login-rg-btn">Editar</button>
+            <button class="button" type="submit">Editar</button>
         </div>
     </form> 
 </body>
