@@ -45,10 +45,6 @@ const detalle_productoController = {
 
         movieToShow['rating'] = ratingsMap[movieToShow['rating']];
         res.render('detalle_producto' , {datos: movieToShow, idPelicula: idPelicula});
-        
-        //console.log(req.params);
-        //console.log(movies);
-        //res.render('detalle_producto'); // Incluir objeto (que venga de JSON con los datos de cada producto)
     },
 
     borrar_producto(req,res){
@@ -90,17 +86,10 @@ const detalle_productoController = {
             year : anio,
             ratings: ['1','2','3','4','5']
         }
-        //console.log(jsonPeliculas);
-       /*  let idAEditar = jsonPeliculas.find(jsonPeliculas => { 
-            return jsonPeliculas.id == req.params.id
-        });  */
         let peliAEditar = jsonPeliculas.find(jsonPeliculas => jsonPeliculas.id == idParams);
 
-        //console.log(peliAEditar);
-        //console.log(idAEditar);
-        //console.log(req.params.id);
          res.render('editar_producto', {peliAEditar:peliAEditar,estructuraMovie:estructuraMovie});
-         //res.send(peliAEditar);
+
     },
     editar_producto(req,res){
 
@@ -134,13 +123,23 @@ const detalle_productoController = {
             // Si llegan imagenes, si llega imagen, reemplazarla. Y si llega banner, reemplazarlo.
             if (req.files) {
                 const file = req.files;
-                peliEditada['image'] = file.image !=undefined?file.image[0].filename : peliAEditar.image;
+                const imagesPath = path.resolve(__dirname,'../../public/images/movies');
+                const bannerPath = path.resolve(__dirname,'../../public/images/movies'); // Por ahora lo dejamos asi. Luego ver la forma de guardar 2 archivos en carpetas separadas.
+                if (file.image) {
+                    if (peliAEditar.image) { // Borrar la imagen ya existente para no acumular archivos
+                        fs.unlinkSync(`${imagesPath}/${peliAEditar.image}`);
+                    }
+                    peliEditada['image'] = file.image[0].filename ; // Reemplazar el nombre en el json para que luego ejs pueda referenciarlo
+                }
                 if (peliAEditar.banner) { 
                     peliEditada['banner'] = file.banner !=undefined?file.banner[0].filename : peliAEditar.banner;
+                    if (peliAEditar.banner != 'defaultBanner.jpg') { // Creo que se podria hacer con otra logica mejor
+                        fs.unlinkSync(`${bannerPath}/${peliAEditar.banner}`)// Borrar el banner si tenia uno
+                    }
+
                 } else { //Si no habia banner y no llega, poner "defaultBanner.jpg"
                     peliEditada['banner'] = file.banner !=undefined?file.banner[0].filename : 'defaultBanner.jpg'; // Crearlo mas tarde
                 }
-                // res.send(JSON.stringify(file, null, 2));
             } else {
                 res.send('Hubo un error al procesar los archivos')
             }
@@ -148,6 +147,7 @@ const detalle_productoController = {
             let posicionPelicula = jsonPeliculas.findIndex(x => x.id == idParams)
             jsonPeliculas[posicionPelicula] = peliEditada;
             fs.writeFileSync(moviesPath, JSON.stringify(jsonPeliculas, null, " "));
+
             res.redirect('/'); 
         } 
     

@@ -91,18 +91,18 @@
  },
  {
   "id": 7,
-  "title": "Moonfall",
+  "title": "Moon fall",
   "year": "2022",
   "estreno": "no",
   "description": "Moonfall (conocida como Moonfall: Impacto lunar en Hispanoamérica) es una película chino-alemana estadounidense de acción y ciencia ficción de 2022 perteneciente a los géneros space opera y ciencia ficción apocalíptica",
   "director": "Roland Emmerich",
-  "cast": "Halle",
+  "cast": "John",
   "rating": "4",
-  "clasificacion_edad": "Apta para todo público",
-  "duration": "130",
-  "origin": "China,",
+  "clasificacion_edad": "Apta para mayores de 13",
+  "duration": "123",
+  "origin": "Estados",
   "category": "Aventura",
-  "image": "Moonfall-1705371618136.jpg",
-  "banner": "Moonfall-1705015432800.jpg"
+  "image": "MoonFall-1705373662693.jpg",
+  "banner": "MoonFall-1705373637981.jpeg"
  }
 ]
