@@ -24,9 +24,9 @@
 
         <label class="field" for="estreno">Estreno
             <select name="estreno" id="estreno" class="input-text">
-                <option value="" disabled selected hidden>Seleccionar</option>
-                <option value="si">Si</option>
-                <option value="no" >No</option>
+                <!-- <option value="" disabled selected hidden>Seleccionar</option> -->
+                <option value="si" <%= peliAEditar.estreno =='si'? 'selected' : '' %> >Si</option>
+                <option value="no" <%= peliAEditar.estreno== 'no'? 'selected' : '' %> >No</option>
             </select>
         </label>
 
@@ -41,17 +41,24 @@
         <label class="field">Reparto
             <input type="text" class="input-text" name="cast" id="reparto" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')" value=<%=peliAEditar.cast%>>
         </label>
-
+        <label class="field" for="categoria">Categoría
+            <select name="category" id="categoria" class="input-text">
+                <option value="" disabled selected hidden>Seleccionar</option>
+            <% for (const i of estructuraMovie['categories']) { %>
+                <option value ="<%= i %>"<%= peliAEditar.category == i ? 'selected': '' %>><%= i %></option>
+            <% } %>
+            </select>
+        </label>
         <label class="field">Puntuación
             <input type="number" class="input-text" name="rating" id="puntacion" min="1" max= "5" placeholder="5"  oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')" value=<%=peliAEditar.rating%>>
         </label>
 
         <label class="field" for="clasificacion_edad">Clasificación
             <select name="clasificacion_edad" id="clasificacion_edad" class="input-text" value=<%=peliAEditar.clasificacion_edad%>>
-                <option value="" disabled selected hidden>Seleccionar</option>
-                <option value="Apta para todo público" >Apta para todo público</option>
-                <option value="Apta para mayores de 13" >Apta para mayores de 13</option>
-                <option value="Apta para mayores de 18" >Apta para mayores de 18</option>
+                <!-- <option value="" disabled selected hidden>Seleccionar</option> -->
+                <option value="Apta para todo público" <%= peliAEditar.clasificacion_edad =='Apta para todo público'? 'selected' : '' %> >Apta para todo público</option>
+                <option value="Apta para mayores de 13" <%= peliAEditar.clasificacion_edad =='Apta para mayores de 13'? 'selected' : '' %> >Apta para mayores de 13</option>
+                <option value="Apta para mayores de 18" <%= peliAEditar.clasificacion_edad =='Apta para mayores de 18'? 'selected' : '' %> >Apta para mayores de 18</option>
                 
             </select>
         </label>

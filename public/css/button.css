@@ -15,6 +15,10 @@
   transition: transform 300ms; /*Solo se va a usar para botones de login. Cambiar si se desea*/
 
 }
+.button:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
 
 /* Botonos de login y registrarse */
 #login-btn:hover, #login-rg-btn:hover {

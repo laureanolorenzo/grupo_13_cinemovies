@@ -2,6 +2,12 @@ const { log } = require('console');
 let fs = require('fs');
 let path = require ('path'); 
 
+// Variables
+let anio = [];
+for (i = 1980; i <= 2023; i++) {
+    anio.push(i)
+}
+
 // Objeto literal para "mapear" los ratings:
 const ratingsMap = {
     '1' : '★☆☆☆☆',
@@ -12,11 +18,14 @@ const ratingsMap = {
 }
 
 //Ruta a JSONmovies
-let movies = path.join(__dirname,"../datos/movies.json")
-
+let moviesPath = path.join(__dirname,"../datos/movies.json")
+// Conviene hacerlo funcion?
  function listMovies(){
-
-    return JSON.parse(fs.readFileSync(movies, "utf-8")); 
+    return JSON.parse(fs.readFileSync(moviesPath, "utf-8")); 
+}
+function listCategories() {
+    const categories = JSON.parse(fs.readFileSync(path.join(__dirname,'../datos/categories.json'),{'encoding':'utf-8'}));
+    return categories.map(x => x['title']);
 }
 
 const detalle_productoController = {
@@ -76,7 +85,11 @@ const detalle_productoController = {
     editar_productoView(req,res){
         let jsonPeliculas = listMovies()
         let idParams = req.params.id;
-
+        const estructuraMovie = {
+            categories : listCategories(), // Nuevas categorias deben ir acá!
+            year : anio,
+            ratings: ['1','2','3','4','5']
+        }
         //console.log(jsonPeliculas);
        /*  let idAEditar = jsonPeliculas.find(jsonPeliculas => { 
             return jsonPeliculas.id == req.params.id
@@ -86,26 +99,23 @@ const detalle_productoController = {
         //console.log(peliAEditar);
         //console.log(idAEditar);
         //console.log(req.params.id);
-         res.render('editar_producto', {peliAEditar});
+         res.render('editar_producto', {peliAEditar:peliAEditar,estructuraMovie:estructuraMovie});
          //res.send(peliAEditar);
     },
     editar_producto(req,res){
-        //Leemos las peliculas
+
        let jsonPeliculas = listMovies();
     
-        //Buscamos la pelicula a editar
+
         let idParams = req.params.id; 
-        //res.send(idParams)
         let peliAEditar = jsonPeliculas.find(peli => peli.id == idParams); 
 
-        //console.log(idAEditar);
-        //console.log(idParams);
-        //console.log(req.params.id);
         if(typeof peliAEditar == "undefined" ){
-            res.send("No se encontro la pelicula");
+            res.send("No se encontro la pelicula"); // Podriamos hacer un mensaje de error aca
         }else{
-            
-            //Creamos la pelicula nueva que va a reemplazar(nos guardamos todos los datos que llegan por req.body)
+            // VER LO QUE LLEGA DE IMAGEN
+
+
             let peliEditada = {
                 id: peliAEditar.id,
                 title: req.body.title,
@@ -119,19 +129,25 @@ const detalle_productoController = {
                 duration: req.body.duration,
                 origin: req.body.origin,
                 category: req.body.category,
-                image: req.file != undefined ? req.file : peliAEditar.image,
                 
             }
-        
-            //Buscamos la posisicon de la pelicula a reemplazar dentro del json
+            // Si llegan imagenes, si llega imagen, reemplazarla. Y si llega banner, reemplazarlo.
+            if (req.files) {
+                const file = req.files;
+                peliEditada['image'] = file.image !=undefined?file.image[0].filename : peliAEditar.image;
+                if (peliAEditar.banner) { 
+                    peliEditada['banner'] = file.banner !=undefined?file.banner[0].filename : peliAEditar.banner;
+                } else { //Si no habia banner y no llega, poner "defaultBanner.jpg"
+                    peliEditada['banner'] = file.banner !=undefined?file.banner[0].filename : 'defaultBanner.jpg'; // Crearlo mas tarde
+                }
+                // res.send(JSON.stringify(file, null, 2));
+            } else {
+                res.send('Hubo un error al procesar los archivos')
+            }
+
             let posicionPelicula = jsonPeliculas.findIndex(x => x.id == idParams)
-            //console.log(posicionPelicula);
-            
-            //Reemplazamos 
             jsonPeliculas[posicionPelicula] = peliEditada;
-    
-            fs.writeFileSync(movies, JSON.stringify(jsonPeliculas, null, " "));
-    
+            fs.writeFileSync(moviesPath, JSON.stringify(jsonPeliculas, null, " "));
             res.redirect('/'); 
         } 
     
