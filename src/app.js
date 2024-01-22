@@ -34,6 +34,7 @@ const rutaPromociones = require('./routes/promocionesRouter');
 const rutaPagar = require('./routes/ir_a_pagarRouter');
 const rutacrearProducto = require ('./routes/crear_productoRouter');
 const rutaEditarProducto = require ('./routes/editar_productoRouter');
+const rutaUsuarios = require ('./routes/usersRouter');
 
 // Rutas principales > Estas deberian quedar unicamente
 const rutaHome = require('./routes/mainRouter');
@@ -62,6 +63,8 @@ app.use(rutaPagar);
 app.use(rutacrearProducto);
 
 app.use(rutaEditarProducto);
+
+app.use (rutaUsuarios);
 
 // Uso de los routers principales
 
