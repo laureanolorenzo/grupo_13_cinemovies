@@ -2,8 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const methodOverride = require('method-override');
-
-
+const session = require('express-session');
 const app = express();
 
 const publicPath = path.join(__dirname, '../public');
@@ -20,12 +19,18 @@ app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+//express-session
+app.use(session({
+  secret: "mensaje secreto",
+  resave: false,
+  saveUninitialized: false
+}));
 
 
 
 // Rutas
-const rutaLogin = require('./routes/loginRouter');
-const rutaRegister = require('./routes/registerRouter');
+// const rutaLogin = require('./routes/loginRouter');
+// const rutaRegister = require('./routes/registerRouter');
 const rutaCarrito = require('./routes/carritoRouter');
 const rutaCategorias = require('./routes/categoriasRouter');
 const rutaDetalleProducto = require('./routes/detalle_productoRouter');
@@ -39,14 +44,19 @@ const rutaUsuarios = require ('./routes/usersRouter');
 // Rutas principales > Estas deberian quedar unicamente
 const rutaHome = require('./routes/mainRouter');
 const rutaProducto = require('./routes/productoRouter');
+const cookieParser = require('cookie-parser');
+
+
+//cookie parser
+app.use(cookieParser())
 
 // Usos de los routers
 
 app.use(rutaHome);
 
-app.use(rutaLogin);
+// app.use(rutaLogin);
 
-app.use(rutaRegister);
+// app.use(rutaRegister);
 
 app.use(rutaCarrito);
 

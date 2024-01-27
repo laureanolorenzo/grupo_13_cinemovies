@@ -44,7 +44,7 @@ const detalle_productoController = {
         const idPelicula = req.params.id
 
         movieToShow['rating'] = ratingsMap[movieToShow['rating']];
-        res.render('detalle_producto' , {datos: movieToShow, idPelicula: idPelicula});
+        res.render('detalle_producto' , {datos: movieToShow, idPelicula: idPelicula, user: req.session.userLoggedIn});
     },
 
     borrar_producto(req,res){
@@ -88,7 +88,7 @@ const detalle_productoController = {
         }
         let peliAEditar = jsonPeliculas.find(jsonPeliculas => jsonPeliculas.id == idParams);
 
-         res.render('editar_producto', {peliAEditar:peliAEditar,estructuraMovie:estructuraMovie});
+         res.render('editar_producto', {peliAEditar:peliAEditar,estructuraMovie:estructuraMovie, user: req.session.userLoggedIn });
 
     },
     editar_producto(req,res){

@@ -2,7 +2,11 @@
 <html lang="en">
 <%- include('./partials/head') %>
 <body class="login-body">
-  <%- include('./partials/header') %>
+  <% if (user === undefined) { %>
+    <%- include('./partials/header') %>
+  <% } else { %>
+    <%- include('./partials/headerLoggedIn') %>
+  <% } %>
         <main class="main">
           <div class="wrapper">
             <div class="main-content">
@@ -10,25 +14,30 @@
                 <h2 class="titulo-login">Iniciar Sesión</h1>
               </div>
                 <form class="login-form" action= "/login" method="post">
-                      <label for="user" class="field">
+                      <!-- <label for="user" class="field">
                           Usuario:
-                          <input type="text" name="user" id="usuario" class="input-text" minlength="3" oninvalid="this.setCustomValidity('*Por favor ingrese un nombre de usuario válido (debe contener al menos 3 caracteres)')"> 
-                      </label>
+                          <input type="text" name="user" id="usuario" class="input-text" minlength="3" oninvalid="this.setCustomValidity('*Por favor ingrese un nombre de usuario válido (debe contener al menos 3 caracteres)')> 
+                        </label> -->
+                      <label for="email" class="field">
+                          Email:
+                          <input type="text" name="email" id="email" class="input-text"> <!-- minlength="3" oninvalid="this.setCustomValidity('*Por favor ingrese un nombre de usuario válido (debe contener al menos 3 caracteres)')">  -->
+                        </label>
+                        <% if (locals.errors && errors.email) { %>
+                          <p><%= errors.email.msg %></p>
+                        <% } %>
+      
                       <label for="password" class="field">
                           Contraseña:
-                          <input type="password" name="password" id="contraseña" class="input-text" minlength="3" oninvalid="this.setCustomValidity('*Por favor ingrese una contraseña válida (debe contener al menos 3 caracteres)')">
+                          <input type="password" name="password" id="contraseña" class="input-text"  minlength="3" oninvalid="this.setCustomValidity('*Por favor ingrese una contraseña válida (debe contener al menos 3 caracteres)')">
                       </label>
-                      <% if (errormsg.length) { %>
-                        <p id = "error-msg"><%= errormsg %></p>
-                        <!-- <script>
-                          let msg = <%= errormsg %>;
-                          alert(`${msg}`);
-                        </script> -->
+                      <% if (locals.errors && errors.password) { %>
+                        <p><%= errors.password.msg %></p>
                       <% } %>
+                      
                       <div class="login-bottom">
                         <button type="submit" class="button" id="login-btn">Login</button>
 
-                        <!-- <p id="error-msg"><%= errormsg %> </p> -->
+
                         <a href="#"><p>Olvidé mi contraseña</p></a>
                       </div>
                 </form>

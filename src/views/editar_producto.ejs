@@ -10,6 +10,11 @@
     <title>Cinemovies</title>
 </head>
 <body>
+    <% if (user === undefined) { %>
+        <%- include('./partials/header') %>
+    <% } else { %>
+        <%- include('./partials/headerLoggedIn') %>
+    <% } %>
 
     <h1>Estas editando: <%=peliAEditar.title%></h1>
     <form action="/editar_producto/<%=peliAEditar.id%>?_method=PUT" method="POST" enctype="multipart/form-data">

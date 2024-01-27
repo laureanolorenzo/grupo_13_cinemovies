@@ -8,7 +8,7 @@ function readCategories() {
 const mainController = {
     index(req,res) {
         let categs = readCategories();
-        res.render('home',{categs:categs});
+        res.render('home',{categs:categs,  user: req.session.userLoggedIn });
     }
 }
 module.exports = mainController;

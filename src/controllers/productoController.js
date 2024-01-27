@@ -16,7 +16,7 @@ const categoriasController = {
         const moviesJson = fs.readFileSync(moviesRuta, {'encoding': 'utf-8'});
         let movies = JSON.parse(moviesJson);
 
-        res.render('categorias',{datos: movies,categories:categories})
+        res.render('categorias',{datos: movies,categories:categories, user: req.session.userLoggedIn })
         // res.send('Hola!');
     },
     singleCategoryView(req,res) {
@@ -31,7 +31,7 @@ const categoriasController = {
             res.send('No se encontro la categoria'); // Manejarlo distinto en el futuro?? Seria sit. en la que el usuario pone la categ. a mano
         }
         let filteredMovies = movies.filter(movie => (movie.category == categoriaParaMostrar.title));
-        res.render('categorias', {datos: filteredMovies,todas:false,categories:categories});
+        res.render('categorias', {datos: filteredMovies,todas:false,categories:categories, user: req.session.userLoggedIn });
     },
 
 
@@ -40,7 +40,7 @@ const categoriasController = {
 
 
         if (!(req.params.categoria)) {
-             res.render('categorias', {datos: movies,todas:true,categories:categories}); //Luego cambiar!!!
+             res.render('categorias', {datos: movies,todas:true,categories:categories, user: req.session.userLoggedIn }); //Luego cambiar!!!
         } else {
 
             
@@ -54,7 +54,7 @@ const categoriasController = {
     },
 
     drama: (req,res)=>{
-        res.render ('categoria_drama');
+        res.render ('categoria_drama', {user: req.session.userLoggedIn} );
     }
 }
 

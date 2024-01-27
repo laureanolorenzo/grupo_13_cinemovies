@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') %>
+<body>
+    <% if (user === undefined) { %>
+        <%- include('./partials/header') %>
+    <% } else { %>
+        <%- include('./partials/headerLoggedIn') %>
+    <% } %>
+    <!-- El style lo use de prueba, no usarlo despues -->
+    <h1 style="color: azure;">ESTE ES EL PERFIL DEL USUARIO <%= user.user %></h1>  
+    <%- include('./partials/footer') %>
+</body>
+</html>

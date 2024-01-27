@@ -24,7 +24,7 @@ const crear_productoController = {
         if (!admin) {
             res.send('No tiene permiso para realizar esta acción');
         }
-        res.render('crear_producto',{estructuraMovie}); // Incluir objeto (que venga de JSON con los datos de cada producto)
+        res.render('crear_producto',{estructuraMovie, user: req.session.userLoggedIn }); // Incluir objeto (que venga de JSON con los datos de cada producto)
     },
 
     crear_productoProcess(req,res, next) {

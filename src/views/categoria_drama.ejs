@@ -4,7 +4,11 @@
 <%- include('./partials/head') %>
 
 <body>
-  <%- include('./partials/header') %>
+    <% if (user === undefined) { %>
+        <%- include('./partials/header') %>
+    <% } else { %>
+        <%- include('./partials/headerLoggedIn') %>
+    <% } %>
 
     <main class="main-categorias">
       <div class="seccionCategorias">

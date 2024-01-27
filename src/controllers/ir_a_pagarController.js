@@ -1,6 +1,6 @@
 const ir_a_pagarController = {
     ir_a_pagarView(req,res) {
-        res.render('ir_a_pagar');
+        res.render('ir_a_pagar', { user: req.session.userLoggedIn });
     }
 }
 

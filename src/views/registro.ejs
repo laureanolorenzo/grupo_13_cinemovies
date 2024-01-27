@@ -5,7 +5,11 @@
 
     <body class="register-body">
 
-        <%- include('./partials/header') %>
+        <% if (user === undefined) { %>
+            <%- include('./partials/header') %>
+        <% } else { %>
+            <%- include('./partials/headerLoggedIn') %>
+        <% } %>
 
         <main>
             <div class="wrapper">
@@ -27,7 +31,7 @@
                             </label>
                             <label for="password" class="field">
                                 Repetir contraseña:
-                                <input class="input-text" type="password" name="password" id="contrasena-repetida" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
+                                <input class="input-text" type="password" name="passwordRepeat" id="contrasena-repetida" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
                             </label>
                             <div class="field">
                                 <button class="button" type="submit" id = "login-rg-btn">Registrarse</button>

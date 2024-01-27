@@ -7,7 +7,7 @@ const loginController = {
     loginView(req,res) {
         let usersString = fs.readFileSync(path.join(__dirname,'../datos/users.json'),{encoding:'utf-8'});
         let users = JSON.parse(usersString);
-        res.render('login',{'errormsg':''})
+        res.render('login',{ user: req.session.userLoggedIn })
     },
     postLoginData(req,res) {
         let usersString = fs.readFileSync(path.join(__dirname,'../datos/users.json'),{encoding:'utf-8'});
