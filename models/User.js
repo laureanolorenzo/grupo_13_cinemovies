@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
+const { all } = require('../src/routes/usersRouter');
+const { type } = require('os');
 
 const User = {
 
@@ -30,18 +32,26 @@ const User = {
 
     findByField: function(field, text) {  //busca elementos por id trae EL PRIMERO que se encuentra. Por ejemplo si hay dos con el mismo nombre te trae el primero
         let allUsers = this.findAll();
-        let userFound = allUsers.find(oneUser => oneUser[field] === text);
+        let userFound;
+        if (typeof field == 'object') {
+            for (const f of field) {
+                userFound = allUsers.find(oneUser => oneUser[f] === text)
+                if (typeof userFound !== 'undefined') {return userFound}
+            }
+        }
+        userFound = allUsers.find(oneUser => oneUser[field] === text);
         return userFound
     },
 
     create: function (userData) {
-        let allUsers = this.findAll();
+        let allUsers = this.findAll(); 
         let newUser = {
             id: this.generateId(),
             ...userData
         }
-        newUser.password = bcrypt.hashSync(newUser.password);
-        newUser.passwordRepeat = bcrypt.hashSync(newUser.passwordRepeat);
+        delete newUser.passwordRepeat;
+        newUser.password = bcrypt.hashSync(newUser.password,10);
+        // newUser.passwordRepeat = bcrypt.hashSync(newUser.passwordRepeat);
         allUsers.push(newUser);
         fs.writeFileSync(path.join(__dirname, this.fileName), JSON.stringify(allUsers, null, ' '));
     },

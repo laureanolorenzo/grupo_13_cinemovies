@@ -6,6 +6,34 @@ const usersPath = path.join(__dirname,'../datos/users.json');
 const User = require('../../models/User');
 const session = require('express-session');
 
+const {validationResult} = require('express-validator');
+function checkPasswordValidity(pw) { //Donde va esto?? En un archivo aparte??
+    let [upper,lower,digit,alpha] = [false,false,false,false];
+    let forbiddenChars = ['#', '%', '&', '{', '}', '\\', '<', '>', '*', '?', '/', ' ', '$', '!', "'", '"', ':', '@', '+', '`', '|', '=',':','.'];
+    const re = new RegExp('^[a-zA-Z]$');
+    try {
+        for (const char of pw.split('')) {
+            if (char.toUpperCase() === char) {
+                upper = true;
+            }
+            if (char.toLowerCase() === char) {
+                lower = true;
+            } 
+            if (!isNaN(parseInt(char))) {
+                digit = true;
+            }
+            if (forbiddenChars.includes(char)) {
+                return false;
+            }
+            if (re.test(char)) {
+                alpha = true;
+            }
+        }
+    } catch(e) {
+        return false // No retorno el error porque queremos que vaya al usuario
+    }
+    return (upper && lower && digit && alpha);
+}
 const usersController = {
     usersView(req,res) {
         res.render('users', { user: req.session.userLoggedIn }); // Incluir objeto (que venga de JSON con los datos de cada producto)
@@ -21,22 +49,50 @@ const usersController = {
     registerView(req,res) {
         res.render('registro', { user: req.session.userLoggedIn })
     },
-
     postRegisterData(req,res) {
-        let userInDB = User.findByField('email', req.body.email);
-        if (userInDB) {
-            return res.render('registro', {  //si el email ya está registrado te recarga la pagina y no te crea el usuario, falta hacer que se vean los mensajes de error
-                errors: {
-                    email: {
-                        msg: 'Este email ya está registrado'
-                    }
-                },
-                oldData: req.body,
-                user: req.session.userLoggedIn 
-            })
+        let emailInDB = User.findByField('email', req.body.email);
+        let userInDB = User.findByField('user',req.body.user);
+        let errors = validationResult(req).mapped();
+        if (emailInDB) { //Case mejor?? O directamente una funcion que reciba un booleano
+            if (Object.keys(errors).length != 0) {
+                errors['email'] = {msg:'*El email ya está en uso'}
+            } else {
+                errors = {email:{msg:'*El email ya está en uso'}};
+            }
         }
-        User.create(req.body);
-        res.redirect('home');
+        if (userInDB) {
+            if (Object.keys(errors).length != 0) {
+                errors['user'] = {msg:'*El nombre de usuario no está disponible'};
+            } else {
+                errors = {user:{msg:'*El nombre de usuario no está disponible'}};
+            }
+        }
+        if (req.body.password != req.body.passwordRepeat) { // Hay mejores formas de hacer esto???
+            if (Object.keys(errors).length == 0) { //si el email ya está registrado te recarga la pagina y no te crea el usuario, 
+                errors = {password:{msg:'*Las contraseñas deben coincidir'}}
+            } else {
+                errors['password'] = errors.password ? errors.password : {msg: '*Las contraseñas deben coincidir'};
+            }
+        }
+        if (!checkPasswordValidity(req.body.password)) {
+            errors['password'] = errors?.password? errors.password : {msg:'*La contraseña debe contener al menos una letra minúscula, una letra mayúscula, y un número, y sólo puede contener caracteres alfanuméricos'};
+        }
+        // If final por si hay errores o no
+        if (Object.keys(errors).length > 0) { // Un solo check al final
+            if (errors.password && errors.passwordRepeat) {
+                delete errors.passwordRepeat
+            }
+            return res.render('registro',{
+                errors,
+                oldData: req.body,
+                user: req.session.userLoggedIn
+            })
+        } else {
+            console.log(req.body);
+
+            User.create(req.body);
+            res.redirect('home');
+        }
 
         // let usersString = fs.readFileSync(usersPath,{encoding:'utf-8'});
         // let users = JSON.parse(usersString);
@@ -95,33 +151,32 @@ const usersController = {
 
     loginProcess: (req,res) => {
 
-        let userToLogin = User.findByField('email', req.body.email)
-
-        if (userToLogin){
-
-            let passwordCompared = bcrypt.compareSync(req.body.password, userToLogin.password)
-
+        let userToLogin = User.findByField(['email','user'], req.body.email)
+        let errors = validationResult(req).mapped();
+        // return res.send(req.session)
+        if (userToLogin) {
+            let passwordCompared = bcrypt.compareSync(req.body.password, userToLogin.password);
             if (passwordCompared) {
-                // return res.render('home',{categs:categs})
                 delete userToLogin.password
                 delete userToLogin.passwordRepeat
                 req.session.userLoggedIn = userToLogin;
+                if (req.body.recordame) {
+                    const expirationDate = new Date('10 Jan 2025 00:00:00 PDT');
+                    req.session.cookie.expires = expirationDate;//.toUTCString(); // MEJOR ASI O CON UNA COOKIE PROPIA???
+                } else {
+                    req.session.cookie.expires = null;
+                }
                 return res.redirect('/home')
-            }
-
-            res.render('login',{errors: {
-                password: {
-                    msg: 'Contraseña incorrecta'
-                }}, 
-                user: req.session.userLoggedIn 
-            });
-        }
-
-        return res.render('login', {user: req.session.userLoggedIn, errors: {
-            email: {
-                msg: 'Email no encontrado'
-            }
-        }});
+            } else {
+                if (Object.keys(errors).length == 0) { //Si no esta vacio, queremos que tomen prioridad los otros errores!
+                    errors['password'] = {msg: '*Usuario o contraseña incorrectos'};
+                }
+        }} else {
+            if (Object.keys(errors).length == 0) {
+            errors['password'] = {msg: '*Usuario o contraseña incorrectos'};
+                }} 
+        let {email,password} = req.body;
+        return res.render('login', {errors: errors,oldData: {email,password}});
     },
 
     profile: (req,res) => {

@@ -12,5 +12,11 @@
   "email": "ezequielrosello14@gmail.com",
   "password": "$2a$10$/VCSl1Yes8gAhhKWAzvA3.jGI4pA7thhgbq4GlXuPN7vN8nrwzNdy",
   "passwordRepeat": "$2a$10$cw3Yj/Wn.oxY1wAm14BVq.zopkQxOjPL0lnvBjpqK5BKBupHk8vwO"
+ },
+ {
+  "id": 3,
+  "user": "test_user",
+  "email": "laureanolorenzo@gmail.com",
+  "password": "$2a$10$dY6yJ1nCKL4cB8ZyuX7I.OTB25RS5CY1ozEiljPzdMwft/sZwCEji"
  }
 ]

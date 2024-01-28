@@ -4,7 +4,7 @@
 <%- include('./partials/head') %>
 
 <body>
-    <% if (user === undefined) { %>
+    <% if (typeof user === 'undefined') { %>
         <%- include('./partials/header') %>
     <% } else { %>
         <%- include('./partials/headerLoggedIn') %>

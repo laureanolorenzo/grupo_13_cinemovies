@@ -5,12 +5,11 @@
 
     <body class="register-body">
 
-        <% if (user === undefined) { %>
+        <% if (typeof user === 'undefined') { %>
             <%- include('./partials/header') %>
         <% } else { %>
             <%- include('./partials/headerLoggedIn') %>
         <% } %>
-
         <main>
             <div class="wrapper">
                 <div class="registro">
@@ -19,20 +18,40 @@
                         <form class="section-input" action="/registro" method="post">
                             <label for="user" class="field">
                                 Nombre de usuario:
-                                <input class="input-text" type="text" name="user" id="nombre-usuario" minlength="3" oninvalid="this.setCustomValidity('*El usuario ingresado no es válido. Debe contener al menos 3 caracteres.')">
+                                <input class="input-text" type="text" name="user" id="nombre-usuario" value = "<%= locals.oldData?.user ? oldData.user : '' %>">
                             </label>
+                            <div class="error-msg">
+                                <% if (locals.errors?.user) { %>
+                                    <p><%= errors.user.msg %></p>
+                                <% } %>
+                            </div>
                             <label for="email" class="field">
                                 Correo electrónico:
-                                <input class="input-text" type="text" name="email" id="correo" minlength="1" oninvalid="this.setCustomValidity('*Por favor ingrese un correo electrónico válido')">
+                                <input class="input-text" type="text" name="email" id="correo" value = "<%= locals.oldData?.email ? oldData.email : '' %>" >
                             </label>
+                            <div class="error-msg">
+                                <% if (locals.errors?.email) { %>
+                                    <p><%= errors.email.msg %></p>
+                                <% } %>
+                            </div>
                             <label for="password" class="field">
                                 Contraseña:
-                                <input class="input-text" type="password" name="password" id="contrasena" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
+                                <input class="input-text" type="password" name="password" id="contrasena">
                             </label>
+                            <div class="error-msg">
+                                <% if (locals.errors?.password) { %>
+                                    <p><%= errors.password.msg %></p>
+                                <% } %>
+                            </div>
                             <label for="password" class="field">
                                 Repetir contraseña:
-                                <input class="input-text" type="password" name="passwordRepeat" id="contrasena-repetida" minlength="3" oninvalid="this.setCustomValidity('*La contraseña debe contener al menos 3 caracteres')">
+                                <input class="input-text" type="password" name="passwordRepeat" id="contrasena-repetida" >
                             </label>
+                            <div class="error-msg">
+                                <% if (locals.errors && errors?.passwordRepeat) { %>
+                                    <p> <%= errors.passwordRepeat.msg %> </p>
+                                <% } %>
+                            </div>
                             <div class="field">
                                 <button class="button" type="submit" id = "login-rg-btn">Registrarse</button>
                             </div>

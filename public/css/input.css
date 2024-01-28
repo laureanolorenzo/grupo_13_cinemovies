@@ -3,7 +3,9 @@
     display: flex;
     flex-direction: column;
 }
-
+.error-msg p {
+    color: #eb093a;
+}
 /* .section-input label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -22,4 +24,29 @@
     width: 95%;
     text-align: center;
     padding: 8px 10px;
+}
+.input-text-invalid { 
+    /* Para despues */
+    border: solid 2px;
+    border-color: red;
+    border-radius: 5px;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 12px;
+    width: 95%;
+    text-align: center;
+    padding: 8px 10px;
+}
+/* Mensajes de error */
+.error-msg {
+    margin: auto;
+    /* font-size: 16px; */
+    font-weight: bold;
+    max-width: 560px;
+
+}
+.error-msg p {
+    /* color: 'red'; NO ME ANDA (DEBE HABER ALGO EN UN OBJETO PADRE QUE TIENE PRIORIDAD?) */
+    font-size: 20px;
+    text-shadow: none;
 }

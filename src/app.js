@@ -4,6 +4,7 @@ const fs = require('fs');
 const methodOverride = require('method-override');
 const session = require('express-session');
 const app = express();
+const {v4} = require('uuid'); // Forma mas segura de generar secretos y session_ids
 
 const publicPath = path.join(__dirname, '../public');
 
@@ -21,7 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 //express-session
 app.use(session({
-  secret: "mensaje secreto",
+  secret: v4(),
   resave: false,
   saveUninitialized: false
 }));

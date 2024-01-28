@@ -3,7 +3,7 @@
 <%- include('./partials/head') %>
 <body>
   <!-- Error por si el usuario no es admin y quiere crear. Verificar luego -->
-  <% if (user === undefined) { %>
+  <% if (typeof user === 'undefined') { %>
     <%- include('./partials/header') %>
   <% } else { %>
       <%- include('./partials/headerLoggedIn') %>
