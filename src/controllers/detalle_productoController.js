@@ -97,7 +97,7 @@ const detalle_productoController = {
     
 
         let idParams = req.params.id; 
-        let peliAEditar = jsonPeliculas.find(peli => peli.id == idParams); 
+        let peliAEditar = jsonPeliculas.find(peli => peli.id == idParams); // La peli en su estado anterior
 
         if(typeof peliAEditar == "undefined" ){
             res.send("No se encontro la pelicula"); // Podriamos hacer un mensaje de error aca
@@ -118,10 +118,12 @@ const detalle_productoController = {
                 duration: req.body.duration,
                 origin: req.body.origin,
                 category: req.body.category,
+                image: peliAEditar.image // Luego se va a sobreescribir si llegan imagenes.
                 
             }
             // Si llegan imagenes, si llega imagen, reemplazarla. Y si llega banner, reemplazarlo.
-            if (req.files) {
+            if (Object.keys(req.files).length !== 0) {
+                // return res.send(req.files);
                 const file = req.files;
                 const imagesPath = path.resolve(__dirname,'../../public/images/movies');
                 const bannerPath = path.resolve(__dirname,'../../public/images/movies'); // Por ahora lo dejamos asi. Luego ver la forma de guardar 2 archivos en carpetas separadas.
@@ -140,9 +142,10 @@ const detalle_productoController = {
                 } else { //Si no habia banner y no llega, poner "defaultBanner.jpg"
                     peliEditada['banner'] = file.banner !=undefined?file.banner[0].filename : 'defaultBanner.jpg'; // Crearlo mas tarde
                 }
-            } else {
-                res.send('Hubo un error al procesar los archivos')
-            }
+            // } else {
+            //     // return res.send(req.body)
+            //     // res.send('Hubo un error al procesar los archivos')
+            };
 
             let posicionPelicula = jsonPeliculas.findIndex(x => x.id == idParams)
             jsonPeliculas[posicionPelicula] = peliEditada;
