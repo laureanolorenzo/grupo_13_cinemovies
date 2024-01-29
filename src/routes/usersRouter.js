@@ -7,7 +7,6 @@ const multer = require ('multer');
 
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const ingresarAPerfilMiddleware = require('../middlewares/ingresarAPerfilMiddleware');
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
         cb (null,'./public/images/users');
@@ -47,7 +46,7 @@ router.get('/login', guestMiddleware, usersController.login);
 
 router.post('/login',userLoginValidations, usersController.loginProcess);
 
-router.get('/perfil', ingresarAPerfilMiddleware, usersController.profile)
+router.get('/perfil', ingresarAPerfilMiddleware, usersController.profile);
 
 router.get('/cerrarSesion', usersController.logout)
 

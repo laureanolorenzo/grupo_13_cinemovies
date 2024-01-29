@@ -24,7 +24,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(session({
   secret: v4(),
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {secure:false}
 }));
 
 

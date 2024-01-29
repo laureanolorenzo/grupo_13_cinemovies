@@ -5,6 +5,7 @@ const usersPath = path.join(__dirname,'../datos/users.json');
 
 const User = require('../../models/User');
 const session = require('express-session');
+const cookie = require('cookie-parser');
 
 const {validationResult} = require('express-validator');
 function checkPasswordValidity(pw) { //Donde va esto?? En un archivo aparte??
@@ -88,7 +89,6 @@ const usersController = {
                 user: req.session.userLoggedIn
             })
         } else {
-            console.log(req.body);
 
             User.create(req.body);
             res.redirect('home');
@@ -159,13 +159,18 @@ const usersController = {
             if (passwordCompared) {
                 delete userToLogin.password
                 delete userToLogin.passwordRepeat
-                req.session.userLoggedIn = userToLogin;
                 if (req.body.recordame) {
-                    const expirationDate = new Date('10 Jan 2025 00:00:00 PDT');
-                    req.session.cookie.expires = expirationDate;//.toUTCString(); // MEJOR ASI O CON UNA COOKIE PROPIA???
+                    const expirationDate = new Date('10 Jan 2025 00:00:00 PDT'); // Luego hacer dinamico
+                    req.session.cookie.expires = expirationDate;
                 } else {
-                    req.session.cookie.expires = null;
+                    req.session.cookie.expires = false;
                 }
+                //    delete req.session.cookie.maxAge;  // Si borro toda la cookie me tira error de lectura de originalMaxAge
+                    // req.session.cookie.expires = false; 
+                    // req.session.cookie.maxAge = -1;
+               // }
+                // console.log(req.session.cookie.maxAge);
+                req.session.userLoggedIn = userToLogin; 
                 return res.redirect('/home')
             } else {
                 if (Object.keys(errors).length == 0) { //Si no esta vacio, queremos que tomen prioridad los otros errores!
