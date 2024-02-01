@@ -15,6 +15,7 @@
 @import url('./promociones.css');
 @import url('./kiosco.css');
 @import url('./ir_a_pagar.css');
+@import url('./perfil.css');
 
 :root {
   --colors-blanco: #ffffff;

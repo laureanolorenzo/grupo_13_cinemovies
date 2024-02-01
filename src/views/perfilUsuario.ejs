@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('./partials/head') %>
+
+<%- include('./partials/head') %>
+
 <body>
-    <% if (typeof user === 'undefined') { %>
-        <%- include('./partials/header') %>
-    <% } else { %>
-        <%- include('./partials/headerLoggedIn') %>
-    <% } %>
-    <!-- El style lo use de prueba, no usarlo despues -->
-    <h1 style="color: azure;">ESTE ES EL PERFIL DEL USUARIO <%= user.user %></h1>  
-    <h2 style="color: azure;">Preferencias: </h2>
-    <h4 style="color: azure;">Recordar usuario: <%= locals.recordame %></h4>
+
+
+    <%- include('./partials/headerLoggedIn') %>
+
+    <main class="main-perfil">
+
+        <section class="section-datos-perfil">
+            <!-- reemplazar el src de la imagen por <%= user.imagen %> cuando pongamos imagen de perfil al registrarse -->
+            <img src="images/coca-cola.png" alt="Foto de perfil"> 
+            <h1>¡Hola, <%= user.user %>!</h1>  
+        </section>
+
+        <section class="section-peliculas-perfil">
+            <h3>Películas favoritas</h3>
+            <img src="images/LA LA LAND.jpeg" alt="películas favoritas">
+            <img src="images/el gran pez.jpeg" alt="películas favoritas">
+            <h3>Películas vistas</h3>
+            <img src="images/LA LA LAND.jpeg" alt="películas vistas">
+            <img src="images/el gran pez.jpeg" alt="películas vistas">
+            <img src="images/la vida es bela.jpeg" alt="películas vistas">
+            <img src="images/oppenheimer.jpg" alt="películas vistas">
+            <img src="images/match point.jpg" alt="películas vistas">
+        </section>
+
+    </main>
+    
     <%- include('./partials/footer') %>
 </body>
 </html>

@@ -1,0 +1,65 @@
+:root {
+    --colors-blanco: #ffffff;
+    --colors-negro: #0b0b0b;
+    --colors-violeta: #5c008f;
+    --colors-naranja: #ffb000;
+    --colors-azul: #0000e6;
+    --colors-gris: #868686;
+}
+
+.main-perfil {
+    color: var(--colors-violeta);
+    background-color: var(--colors-naranja);
+    padding: 25px;
+}
+
+.section-datos-perfil {
+    text-align: center;
+}
+
+.section-datos-perfil img {
+    border: solid 2px var(--colors-violeta);
+    border-radius: 100px;
+    width: 30vw;
+    margin: 10px;
+}
+
+.section-peliculas-perfil {
+    margin: 15px;
+}
+
+.section-peliculas-perfil h3 {
+    border-bottom: solid 1px var(--colors-violeta);
+}
+
+.section-peliculas-perfil img {
+    margin: 15px 5px;
+    width: 25vw;
+    height: 40vw;
+    border: solid 2px var(--colors-violeta);
+    border-radius: 5px;
+}
+
+@media(min-width: 481px) {
+    .section-peliculas-perfil img {
+        margin: 15px 5px;
+        width: 15vw;
+        height: 22vw;
+    }
+
+    .section-datos-perfil img {
+        border-radius: 200px;
+        width: 30vw;
+        margin: 10px;
+    }
+
+}
+
+@media(min-width:769px){
+    .section-datos-perfil img {
+        border-radius: 200px;
+        width: 20vw;
+        margin: 10px;
+    }
+
+}
