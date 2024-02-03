@@ -50,7 +50,7 @@ const usersController = {
     registerView(req,res) {
         res.render('registro', { user: req.session.userLoggedIn })
     },
-    postRegisterData(req,res) {
+     postRegisterData(req,res) {
         let emailInDB = User.findByField('email', req.body.email);
         let userInDB = User.findByField('user',req.body.user);
         let errors = validationResult(req).mapped();
