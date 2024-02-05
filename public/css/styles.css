@@ -73,10 +73,10 @@ body{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--colors-blanco);
+  background: var(--colors-naranja);
   border-radius: .5rem;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--colors-naranja);
+  /* background: var(--colors-naranja); */
 }
