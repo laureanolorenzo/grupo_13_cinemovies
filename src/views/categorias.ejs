@@ -11,15 +11,17 @@
   <% } %>
 
     <main class="main-categorias">
+      <div class="wrapper">
+
       <div class="seccionCategorias">
         <div class="seccionIntermedia">
           <h1>Películas</h1>
           <div class="dropdown">
             <button class="dropbtn"><use>selec</use></button>
             <div class="dropdown-content">
-              <% if (typeof categories !== 'undefined') { %> 
+              <% if (typeof categories !== 'undefined') { %>
                 <% for (const categ of categories) {%>
-                  
+
                   <li><a href="/categorias/<%= categ.categoria %>" category="estrenos" id="seleccion-categoria"><%= categ.title %></a></li>
                 <% } %>
               <% } %>
@@ -37,27 +39,25 @@
         <% if (datos){ %>
           <div class="alineacion-movil">
             <% for (const peli of datos) {%>
-          
-                    <h3 class="titulo-pelicula"><%= peli.title %></h3>
-                    <div class="contenido-pelicula">
-                        <div class="contenido">
 
-                          <img class="poster" src="/images/movies/<%= peli.image %>">
-                            <div class="sin-padding">
-                                <ul>
-                                    <li class="linea" >Clasificación: <%= peli.clasificacion_edad %></li>
-                                    <li class="linea" >Duración: <%= peli.duration %></li>
-                                    <li class="linea" >Género: <%= peli.category %></li>
-                                    <li class="linea" >Director: <%= peli.director %></li>
-                                    <li class="linea" >Cast: <%= peli.cast %></li>
-                                    <li class="linea" >Origen: <%= peli.origin %></li>
-                                </ul>
-                            </div>
-                        </div>
-                      </div>
-                    <div>
-                        <a href="/detalle_producto/<%= peli.id %>"><button class="boton-ver" type="button"> VER </button></a>
+              <div class="contenido-pelicula">
+                <h3 class="titulo-pelicula"><%= peli.title %></h3>
+                <div class="contenido">
+
+                  <img class="poster" src="/images/movies/<%= peli.image %>">
+                    <div class="sin-padding">
+                        <ul>
+                            <li class="linea" >Clasificación: <%= peli.clasificacion_edad %></li>
+                            <li class="linea" >Duración: <%= peli.duration %></li>
+                            <li class="linea" >Género: <%= peli.category %></li>
+                            <li class="linea" >Director: <%= peli.director %></li>
+                            <li class="linea" >Cast: <%= peli.cast %></li>
+                            <li class="linea" >Origen: <%= peli.origin %></li>
+                        </ul>
                     </div>
+                </div>
+                <a href="/detalle_producto/<%= peli.id %>" class="button" > VER </a>
+              </div>
 
             <%}%>
           </div>
@@ -89,6 +89,8 @@
                   <button class="boton-ver" type="button"> VER </button>
               </div>
         <% } %>
+    </div>
+
   </main>
   <%- include('./partials/footer') %>
 

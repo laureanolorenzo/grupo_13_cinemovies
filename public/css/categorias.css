@@ -14,7 +14,7 @@
     border-bottom: solid var(--colors-blanco) 3px;
     color: var(--colors-blanco);
 }
-    /* Estilos generales */ 
+    /* Estilos generales */
 .dropdown {
     display: flex;
     position: relative;
@@ -31,12 +31,12 @@
     position: absolute;
 } */
 /* .dropdown {
-    position: relative; 
+    position: relative;
     display: inline-block;
     right: 480px;
     top: 3px;
   } */
-  
+
   /* Estilos del botón */
   .dropbtn {
     background-color: #6e1984;
@@ -90,9 +90,17 @@ ul {
 }
 
 .titulo-pelicula {
-    left: 45px;
-    margin-bottom: 18px;
-    font-size: 35px;
+    /* left: 45px; */
+    /* margin-bottom: 18px; */
+    font-size: 24px;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    /* font-size: 45px; */
+    /* MODIFICAR COLORES */
+    color: #ffb000;
+    text-shadow: #F04E24 0px 4px 4px;
+    /* padding: 15px; */
+
 }
 
 .poster {
@@ -139,27 +147,28 @@ ul {
     display: none;
 }
 
-.titulo-pelicula{
-    font-family: 'Inter', sans-serif;
-    font-weight: bold;
-    font-size: 45px;
-    /* MODIFICAR COLORES */
-    color: #ffb000;                     
-    text-shadow: #F04E24 0px 4px 4px;
-    padding: 15px;
-}
+
 
 
 @media(min-width: 426px) {
     .contenido-pelicula {
-        border: solid rgb(18, 18, 79) 1px;
-        justify-content: space-between;
-        width: 100%;
+        /* border: solid rgb(18, 18, 79) 1px; */
+        /* justify-content: space-between; */
+        /* width: 100%; */
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
         align-items: center;
         border-radius: 16px;
-        position: relative;
-        right: 8px;
+        /* position: relative; */
+        /* right: 8px; */
         box-shadow: 6px 12px 50px -2px rgba(0, 0, 0, 0.75);
+        padding: 16px;
+
+    }
+
+    .titulo-pelicula {
+        font-size: 32px;
     }
 
     .sin-padding {
@@ -184,7 +193,7 @@ ul {
     .trailer{
         width:"560";
         height:"315";
-        
+
     }
 
     .texto-caja {
@@ -192,10 +201,13 @@ ul {
     }
 
     .alineacion-movil {
-        display: block;
+        /* display: block; */
         text-align: left;
         padding: 0 20px;
         margin-top: 21px;
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
     }
 
     .poster {
@@ -219,7 +231,7 @@ ul {
     }
 
 
-  
+
   /* Estilos del contenido desplegable */
   .dropdown-content {
     display: none;
@@ -229,12 +241,12 @@ ul {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
-  
+
   /* Mostrar el contenido desplegable al pasar el ratón por encima */
   .dropdown:hover .dropdown-content {
     display: block;
   }
-  
+
   /* Estilos de los enlaces del contenido desplegable */
   .dropdown-content a {
     color: black;
@@ -242,7 +254,7 @@ ul {
     text-decoration: none;
     display: block;
   }
-  
+
   /* Estilos de los enlaces al pasar el ratón por encima */
   .dropdown-content a:hover {
     background-color: #f1f1f1;
