@@ -45,16 +45,14 @@
                 <div class="contenido">
 
                   <img class="poster" src="/images/movies/<%= peli.image %>">
-                    <div class="sin-padding">
-                        <ul>
-                            <li class="linea" >Clasificación: <%= peli.clasificacion_edad %></li>
-                            <li class="linea" >Duración: <%= peli.duration %></li>
-                            <li class="linea" >Género: <%= peli.category %></li>
-                            <li class="linea" >Director: <%= peli.director %></li>
-                            <li class="linea" >Cast: <%= peli.cast %></li>
-                            <li class="linea" >Origen: <%= peli.origin %></li>
-                        </ul>
-                    </div>
+                  <ul class="detalle-pelicula">
+                      <li class="linea" >Clasificación: <%= peli.clasificacion_edad %></li>
+                      <li class="linea" >Duración: <%= peli.duration %></li>
+                      <li class="linea" >Género: <%= peli.category %></li>
+                      <li class="linea" >Director: <%= peli.director %></li>
+                      <li class="linea" >Cast: <%= peli.cast %></li>
+                      <li class="linea" >Origen: <%= peli.origin %></li>
+                  </ul>
                 </div>
                 <a href="/detalle_producto/<%= peli.id %>" class="button" > VER </a>
               </div>

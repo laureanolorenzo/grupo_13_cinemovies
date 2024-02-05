@@ -22,6 +22,7 @@
     /* gap: 100px; */
     align-items: center;
 }
+
 .seccionIntermedia { /* Lo agregue porque sino en mi compu se veia muy feo. Hace falta arreglar para la version movil!!*/
     display: flex;
     align-items: center;
@@ -54,6 +55,36 @@
     /* width: 128px; */
   }
 
+  /* Estilos del contenido desplegable */
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+  }
+
+  /* Mostrar el contenido desplegable al pasar el ratón por encima */
+  .dropdown:hover .dropdown-content {
+      display: block;
+  }
+
+  /* Estilos de los enlaces del contenido desplegable */
+  .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
+
+  /* Estilos de los enlaces al pasar el ratón por encima */
+  .dropdown-content a:hover {
+      background-color: #f1f1f1;
+  }
+
+  /* ---------------------- */
+
 
 .trailer{
     display: none;
@@ -72,8 +103,6 @@
     box-shadow: 6px 12px 50px -2px rgba(0, 0, 0, 0.75);
 }
 
-;
-
 ul {
     padding: 0;
     margin: 0;
@@ -81,12 +110,24 @@ ul {
 
 .alineacion-movil {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .lista-general {
     margin: none;
     text-align: center;
     padding: 0px;
+}
+
+.contenido-pelicula {
+    background: var(--colors-blanco);
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .titulo-pelicula {
@@ -97,10 +138,14 @@ ul {
     font-weight: bold;
     /* font-size: 45px; */
     /* MODIFICAR COLORES */
-    color: #ffb000;
-    text-shadow: #F04E24 0px 4px 4px;
+    color: var(--colors-naranja)
     /* padding: 15px; */
 
+}
+
+.linea {
+    list-style: none;
+    text-align: left;
 }
 
 .poster {
@@ -126,10 +171,10 @@ ul {
 
 .boton-ver {
     color: #ffffff;
-    padding: 0.75rem;
+    padding: 8px 16px;
     background-color: #5c008f;
     border-radius: 4px;
-    width: 85px;
+    /* width: 85px; */
     font-size: 15px;
     border: 0;
     margin-top: 8px;
@@ -151,19 +196,17 @@ ul {
 
 
 @media(min-width: 426px) {
+    .alineacion-movil {
+        flex-direction: row;
+    }
+
     .contenido-pelicula {
-        /* border: solid rgb(18, 18, 79) 1px; */
-        /* justify-content: space-between; */
-        /* width: 100%; */
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
         align-items: center;
-        border-radius: 16px;
-        /* position: relative; */
-        /* right: 8px; */
-        box-shadow: 6px 12px 50px -2px rgba(0, 0, 0, 0.75);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
         padding: 16px;
+        min-width: 45%;
+        max-width: 45%;
+        background: var(--colors-blanco);
 
     }
 
@@ -171,24 +214,23 @@ ul {
         font-size: 32px;
     }
 
-    .sin-padding {
-        color:#ffffff;
-        display: flex;
-        align-items: center;
-        margin-top: 13px;
-        position: relative;
-        left: 54px;
-    }
-
-    .linea{
-        margin-bottom: 1em;
-    }
-
-
     .contenido{
         display: flex;
         width: 100%;
+        gap: 16px;
+        align-items: center;
     }
+
+    .detalle-pelicula {
+        /* color:#ffffff; */
+    }
+
+    .linea{
+        /* margin-bottom: 1em; */
+        list-style: none;
+    }
+
+
 
     .trailer{
         width:"560";
@@ -232,32 +274,6 @@ ul {
 
 
 
-  /* Estilos del contenido desplegable */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
 
-  /* Mostrar el contenido desplegable al pasar el ratón por encima */
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-  /* Estilos de los enlaces del contenido desplegable */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-
-  /* Estilos de los enlaces al pasar el ratón por encima */
-  .dropdown-content a:hover {
-    background-color: #f1f1f1;
-  }
 
 }
