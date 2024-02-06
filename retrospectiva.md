@@ -83,3 +83,32 @@ La devolución de Mati nos hizo ver que estuvimos medio flojos en el sprint 3,  
 * Agregamos un botón para "crear película" que sirve para acceder a la creación de un producto nuevo. 
 * No tenemos la ruta "/productos" (por el propio diseño de nuestro negocio). Las rutas del CRUD parten del home, y se acceden a través de la vista de cada producto específico (por ejemplo, el usuario admin puede ir a una categoría, acceder a la vista de una película en particular, y cilckear en editar o borrar).
 * Seguimos trabajando en cuestiones de "calidad de experiencia" (de a poco) que está relacionada también con aspectos de sprints anteriores. 
+
+—--------------------------------------------------------------------------
+
+### Retrospectiva Sprint 5
+
+Se nos facilitó un poco la tarea (especialmente en comparación con el sprint anterior). Obviamente falta mucho por mejorar. 
+
+### Lo que hicimos bien:
+* Nos concentramos en las tareas que pedía el sprint
+* Mantuvimos buena comunicación incluso en los momentos más arduos.
+
+### Lo que hicimos mal:
+* Seguimos sin reunirnos en forma periódica (sin definir fechas semanales), aunque sí tuvimos varias conferencias, denuevo.
+* No llegamos a completar el sprint a tiempo, otra vez.
+* No dividimos las tareas equitativamente y a tiempo.
+### Lo que deberíamos empezar a hacer:
+* Seguimos sin planificar.
+* Definir fechas regulares para reunirnos.
+* Apurarnos para encarar los sprints.
+* Implementar funcionalidades extra (más allá de lo que pide el sprint).
+### Lo que deberíamos dejar de hacer:
+* Procrastinar (en general).
+* Ponernos a trabajar sin definir bien las tareas (de nuevo).
+### Aclaraciones sobre la entrega:
+* DUDA: En un primer lugar usamos la propia cookie de session para extender la sesión. Pero tiene el problema de que se termina al reiniciar el servidor. (Es lo que está en el controller "userController"). Pero la idea es hacerlo con cookieParser en los próximos días (ya funciona, menos cuando se reinicia).
+* Implementamos express-validator y multer en el proceso de registro de usuarios.
+* Contruimos el session (proceso de login). Las páginas de registro y login dejan de ser accesibles en el header, y ahora hay una de "perfil" (que falta mejorar bastante) y una de "cerrar sesión".
+* Hicimos algunos cambios de estilo (en especial en categorías).
+

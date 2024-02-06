@@ -32,11 +32,11 @@ const userLoginValidations = [
 
 router.get('/usuario', usersController.usersView);
 
-router.post ('/usuario', uploadFile.single('users'), usersController.usersRegister);
+// router.post ('/usuario', uploadFile.single('users'), usersController.usersRegister);
 
 router.get('/registro', guestMiddleware, usersController.registerView);
 
-router.post('/registro',userValidations, usersController.postRegisterData);
+router.post('/registro',uploadFile.single('users'),userValidations, usersController.postRegisterData);
 
 // router.get('/login', usersController.loginView);
 

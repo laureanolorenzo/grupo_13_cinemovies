@@ -106,6 +106,6 @@ const htmlFiles = fs.readdirSync(path.resolve(__dirname, 'views'));
 // }
 
 // Metodo post para el home (Para que al enviar el formulario login me devuelva al home)
-app.post('/',(req,res) => res.sendFile(homePath));
+// app.post('/',(req,res) => res.sendFile(homePath));
 // app.post('/login', (req,res) => res.sendFile(homePath));
-app.post('/register', (req,res) => res.sendFile(homePath));
+// app.post('/register', (req,res) => res.sendFile(homePath));

@@ -1,7 +1,7 @@
 const fs = require('fs');
-const path = require('path');
+const path = require('path'); 
 const bcrypt = require('bcryptjs');
-const { all } = require('../src/routes/usersRouter');
+// const { all } = require('../src/routes/usersRouter');
 const { type } = require('os');
 
 const User = {

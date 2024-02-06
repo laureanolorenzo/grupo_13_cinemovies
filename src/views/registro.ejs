@@ -15,7 +15,7 @@
                 <div class="registro">
                     <h2 class="titulo-login">Registro</h2>
                     <section>
-                        <form class="section-input" action="/registro" method="post">
+                        <form class="section-input" action="/registro" method="post" enctype="multipart/form-data">
                             <label for="user" class="field">
                                 Nombre de usuario:
                                 <input class="input-text" type="text" name="user" id="nombre-usuario" value = "<%= locals.oldData?.user ? oldData.user : '' %>">

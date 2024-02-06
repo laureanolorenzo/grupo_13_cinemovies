@@ -54,6 +54,7 @@ const usersController = {
         let emailInDB = User.findByField('email', req.body.email);
         let userInDB = User.findByField('user',req.body.user);
         let errors = validationResult(req).mapped();
+        // return res.send(req.body)
         if (emailInDB) { //Case mejor?? O directamente una funcion que reciba un booleano
             if (Object.keys(errors).length != 0) {
                 errors['email'] = {msg:'*El email ya está en uso'}
@@ -165,11 +166,6 @@ const usersController = {
                 } else {
                     req.session.cookie.expires = false;
                 }
-                //    delete req.session.cookie.maxAge;  // Si borro toda la cookie me tira error de lectura de originalMaxAge
-                    // req.session.cookie.expires = false; 
-                    // req.session.cookie.maxAge = -1;
-               // }
-                // console.log(req.session.cookie.maxAge);
                 req.session.userLoggedIn = userToLogin; 
                 return res.redirect('/home')
             } else {
