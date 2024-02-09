@@ -53,8 +53,7 @@ const usersController = {
      postRegisterData(req,res) {
         let emailInDB = User.findByField('email', req.body.email);
         let userInDB = User.findByField('user',req.body.user);
-        let errors = validationResult(req).mapped();
-        // return res.send(req.body)
+        let errors = validationResult(req).mapped(); 
         if (emailInDB) { //Case mejor?? O directamente una funcion que reciba un booleano
             if (Object.keys(errors).length != 0) {
                 errors['email'] = {msg:'*El email ya está en uso'}
@@ -90,8 +89,11 @@ const usersController = {
                 user: req.session.userLoggedIn
             })
         } else {
-
-            User.create(req.body);
+            userData = {
+                ...req.body,
+                'profilePic': req.file?.filename ? req.file.filename : 'default-profilePic.jpg'
+            }
+            User.create(userData);
             res.redirect('home');
         }
 
@@ -154,19 +156,19 @@ const usersController = {
 
         let userToLogin = User.findByField(['email','user'], req.body.email)
         let errors = validationResult(req).mapped();
-        // return res.send(req.session)
         if (userToLogin) {
             let passwordCompared = bcrypt.compareSync(req.body.password, userToLogin.password);
             if (passwordCompared) {
                 delete userToLogin.password
                 delete userToLogin.passwordRepeat
+                req.session.userLoggedIn = userToLogin;
+                res.locals.userLoggedIn = req.session.userToLogin; // https://stackoverflow.com/questions/56698453/express-session-cannot-set-property-user-of-undefined
                 if (req.body.recordame) {
                     const expirationDate = new Date('10 Jan 2025 00:00:00 PDT'); // Luego hacer dinamico
                     req.session.cookie.expires = expirationDate;
                 } else {
                     req.session.cookie.expires = false;
                 }
-                req.session.userLoggedIn = userToLogin; 
                 return res.redirect('/home')
             } else {
                 if (Object.keys(errors).length == 0) { //Si no esta vacio, queremos que tomen prioridad los otros errores!
@@ -185,8 +187,9 @@ const usersController = {
     },
 
     logout: (req,res) => {
+        // delete req.session.userLoggedIn;
         req.session.destroy();
-        res.redirect('home')
+        res.redirect('home');
     }
 }
 

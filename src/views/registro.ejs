@@ -13,9 +13,9 @@
         <main>
             <div class="wrapper">
                 <div class="registro">
-                    <h2 class="titulo-login">Registro</h2>
+                    <h2 class="titulo-login">Registro</h2> //
                     <section>
-                        <form class="section-input" action="/registro" method="post" enctype="multipart/form-data">
+                        <form class="section-input" action="/registro" method="POST" enctype="multipart/form-data">
                             <label for="user" class="field">
                                 Nombre de usuario:
                                 <input class="input-text" type="text" name="user" id="nombre-usuario" value = "<%= locals.oldData?.user ? oldData.user : '' %>">
@@ -52,8 +52,8 @@
                                     <p> <%= errors.passwordRepeat.msg %> </p>
                                 <% } %>
                             </div>
-                            <label for="imagen" class="field">Foto de perfíl
-                                <input type="file" name="users" id="imagen" class="input-text">
+                            <label for="imagen" class="field">Foto de perfil
+                                <input type="file" name="profilePic" id="profilePic" class="input-text">
                             </label>
                             <div class="field">
                                 <button class="button" type="submit" id = "login-rg-btn">Registrarse</button>

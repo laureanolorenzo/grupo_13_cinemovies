@@ -2,18 +2,8 @@ const express = require ('express');
 const router = express.Router();
 const crear_productoController = require('../controllers/crear_productoController');
 const path = require('path');
+const removeWhiteSpace = require('../middlewares/removeWhitespaceMiddleware');
 
-function removeWhiteSpace(str) {
-	let forbiddenChars = ['#', '%', '&', '{', '}', '\\', '<', '>', '*', '?', '/', ' ', '$', '!', "'", '"', ':', '@', '+', '`', '|', '=',':','.'];
-    let strArray = str.split(' ');
-    let strArrayToCapitalize = strArray.slice(1);
-    strArrayToCapitalize = strArrayToCapitalize.map(x => x.charAt(0).toUpperCase() + x.slice(1)).join('');
-    let newStr = strArray[0].concat(strArrayToCapitalize);
-	for (const i of forbiddenChars) {
-		newStr = newStr.replace(i,'_');
-	}
-	return newStr;
-}
 
 // Multer 
 const multer = require('multer');

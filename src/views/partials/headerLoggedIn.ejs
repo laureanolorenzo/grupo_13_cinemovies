@@ -6,9 +6,6 @@
           <label for="check" class="burguer-menu">
             <i class="fa-solid fa-bars"></i>
           </label>
-          <!-- <a href="/" class="header-logo">
-            <span>CINEMOVIE</span>
-          </a> -->
           <div class="nav-left">
             <a href="/" class="header-logo">
               <span>CINEMOVIE</span>
@@ -21,8 +18,11 @@
             <li class="menu-item"><a href="/kiosco"><i class="fa-solid fa-store"></i></a></li>
             <li class="menu-item"><a href="/carrito"><i class="fa-solid fa-cart-shopping"></i></a></li>
             <li class="menu-item"><a href="/promociones">Promociones</a></li>
-            <li class="menu-item"><a href="/perfil">Perfil</a></li>
+            <% if (typeof locals.user != undefined) { %>                                      
+              <li class="menu-item"><a href="/perfil"><img src="/images/users/<%=user.profilePic%>" alt="Profile pic for <%= user.user %>" height="50px"></a></li>
+            <% } %>
             <li class="menu-item"><a href="/cerrarSesion">Cerrar Sesión</a></li>
+            
           </ul>
         </nav>
       </div>

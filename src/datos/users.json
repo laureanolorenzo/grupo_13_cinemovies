@@ -1,22 +1,9 @@
 [
  {
   "id": 1,
-  "user": "eze",
-  "email": "eze@gmail.com",
-  "password": "$2a$10$JITT2Dkuzlw7QfHLFgvca.c7FF9cgVvTTOhGLOYCcOfxHpJL0hTIC",
-  "passwordRepeat": "$2a$10$DAQ2aQoOgQQUEzj.r9JX0.4kw2DalIO/fW4P4AUR6iZpMbGvzajYK"
- },
- {
-  "id": 2,
-  "user": "ezequiel",
-  "email": "ezequielrosello14@gmail.com",
-  "password": "$2a$10$/VCSl1Yes8gAhhKWAzvA3.jGI4pA7thhgbq4GlXuPN7vN8nrwzNdy",
-  "passwordRepeat": "$2a$10$cw3Yj/Wn.oxY1wAm14BVq.zopkQxOjPL0lnvBjpqK5BKBupHk8vwO"
- },
- {
-  "id": 3,
-  "user": "test_user",
-  "email": "laureanolorenzo@gmail.com",
-  "password": "$2a$10$dY6yJ1nCKL4cB8ZyuX7I.OTB25RS5CY1ozEiljPzdMwft/sZwCEji"
+  "user": "paulina",
+  "email": "cocina@gmail.com",
+  "password": "$2a$10$xZ1BC8RjFqnDKQWgvda7RueLSPh.8xF33Eo0NSzvjfnqKMLrNc2nW",
+  "profilePic": "default-profilePic.jpg"
  }
 ]

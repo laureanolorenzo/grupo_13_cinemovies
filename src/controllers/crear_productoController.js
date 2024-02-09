@@ -1,6 +1,7 @@
 const { log } = require('console');
 const fs = require ('fs');
 const path = require ('path');
+
 // Variables
 let anio = [];
 for (i = 1980; i <= 2023; i++) {

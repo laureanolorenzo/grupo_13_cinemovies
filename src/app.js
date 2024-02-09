@@ -5,6 +5,9 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const app = express();
 const {v4} = require('uuid'); // Forma mas segura de generar secretos y session_ids
+const loggedInMiddleware = require('./middlewares/loggedInMiddleware');
+// const bodyParser = require('body-parser');
+
 
 const publicPath = path.join(__dirname, '../public');
 
@@ -47,10 +50,14 @@ const rutaUsuarios = require ('./routes/usersRouter');
 const rutaHome = require('./routes/mainRouter');
 const rutaProducto = require('./routes/productoRouter');
 const cookieParser = require('cookie-parser');
+const { log } = require('console');
 
 
 //cookie parser
 app.use(cookieParser())
+// body parser
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
 
 // Usos de los routers
 
@@ -77,6 +84,8 @@ app.use(rutacrearProducto);
 app.use(rutaEditarProducto);
 
 app.use (rutaUsuarios);
+
+app.use(loggedInMiddleware); //Para setear "user" en locals si esta logueado. No podia acceder a req.session desde EJS
 
 // Uso de los routers principales
 
