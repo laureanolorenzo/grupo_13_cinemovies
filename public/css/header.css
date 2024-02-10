@@ -25,6 +25,18 @@
   line-height: 80px;
 }
 
+.perfil {
+  display: inline-block;
+  position: absolute;
+  padding-top: 10px;
+}
+
+.image-perfil {
+  height: 60px;
+  border-radius: 50%;
+  margin: auto;
+}
+
 .menu-item a {
   color: var(--colors-blanco);
   padding: 8px 16px;

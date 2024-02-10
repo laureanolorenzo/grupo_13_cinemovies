@@ -5,5 +5,12 @@
   "email": "cocina@gmail.com",
   "password": "$2a$10$xZ1BC8RjFqnDKQWgvda7RueLSPh.8xF33Eo0NSzvjfnqKMLrNc2nW",
   "profilePic": "default-profilePic.jpg"
+ },
+ {
+  "id": 2,
+  "user": "juancotera",
+  "email": "juancoteracastro@gmail.com",
+  "password": "$2a$10$eXN5GaoioPFxZXPFDBPdwugpAew6Fbs2sGOkcJMlgpC/B.fKk43ti",
+  "profilePic": "juancotera-1707526904881.jpg"
  }
 ]
