@@ -7,7 +7,7 @@ const multer = require ('multer');
 
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const ingresarAPerfilMiddleware = require('../middlewares/ingresarAPerfilMiddleware');
-const removeWhiteSpace = require('../middlewares/removeWhitespaceMiddleware');
+const {removeWhiteSpace} = require('../middlewares/funcs');
 
 let multerDiskStorage = multer.diskStorage({ //Se guarda como variable para usarse luego
 	filename(req,file,callback) {
