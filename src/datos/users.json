@@ -12,5 +12,12 @@
   "email": "juancoteracastro@gmail.com",
   "password": "$2a$10$eXN5GaoioPFxZXPFDBPdwugpAew6Fbs2sGOkcJMlgpC/B.fKk43ti",
   "profilePic": "juancotera-1707526904881.jpg"
+ },
+ {
+  "id": 3,
+  "user": "laureano",
+  "email": "laureanolorenzo@gmail.com",
+  "password": "$2a$10$YaExXsb.pT21p9in0EAXUei6qqMR3sxkpjDqTTnuHq.hg379/xhS6",
+  "profilePic": "default-profilePic.jpg"
  }
 ]

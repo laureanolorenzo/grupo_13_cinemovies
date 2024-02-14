@@ -1,16 +1,55 @@
 const express = require('express');
 const router = express.Router();
+const {removeWhiteSpace} = require('../middlewares/funcs');
+const path = require('path');
+
+// Multer 
+const multer = require('multer');
+
+// Storage
+let multerDiskStorage = multer.diskStorage({ //Se guarda como variable para usarse luego
+	filename(req,file,callback) {
+		let fileName = removeWhiteSpace(req.body.title) + '-' + Date.now() + path.extname(file.originalname); // Date.now() da un numero unico, y path.extname la extension de la imagen original. Se puede combinar con datos del req, por ejempl
+		callback(null,fileName) },
+	destination(req,file,callback) {
+		let folder = path.join(__dirname,'../../public/images/movies'); // Donde se va a guardar
+		callback(null,folder);
+    }
+})
 
 
 const productoController = require('../controllers/productoController');
 
-// router.get('/categorias', categoriasController.categoriasView);
+const fileUpload = multer({storage: multerDiskStorage});
 
-// Aclaracion de Guido>> Tenemos muchos controllers y routers! Productos, usuarios y main solo!!
+const multipleUpload = fileUpload.fields([{name: 'image', maxCount: 1}, {name: 'banner', maxCount: 1}]);
+
+// Productos
+
+router.get('/detalle_producto/:id', productoController.detalle_productoView);
+
+
+
+
+router.get('/crear_producto', productoController.crear_productoView);
+
+router.post('/crear_producto/process', multipleUpload, productoController.crear_productoProcess);
+
+router.delete('/detalle_producto/:id', productoController.borrar_producto);
+
+router.get('/editar_producto/:id', productoController.editar_productoView);
+
+router.put('/editar_producto/:id', multipleUpload ,productoController.editar_producto);
+
+//Categorias
+
 router.get ('/categorias', productoController.allCategoriesView);
 
 router.get('/categorias/:categoria',productoController.singleCategoryView);
-//2 routers> categorias/filtered/:categoria
-// El otro categorias/all >> Con otro metodo
+
+// Kiosco
+
+router.get('/kiosco',productoController.kioscoView)
+
 
 module.exports = router;

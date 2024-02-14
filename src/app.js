@@ -34,26 +34,15 @@ app.use(session({
 
 
 // Rutas
-// const rutaLogin = require('./routes/loginRouter');
-// const rutaRegister = require('./routes/registerRouter');
-const rutaCarrito = require('./routes/carritoRouter');
-const rutaCategorias = require('./routes/categoriasRouter');
-const rutaDetalleProducto = require('./routes/detalle_productoRouter');
-const rutaKiosco = require('./routes/kioscoRouter');
-const rutaPromociones = require('./routes/promocionesRouter');
-const rutaPagar = require('./routes/ir_a_pagarRouter');
-const rutacrearProducto = require ('./routes/crear_productoRouter');
-const rutaEditarProducto = require ('./routes/editar_productoRouter');
-const rutaUsuarios = require ('./routes/usersRouter');
 
-// Rutas principales > Estas deberian quedar unicamente
+const rutaCarrito = require('./routes/carritoRouter');
+const rutaUsuarios = require ('./routes/usersRouter');
 const rutaHome = require('./routes/mainRouter');
 const rutaProducto = require('./routes/productoRouter');
-const cookieParser = require('cookie-parser');
-const { log } = require('console');
 
 
 //cookie parser
+const cookieParser = require('cookie-parser');
 app.use(cookieParser())
 // body parser
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -63,25 +52,9 @@ app.use(cookieParser())
 
 app.use(rutaHome);
 
-// app.use(rutaLogin);
-
-// app.use(rutaRegister);
 
 app.use(rutaCarrito);
 
-app.use(rutaCategorias);
-
-app.use(rutaDetalleProducto);
-
-app.use(rutaKiosco);
-
-app.use(rutaPromociones);
-
-app.use(rutaPagar);
-
-app.use(rutacrearProducto);
-
-app.use(rutaEditarProducto);
 
 app.use (rutaUsuarios);
 
