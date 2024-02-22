@@ -5,7 +5,7 @@ let moviesPath = path.join(__dirname,"../datos/movies.json");
 
 // Variables
 let anio = [];
-for (i = 1980; i <= 2023; i++) {
+for (i = 1980; i <= 2023; i++) { //Hacer mas dinamico
     anio.push(i)
 }
 const ratingsMap = {
