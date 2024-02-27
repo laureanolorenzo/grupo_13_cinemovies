@@ -1,0 +1,20 @@
+module.exports = (sequelize, dataTypes) => {
+    const CategoriaPelicula = sequelize.define('categorias_peliculas', {
+        id: {
+            autoIncrement: true,
+            primaryKey: true,
+            type: dataTypes.INTEGER
+        },
+        categoria: {
+            type: dataTypes.STRING(25)            
+        },
+        poster: {
+            type: dataTypes.STRING(255)
+        }
+    }, {
+        tableName: 'categorias_peliculas',
+        timestamps: false
+    });
+
+    return CategoriaPelicula;
+}
