@@ -16,6 +16,39 @@ let cols = {
     premier: {
         
     },
+    synopsis: {
+        type: dataTypes.STRING
+    },
+    director: {
+        type: dataTypes.STRING
+    },
+    cast: {
+        type: dataTypes.STRING
+    },
+    rating: {
+        tyoe: dataTypes.FLOAT
+    },
+    genre: {
+        type: dataTypes.STRING
+    },
+    poster: {
+        type: dataTypes.STRING
+    },
+    banner: {
+        type: dataTypes.STRING
+    },
+    awars: {
+        type: dataTypes.STRING
+    },
+    language: {
+        type: dataTypes.STRING
+    },
+    datePremier: {
+        type: dataTypes.DATE
+    },
+    idCategory: {
+        type: dataTypes.INTEGER
+    }
 
 
 };
