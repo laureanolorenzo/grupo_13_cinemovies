@@ -6,7 +6,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER
         },
         categoria: {
-            type: dataTypes.STRING(25)            
+            type: dataTypes.STRING(25)
         },
         poster: {
             type: dataTypes.STRING(255)
@@ -15,6 +15,11 @@ module.exports = (sequelize, dataTypes) => {
         tableName: 'categorias_peliculas',
         timestamps: false
     });
+
+    CategoriaPelicula.associate = function(models) {
+        CategoriaPelicula.hasMany(models.Peliculas, {
+            otherKey: 'id_categoria_pelicula'
+    })}
 
     return CategoriaPelicula;
 }

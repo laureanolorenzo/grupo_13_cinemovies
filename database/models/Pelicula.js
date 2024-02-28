@@ -6,29 +6,29 @@ let cols = {
         primaryKey: true,
 
     },
-    title: {
+    titulo: {
         type: dataTypes.STRING,
     },
-    year: {
+    anio: {
         type: dataTypes.INTEGER,
 
     },
-    premier: {
-        
+    es_estreno: {
+        type: dataTypes.TINYINT
     },
-    synopsis: {
+    descripcion: {
         type: dataTypes.STRING
     },
     director: {
         type: dataTypes.STRING
     },
-    cast: {
+    reparto: {
         type: dataTypes.STRING
     },
-    rating: {
-        tyoe: dataTypes.FLOAT
+    puntuacion: {
+        type: dataTypes.FLOAT
     },
-    genre: {
+    clasificacion: {
         type: dataTypes.STRING
     },
     poster: {
@@ -37,16 +37,16 @@ let cols = {
     banner: {
         type: dataTypes.STRING
     },
-    awars: {
+    awards: {
         type: dataTypes.STRING
     },
-    language: {
+    idioma: {
         type: dataTypes.STRING
     },
-    datePremier: {
+    fecha_estreno: {
         type: dataTypes.DATE
     },
-    idCategory: {
+    id_categoria_pelicula: {
         type: dataTypes.INTEGER
     }
 
@@ -59,7 +59,12 @@ let config =  {
 }
 
 
-    const Pelicula = sequelize.define (alias, cols, config);
+    const Pelicula = sequelize.define(alias, cols, config);
+
+    Pelicula.associate = function(models) {
+        Pelicula.belongsTo(models.CategoriaPelicula, {
+            foreignKey: 'id_categoria_pelicula'
+    })}
 
     return Pelicula;
 
