@@ -62,8 +62,9 @@ let config =  {
     const Pelicula = sequelize.define(alias, cols, config);
 
     Pelicula.associate = function(models) {
-        Pelicula.belongsTo(models.CategoriaPelicula, {
-            foreignKey: 'id_categoria_pelicula'
+        Pelicula.belongsTo(models.categorias_peliculas, {
+            foreignKey: 'id_categoria_pelicula',
+            as: 'categoria'
     })}
 
     return Pelicula;

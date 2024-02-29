@@ -6,17 +6,17 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
     
         },
-        name: {
+        nombre: {
             type: dataTypes.STRING,
         },
-        photo: {
+        foto: {
             type: dataTypes.STRING,
     
         },
-        state: {
+        estado: {
             type: dataTypes.FLOAT
         },
-        idRol: {
+        id_rol: {
             type: dataTypes.INTEGER
         }
     
