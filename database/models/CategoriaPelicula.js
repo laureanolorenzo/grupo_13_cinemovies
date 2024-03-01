@@ -9,7 +9,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(25)
         },
         poster: {
-            type: dataTypes.STRING(255)
+            type: dataTypes.STRING(100)
+        },
+        titulo: {
+            type: dataTypes.STRING(50)
         }
     }, {
         tableName: 'categorias_peliculas',

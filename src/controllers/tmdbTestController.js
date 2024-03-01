@@ -1,6 +1,5 @@
 // Por ahora estoy probando si va a servir!
 // Quizas esta forma de modelar la clase Movie se puede adaptar a sequelize mas adelante
-
 const path = require('path');
 const fs = require('fs');
 const axios = require('axios');
@@ -14,36 +13,6 @@ const db = require('../../database/models');
 const resLang = 'es-AR';
 const movieID = 695721;
 const trendingURL = `https://api.themoviedb.org/3/trending/movie/week?language=${resLang}&page=1`;
-const movieDetailURL = `https://api.themoviedb.org/3/movie/${movieID}?language=${resLang}&append_to_response=release_dates,lists`;
-const movieCreditsURL = `https://api.themoviedb.org/3/movie/${movieID}/credits`;
-let generosTMDB =  //Para cuando cargamos a la base de datos nuestra! >> Usafo para mapear nuestro genero con el de ellos
-    {
-        'Acción': { tmdbID: 28 },
-        'Aventura': { tmdbID: 12 },
-        'Animación': { tmdbID: 16 },
-        'Comedia': { tmdbID: 35 },
-        'Crimen': { tmdbID: 80 },
-        'Documental': { tmdbID: 99 },
-        'Drama': { tmdbID: 18 },
-        'Familia': { tmdbID: 10751 },
-        'Fantasía': { tmdbID: 14 },
-        'Historia': { tmdbID: 36 },
-        'Terror': { tmdbID: 27 },
-        'Música': { tmdbID: 10402 },
-        'Misterio': { tmdbID: 9648 },
-        'Romance': { tmdbID: 10749 },
-        'Ciencia ficción': { tmdbID: 878 },
-        'Película de TV': { tmdbID: 10770 },
-        'Suspense': { tmdbID: 53 },
-        'Bélica': { tmdbID: 10752 },
-        'Western': { tmdbID: 37 }
-    }
-let i =1;
-for (const key in generosTMDB) {
-    generosTMDB[key]['id'] = i;
-    i++;
-}
-
 // Funcion para retornar cualquier pedido de la API
 async function getTmdbResponse(url) {
     const response = await axios(
@@ -64,7 +33,6 @@ function isReleasingFromDateDiff(releaseDate) {
     let daysDifference = Math.floor(difference/1000/60/60/24);
     return daysDifference < 60; // 2 meses
 }
-
 // Funcion para obtener awards (de la otra API =/ )
 async function getAwards(id) {
     const url = `https://www.omdbapi.com/?i=${id}&apikey=${omdbAPIKey}`;
@@ -111,10 +79,12 @@ async function getPopularMovies(nResults = 10) { //Peliculas aleatorias en la li
     return Array.from(ids);
 }
 // Buscar el id del genero que corresponda. Luego hacerlo con la base de datos!
-function getGenreID(genre) {
-    return generosTMDB[genre]['id'];
+async function getGenreID(genre) {
+    let categ = await db.categorias_peliculas.findOne(
+        {where: {categoria: genre}}
+    );
+    return categ.id;
 }
-
 // Funciones para armar una pelicula con las responses
 async function getMovieByID(id,responseLang ='es-AR',saveLocal = false)  {
     const movieDetailURL = `https://api.themoviedb.org/3/movie/${id}?language=${responseLang}&append_to_response=release_dates,lists`;
@@ -123,21 +93,15 @@ async function getMovieByID(id,responseLang ='es-AR',saveLocal = false)  {
         'it': 'Italiano','pt': 'Portugués','ja': 'Japonés','ko': 'Coreano',
       };
     const res = await getTmdbResponse(movieDetailURL);
-    const usReleaseInfo = res.data.release_dates.results.find(relDate => relDate.iso_3166_1 == 'AR');
-    let classification = usReleaseInfo ? usReleaseInfo.release_dates[0].certification : ''; // null?
+    let releaseInfo = res.data.release_dates.results.find(relDate => relDate.iso_3166_1 == 'AR');
+    if (!releaseInfo) {
+        releaseInfo = res.data.release_dates.results.find(relDate => relDate.iso_3166_1 == 'US');
+    }
+    let classification = releaseInfo ? releaseInfo.release_dates[0].certification : ''; // null?
     let origen = '';
     res.data.production_countries.forEach(country => { origen += `${country.name}, `}); 
     origen = origen.slice(0,-2); // Que no quede coma espacio al final
     let awards = await getAwards(res.data.imdb_id);
-    // let posterPath = res.data.poster_path;
-    // let backdropPath = res.data.backdrop_path;
-
-    // try {
-    //     saveImageToDisk(res.data.backdrop_path,localFileName); //Si no anda, va a retornar un error especifico
-    // } catch(e) {
-    //     console.log(e);
-    //     localFileName = null; // No queremos guardar el nombre si no se guardo!
-    // }
     let fecha_estreno = res.data.release_date;
     let poster, banner;
     if (saveLocal){ // Importante, decidir si la imagen va a tener una path local o no! Incluso crear una variable en la base de datos!
@@ -160,20 +124,19 @@ async function getMovieByID(id,responseLang ='es-AR',saveLocal = false)  {
         origen: origen,
         poster: poster,
         banner: banner, //Si no es estreno, no guardar banner!
-        awards: awards == null?'None':awards,
+        awards: awards == null?'N/A':awards,
         idioma: languageMapping[res.data.original_language],
-        id_categoria_pelicula:  getGenreID(res.data.genres[0].name), //Funcion para buscar el id del genero basado en res.data.genres[0].name (es distinto el id en la API). Chequear que vengan en castellano!
-        local: saveLocal
+        id_categoria_pelicula:  await getGenreID(res.data.genres[0].name), //Funcion para buscar el id del genero basado en res.data.genres[0].name (es distinto el id en la API). Chequear que vengan en castellano!
+        local: saveLocal, //Luego se borra esta propiedad antes de mandar a la base de datos
+        tmdb_id: res.data.id
     }
 }
 async function getMovieCreditsByID(id,n = 5) { //Trae los "n" actores principales (hay muchos)
     const movieCreditsURL = `https://api.themoviedb.org/3/movie/${id}/credits`;
     const res = await getTmdbResponse(movieCreditsURL);
     const director = res.data.crew.find(x => x.job == 'Director').name;
-    // console.log(res.data.cast);
     let cast = res.data.cast.filter(actor => actor.order < n);
     cast = cast.map(actor => actor.name);
-    // console.log(cast)
     return {'director':director,'reparto':cast.join(', ')};
 };
 async function getAwards(imdbID) {
@@ -184,7 +147,6 @@ async function getAwards(imdbID) {
 async function saveImageToDisk(remoteFileName,localFileName,dimensions = 'original',poster = true) {
     const localSavePath = path.resolve(__dirname,`../../public/images/${poster?'movies/poster-':'banners/banner-'}${localFileName}`);
     const posterImageURL = `https://image.tmdb.org/t/p/${dimensions}${remoteFileName}`;
-    // const localSavePath = path.resolve(__dirname,`../../public/images/movies/poster-${localFileName}`);
     const res = await axios({
         method: 'GET',
         url: posterImageURL,
@@ -201,7 +163,6 @@ async function saveImageToDisk(remoteFileName,localFileName,dimensions = 'origin
         });
     });
 }
-
 //###Algunos comentarios###
 //Para obtener la clave de API hay que crearse una cuenta y especificar la aplicacion (con su desc., url, etc.) 
 // Para no dejar mi auth token en github, lo importo al controller. Hay que crear un archivo "APIAuth.txt" en "datos" con uno por cada persona
@@ -212,7 +173,7 @@ async function saveImageToDisk(remoteFileName,localFileName,dimensions = 'origin
 class Movie {
     constructor(data) {
         const movieModelProps = ['titulo','fecha_estreno','anio','es_estreno','descripcion','puntuacion',
-        'clasificacion','duracion','origen','poster','banner','awards','idioma','id_categoria_pelicula','director','reparto','local'];
+        'clasificacion','duracion','origen','poster','banner','awards','idioma','id_categoria_pelicula','director','reparto','local','tmdb_id'];
         try {
             if ((data === null) || (typeof data !== 'object'))  {
                 throw new Error('Debe pasar un objeto al constructor de la clase Movie')
@@ -246,7 +207,6 @@ class Movie {
         } catch(e) {
             console.log(e);
         }
-
     };
     async insertIntoDataBase() {
         try {
@@ -264,17 +224,12 @@ class Movie {
         }
     }
 }
-
-
 // ###############################
 //Testing >>
-// getTrendingMovies();
-
 async function getEstrenos(maxN = 10) { // Trae los estrenos de Argentina (actualmente en cines)
     let today = new Date();
     let nextWeek = new Date();
     nextWeek.setDate(today.getDate() + 7);
-    // console.log(nextWeek)
     nextWeek = nextWeek.toISOString().split('T')[0];
     let twoMonthsBefore = new Date();
     twoMonthsBefore.setMonth(today.getDate() -60);
@@ -287,55 +242,41 @@ async function getEstrenos(maxN = 10) { // Trae los estrenos de Argentina (actua
         for (let i = 0; i < n_pages; i++) {
             res = await getTmdbResponse(`https://api.themoviedb.org/3/movie/now_playing?language=es-AR&page=${i+1}&region=AR&sort_by=popularity.desc&release_date.lte=${twoMonthsBefore}&with_release_type=1`);
             for (const movie of res.data.results) {
-                
                 if (maxN == 0) {
                     break;
                 }
                 maxN--;
-                movieIds.push({
-                    'id': movie.id,
-                    'title':movie.title
-                });
+                movieIds.push(movie.id);
             }
         }
         break; // En caso de que no alcancen las pelis (el total es menor a maxN)
     }
     return movieIds;
 }
-async function getClassics(maxN=20) {
+async function getClassics(maxN=2) {
     maxN = maxN > 100? 100 : maxN; // Por las dudas
     let url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&sort_by=popularity.desc`;
     let i = 1;
-    // let res = await getTmdbResponse(url + `&page=${i}`)
-    // console.log('RELEASE#########################')
-    // console.log(res.data)
     let res;
     let releaseDates;
     let movieIds = [];    
     while (maxN > 0) {
         res = await getTmdbResponse(url + `&page=${i}`);
-        // console.log('Length', res.data.results.length)
         setTimeout(() => {console.log('Pausando...')},2000); //No sobrecargar la API!
         for (const movie of res.data.results) { //TIene 20 results como maximo!
-            // console.log('MOVIE',movie);
+            if (!(['en','es'].includes(movie.original_language))) {
+                continue
+            }
             if (maxN == 0) {
                 break;
             }
             individualMovieResponse = await getTmdbResponse(`https://api.themoviedb.org/3/movie/${movie.id}?language=es-AR&append_to_response=release_dates`);
             releaseDates = individualMovieResponse.data.release_dates.results;
             var releaseDate = Date.parse(movie.release_date); //Uso var para poder definirlo en cada iteracion
-            // console.log(releaseDate);
-            // if (releaseDates.find(relDate => relDate['iso_3166_1'] == 'AR') & !(isReleasingFromDateDiff(releaseDate))){ //Estrenada en Arg y hace mas de 2 meses
             if (!(isReleasingFromDateDiff(releaseDate))){ //Le cuesta encontrar muchos con release date en AR... 
-                            
-                // console.log(movie)
-                movieIds.push({
-                    'id': movie.id,
-                    'title':movie.title
-                });
+                movieIds.push(movie.id);
                 maxN--
             }
-            // maxN--
         }
     }
     return movieIds;
@@ -344,80 +285,49 @@ async function getClassics(maxN=20) {
 const tmdbController = {
     async rellenarDB(req,res) { 
         const clasicosIds = [
-            { id: 1072790, title: 'Anyone But You' },
-            { id: 792307, title: 'Poor Things' },
-            { id: 940551, title: 'Migration' },
-            { id: 949429, title: 'The Adventures' },
-            { id: 1211483, title: 'Skal - Fight for Survival' },
-            { id: 609681, title: 'The Marvels' },
-            { id: 787699, title: 'Wonka' },
-            { id: 438631, title: 'Dune' },
-            { id: 572802, title: 'Aquaman and the Lost Kingdom' },
-            { id: 980137, title: 'Dad or Mom' },
-            { id: 1183905, title: 'Trunk - Locked In' },
-            { id: 1022796, title: 'Wish' },
-            { id: 1072790, title: 'Anyone But You' },
-            { id: 792307, title: 'Poor Things' },
-            { id: 940551, title: 'Migration' },
-            { id: 949429, title: 'The Adventures' },
-            { id: 1211483, title: 'Skal - Fight for Survival' },
-            { id: 609681, title: 'The Marvels' },
-            { id: 787699, title: 'Wonka' },
-            { id: 438631, title: 'Dune' }
-          ];
+            1072790,  792307, 940551,
+            1211483,  609681, 787699,
+             438631,  572802, 980137,
+            1022796, 1072790, 792307,
+             940551, 1211483, 609681,
+             787699,  438631, 572802,
+             980137, 1022796
+        ];
         const estrenosIds = [
-            { id: 792307, title: 'Pobres criaturas' },
-            { id: 693134, title: 'Dune: Parte dos' },
-            { id: 673593, title: 'Chicas malas' },
-            { id: 634492, title: 'Madame Web' },
-            { id: 915935, title: 'Anatomía de una caída' },
-            { id: 365620, title: 'Ferrari' },
-            { id: 666277, title: 'Vidas pasadas' },
-            { id: 840430, title: 'Los que se quedan' },
-            { id: 839369, title: 'Secretos de un escándalo' },
-            { id: 1130053, title: "Cinderella's Curse" },
-            { id: 1217409, title: 'Jaque Mate' },
-            { id: 1202087, title: 'Cierren los ojos: La final eterna' },
-            { id: 1229873, title: 'Luces azules' },
-            { id: 1245241, title: 'Paisaje' },
-            { id: 1044920, title: 'La memoria que habitamos' },
-            { id: 1244034, title: 'Bocanada Interpersonal' },
-            { id: 1204367, title: 'Las Escondidas' },
-            {
-              id: 1238612,
-              title: 'Desiderio: Reflexiones sobre un autorretrato'
-            },
-            { id: 1241611, title: 'Anhelos' },
-            { id: 1245239, title: 'Entremedio' }
-          ];
+            792307,  693134,  673593,
+            634492,  915935,  365620,
+            666277,  840430,  839369,
+           1130053, 1217409, 1202087,
+           1229873, 1245241, 1044920,
+           1244034, 1204367, 1238612,
+           1241611, 1245239
+        ];
         // Si hay que redefinir los ids, descomentar lo de abajo!
         // const clasicosIds = await getClassics();
         // const estrenosIds = await getEstrenos();
         let newMovie,newCredits,match;
         let nuevosIds = new Set([...clasicosIds,...estrenosIds]);
-
-        for (const movie of Array.from(nuevosIds)) {
+        for (const id of Array.from(nuevosIds)) {
             match = await db.Peliculas.findOne({
-                where: {titulo: movie.title}
+                where: {tmdb_id: id}
             });
             if (!match) {
                 try {
-                    newMovie = await getMovieByID(movie.id);
-                    newCredits = await getMovieCreditsByID(movie.id);
+                    newMovie = await getMovieByID(id);
+                    newCredits = await getMovieCreditsByID(id);
                     var movieInst = new Movie({...newMovie,...newCredits});
                     movieInst.insertIntoDataBase(); 
-                    console.log('Creando registro para peli con tmdbi:' + movie.id);
+                    console.log('Creando registro para peli con tmdbi:' + id);
                 } catch(e){ //Luego pensar otra logica!
                     console.log(e);
                 }
             }
             else {
-                console.log('Peli ' + movie.id + 'ya existe en la base de datos');
+                console.log('Peli ' + id + 'ya existe en la base de datos');
             }
         }
         res.send('Base de datos actualizada!');
         console.log('Base de datos actualizada!')
-        // Col unica titulo? Deberia ser 
     }
 }
 module.exports = tmdbController;
@@ -426,24 +336,11 @@ module.exports = tmdbController;
 
 console.log('#####################\n\n\n\n\n\n\n###############')
 async function testingFunc() {
-    // let newIds = await getEstrenos(20);
-    // let classics = await getClassics(20);
-    // console.log(newIds)
-    // console.log(classics)
-    let newMovie = await getMovieByID(792307)
-    // console.log(newMovie);
-    return
-    for (const id of newIds) {
-        // var movie = await getMovieByID(id);
-        var movie = await getTmdbResponse(`https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_response=release_dates,lists`)
-        console.log(movie.data.release_date);
-        console.log('\nEs estreno>',isReleasingFromDateDiff(Date.parse(movie.data.release_date)));
-    }
-    // await getClassics();
-    // let classics = await getClassics();
-    // let movieData = await getMovieByID(940551);
-
-    // console.log(newIds)
+    // let movies = await getClassics(20)
+    // let est = await getEstrenos(20)
+    let newMovie = await getMovieByID(68718);
+    console.log(newMovie)
+//     console.log('Clasicos',movies)
+//     console.log('Estrenos',est)
 }
 // testingFunc()
-

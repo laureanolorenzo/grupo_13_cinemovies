@@ -54,6 +54,9 @@ let cols = {
     },
     id_categoria_pelicula: {
         type: dataTypes.INTEGER
+    },
+    tmdb_id: {
+        type: dataTypes.INTEGER
     }
 
 

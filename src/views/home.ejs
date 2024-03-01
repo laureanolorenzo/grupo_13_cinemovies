@@ -61,12 +61,13 @@
             <!-- Aca creo que es mejor usar ejs y ya directamente darle funcionalidad -->
             <!-- El atributo categ creo que se debe reemplazar por id en algun momento -->
             <% if (categs) { %>
-              <% for (const categ of categs) { %>
+              <% for (const categ of categs.slice(0,14)) { %> 
+                <!-- cuidado, son muchos llamados a la API?? -->
                 <a href="/categorias/<%= categ.categoria %>" class="categoria">
-                  <div class="<%= categ.backgroundClass %>">
+                  <div class="background-img backg-<%= categ.categoria %>">
                     <!-- colocar con background-image -->
                   </div>
-                  <h4><%= categ.title %></h4>
+                  <h4><%= categ.titulo %></h4>
                 </a>
               <% } %>
             <% } else { %>

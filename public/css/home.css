@@ -29,7 +29,8 @@
 .categoria-list, .kiosco-list {
   display: flex;
   gap: 16px;
-  overflow-x: auto;
+  /* overflow-x: auto; */
+  flex-wrap: wrap;
 }
 
 .categoria {
@@ -38,7 +39,7 @@
   flex-shrink: 0; /*para que las etiquetas a tomen el ancho que le damos*/
 }
 
-.backg-accion {
+/* .backg-accion {
   background-image: url('/images/cover-accion.jpeg');
 }
 
@@ -56,6 +57,83 @@
 .backg-comedy {
   background-image: url('/images/cover-comedy.jpg');
 }
+/// */
+.backg-accion {
+  background-image: url('https://image.tmdb.org/t/p/original/br6krBFpaYmCSglLBWRuhui7tPc.jpg');
+}
+
+.backg-aventura {
+  background-image: url('https://image.tmdb.org/t/p/original/HPEXPFY5B2TWyC1mKoUtz4fNsB.jpg');
+}
+
+.backg-animacion {
+  background-image: url('https://image.tmdb.org/t/p/original/CtISczftMz6g7kyk5uLxBben8b.jpg');
+}
+
+.backg-comedia {
+  background-image: url('https://image.tmdb.org/t/p/original/hKlpYtDLBtJEvYVvaUIq39Gh6rI.jpg');
+}
+
+.backg-crimen {
+  background-image: url('https://image.tmdb.org/t/p/original/8QDQExnfNFOtabLDKqfDQuHDsIg.jpg');
+}
+
+.backg-documental {
+  background-image: url('https://image.tmdb.org/t/p/original/nZbLCbRoP6iJq5sr8daHQzjnzFh.jpg');
+}
+
+.backg-drama {
+  background-image: url('https://image.tmdb.org/t/p/original/4Yy63A10sPQZ9kd2kWj13S4WUkn.jpg');
+}
+
+.backg-familiar {
+  background-image: url('https://image.tmdb.org/t/p/original/6eHcR7zwvNSvkOl9jbctU0lvZQ1.jpg');
+}
+
+.backg-fantasia {
+  background-image: url('https://image.tmdb.org/t/p/original/p4BabO5lvfXnIsVIBLDpN2wLORz.jpg');
+}
+
+.backg-historia {
+  background-image: url('https://image.tmdb.org/t/p/original/re6SSQS1HgBGG9AMiNuPGISOfMx.jpg');
+}
+
+.backg-terror {
+  background-image: url('https://image.tmdb.org/t/p/original/o0ndJZaa9ZFFfpnl1IejajXv0II.jpg');
+}
+
+.backg-musica {
+  background-image: url('https://image.tmdb.org/t/p/original/sL32IZkyjlF7otj5vcUxiKSKzg5.jpg');
+}
+
+.backg-misterio {
+  background-image: url('https://image.tmdb.org/t/p/original/kWz6Aa2chxcNUgAQNooYS4yyLkC.jpg');
+}
+
+.backg-romance {
+  background-image: url('https://image.tmdb.org/t/p/original/wzpwCQF9et6ltaw21tSI2gl9wXa.jpg');
+}
+
+.backg-sci-fi {
+  background-image: url('https://image.tmdb.org/t/p/original/nrSaXF39nDfAAeLKksRCyvSzI2a.jpg');
+}
+
+.backg-tv {
+  background-image: url('https://image.tmdb.org/t/p/original/d3Nw4grn02Ca5AmOiRcZLgrAL2k.jpg');
+}
+
+.backg-suspenso {
+  background-image: url('https://image.tmdb.org/t/p/original/eJuoXzQPnBeiezrRsQCMjetS1fM.jpg');
+}
+
+.backg-belica {
+  background-image: url('https://image.tmdb.org/t/p/original/axdhbcZeOsfX3ZpwtgdgPIjc06l.jpg');
+}
+
+.backg-western {
+  background-image: url('https://image.tmdb.org/t/p/original/naaYX64yMGzEFsATOFQDaxxQWbJ.jpg');
+}
+
 
 
 .background-img {
