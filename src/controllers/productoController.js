@@ -3,6 +3,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const db = require('../../database/models');
 
 // Rutas
 const categoriesRuta = path.join(__dirname, '../datos/categories.json');
@@ -192,29 +193,35 @@ const productoController = {
             next(new Error('Se ha producido un error. Por favor vuelva a intentarlo.'));
         }
     },
-    allCategoriesView(req,res) {
-        const categoriesJson = fs.readFileSync(categoriesRuta, {'encoding': 'utf-8'});
-        let categories = JSON.parse(categoriesJson);
+    async allCategoriesView(req,res) {
+        // const categoriesJson = fs.readFileSync(categoriesRuta, {'encoding': 'utf-8'});
+        let categorias = await db.categorias_peliculas.findAll();
 
-        const moviesJson = fs.readFileSync(moviesRuta, {'encoding': 'utf-8'});
-        let movies = JSON.parse(moviesJson);
-
-        res.render('categorias',{datos: movies,categories:categories, user: req.session.userLoggedIn })
+        // const moviesJson = fs.readFileSync(moviesRuta, {'encoding': 'utf-8'});
+        // let movies = JSON.parse(moviesJson);
+        
+        res.render('todas_las_categorias',{categorias:categorias, user: req.session.userLoggedIn })
         // res.send('Hola!');
     },
-    singleCategoryView(req,res) {
-        const categoriesJson = fs.readFileSync(categoriesRuta, {'encoding': 'utf-8'});
-        let categories = JSON.parse(categoriesJson);
+    async singleCategoryView(req,res) {
+        // const categoriesJson = fs.readFileSync(categoriesRuta, {'encoding': 'utf-8'});
+        // let categories = JSON.parse(categoriesJson);
+        const categories = await db.categorias_peliculas.findAll();
 
         const moviesJson = fs.readFileSync(moviesRuta, {'encoding': 'utf-8'});
-        let movies = JSON.parse(moviesJson);
-        let categId = req.params.categoria;
-        let categoriaParaMostrar = categories.find(x => x.categoria == categId);
+        const movies = JSON.parse(moviesJson);
+        const requestedCateg = req.params.categoria;
+        const categoriaParaMostrar = await db.categorias_peliculas.findOne(
+            {where: {categoria: requestedCateg}}
+        )
+        // let categoriaParaMostrar = categoriasDB.find(x => x.categoria == requestedCateg);
         if (categoriaParaMostrar === undefined) {
             res.send('No se encontro la categoria'); // Manejarlo distinto en el futuro?? Seria sit. en la que el usuario pone la categ. a mano
         }
-        let filteredMovies = movies.filter(movie => (movie.category == categoriaParaMostrar.title));
-        res.render('categorias', {datos: filteredMovies,todas:false,categories:categories, user: req.session.userLoggedIn });
+        const filteredMovies = movies.filter(movie => (movie.category == categoriaParaMostrar.titulo)); //Luego del crud combinar con id_categoria_pelicula
+        // console.log(filteredMovies);
+        // res.send('HOLA')
+        res.render('categorias', {datos: filteredMovies,categories:categories, user: req.session.userLoggedIn });
     },
 
 
@@ -223,7 +230,7 @@ const productoController = {
 
 
         if (!(req.params.categoria)) {
-             res.render('categorias', {datos: movies,todas:true,categories:categories, user: req.session.userLoggedIn }); //Luego cambiar!!!
+             res.render('categorias', {datos: filteredMovies,categories:categories, user: req.session.userLoggedIn }); //Luego cambiar!!!
         } else {
 
             

@@ -47,7 +47,7 @@
     border: none;
     cursor: pointer;
     border-radius: 4px;
-    width: 48px;
+    width: 100%;
     /* height: 50%; */
     /* position: absolute; */
     /* left: 100px; */
@@ -129,11 +129,34 @@ ul {
     flex-direction: column;
     gap: 16px;
 }
+.contenido-categoria {
+    background: var(--colors-blanco);
+    padding: 4px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-decoration: none;
+}
+
+
 
 .titulo-pelicula {
     /* left: 45px; */
     /* margin-bottom: 18px; */
     font-size: 24px;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    /* font-size: 45px; */
+    /* MODIFICAR COLORES */
+    color: var(--colors-naranja)
+    /* padding: 15px; */
+
+}
+.titulo-categ {
+    /* left: 45px; */
+    /* margin-bottom: 18px; */
+    font-size: 20px;
     font-family: 'Inter', sans-serif;
     font-weight: bold;
     /* font-size: 45px; */
@@ -149,6 +172,11 @@ ul {
 }
 
 .poster {
+    width: 162px;
+    border-radius: 15px;
+    box-shadow: 6px 12px 50px -2px rgba(0, 0, 0, 0.75);
+}
+.poster-categoria {
     width: 162px;
     border-radius: 15px;
     box-shadow: 6px 12px 50px -2px rgba(0, 0, 0, 0.75);
@@ -207,17 +235,35 @@ ul {
         min-width: 45%;
         max-width: 45%;
         background: var(--colors-blanco);
+    }
+    .contenido-categoria {
+        align-items: center;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        padding: 16px;
+        min-width: 45%;
+        max-width: 45%;
+        background: var(--colors-blanco);
 
     }
 
     .titulo-pelicula {
         font-size: 32px;
     }
+    .titulo-categ {
+        font-size: 28px;
+    }
 
     .contenido{
         display: flex;
         width: 100%;
         gap: 16px;
+        align-items: center;
+    }
+    .contenido-ch-categ {
+        display: flex;
+        width: 100%;
+        gap: 16px;
+        justify-content: center;
         align-items: center;
     }
 
@@ -256,6 +302,11 @@ ul {
         box-shadow: none;
         width: 20%;
     }
+    .poster-categoria {
+        box-shadow: none;
+        width: 90%;
+        margin: 0px;
+    }
 
     .texto-caja {
         display: block;
@@ -271,6 +322,20 @@ ul {
         margin-top: 28px;
         margin-bottom: 30px;
     }
+
+@media(min-width: 992px) {  
+
+    .contenido-categoria {
+        align-items: center;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        padding: 16px;
+        min-width: 23%;
+        max-width: 23%;
+        background: var(--colors-blanco);
+
+    }
+    
+}
 
 
 

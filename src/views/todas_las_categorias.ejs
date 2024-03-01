@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('./partials/head') %>
+
+<body>
+  <% if (typeof user === 'undefined') { %>
+    <%- include('./partials/header') %>
+  <% } else { %>
+    <%- include('./partials/headerLoggedIn') %>
+  <% } %>
+
+  <main class="main-categorias">
+    <div class="wrapper">
+
+    <div class="seccionCategorias">
+      <div class="seccionIntermedia">
+        <h1>Categorías</h1>
+        <div class="dropdown">
+          <button class="dropbtn"><use>Seleccionar</use></button>
+          <div class="dropdown-content">
+            <% if (typeof categorias !== 'undefined') { %>
+              <% for (const categ of categorias) {%>
+                <li><a href="/categorias/<%= categ.categoria %>" category="estrenos" id="seleccion-categoria"><%= categ.titulo %></a></li>
+              <% } %>
+            <% } %>
+            <!-- <a href="/categorias/estrenos" category="estrenos" id="seleccion-categoria">Estrenos</a>
+            <a href="/categorias/accion"category="accion" id="seleccion-categoria">Acción</a>
+            <a href="/categorias/clasicos"category="clasicos" id="seleccion-categoria">Clásicos</a>
+            <a href="/categorias/drama"category="drama" id="seleccion-categoria">Drama</a> -->
+          </div>
+        </div>
+      </div>
+      <input type="text" class="Buscar" placeholder="Buscar Película">
+    </div>
+      <section class="categorias">
+        <% if (locals.categorias){ %>
+          <div class="alineacion-movil">
+            <% for (const categoria of categorias) {%>
+            <a href="/categorias/<%= categoria.categoria %>" class="contenido-categoria">
+                <!-- <div class="contenido-categoria"> -->
+                <h3 class="titulo-categ"><%= categoria.titulo %></h3>
+                <div class="contenido-ch-categ">
+                    <img class="poster-categoria" src="<%= categoria.poster %>">
+                </div>
+                <!-- </div> -->
+            </a>
+            <%}%>
+       <% } %>
+
+  </main>
+  <%- include('./partials/footer') %>
+  <!-- <script src="/js/categorias-script.js"></script> -->
+</body>
+  
+</html>

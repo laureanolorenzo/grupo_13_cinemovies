@@ -15,28 +15,27 @@
 
       <div class="seccionCategorias">
         <div class="seccionIntermedia">
-          <h1>Películas</h1>
+          <h1>Categorías</h1>
           <div class="dropdown">
-            <button class="dropbtn"><use>selec</use></button>
+            <button class="dropbtn"><use>Seleccionar</use></button>
             <div class="dropdown-content">
               <% if (typeof categories !== 'undefined') { %>
                 <% for (const categ of categories) {%>
-
-                  <li><a href="/categorias/<%= categ.categoria %>" category="estrenos" id="seleccion-categoria"><%= categ.title %></a></li>
+                  <li><a href="/categorias/<%= categ.categoria %>" category="estrenos" id="seleccion-categoria"><%= categ.titulo %></a></li>
                 <% } %>
+                
               <% } %>
-              <!-- <a href="/categorias/estrenos" category="estrenos" id="seleccion-categoria">Estrenos</a>
-              <a href="/categorias/accion"category="accion" id="seleccion-categoria">Acción</a>
-              <a href="/categorias/clasicos"category="clasicos" id="seleccion-categoria">Clásicos</a>
-              <a href="/categorias/drama"category="drama" id="seleccion-categoria">Drama</a> -->
             </div>
           </div>
+          <a href="/categorias" style="color: azure;">ver todas</a>
         </div>
+        
         <input type="text" class="Buscar" placeholder="Buscar Película">
       </div>
 
       <section class="categorias">
         <% if (datos){ %>
+          <h3 class="titulo-pelicula titulo-categoria"></h3>
           <div class="alineacion-movil">
             <% for (const peli of datos) {%>
 
@@ -63,35 +62,32 @@
        <% if ((datos.length == 0)) { %>
         <!-- Pelicula por default -->
           <div class="alineacion-movil">
-              <h3 class="titulo-pelicula">Napoleon</h3>
               <div class="contenido-pelicula">
+                <h3 class="titulo-pelicula">Oppenheimer (Default)</h3>
                   <div class="contenido">
-                    <img class="poster" src="images/napoleon-poster-64ad1f6325a8b.jpg">
-                    <div class="sin-padding">
-                        <ul>
-                            <li class="linea" >Calificación: Apta para mayores de 13 años</li>
-                            <li class="linea" >Duración: 158 minutos</li>
-                            <li class="linea" >Género: Histórica , Biográfica</li>
-                            <li class="linea" >Director: Ridley Scott</li>
-                            <li class="linea" >Actores: Joaquin Phoenix, Vanessa Kirby, Ludivine Sagnier</li>
-                            <li class="linea" >Origen: Reino Unido, Estados Unidos</li>
-                        </ul>
-                      </div>
-                      <div class="trailer">
-                        <iframe width="560" height="315" src="https://www.youtube.com/watch?v=NjMJwewmcfA" frameborder="0" allowfullscreen></iframe>
-                      </div>
+                    <img class="poster" src="/images/movies/Oppenheimer-1704895653762.jpg">
+                    <ul>
+                        <li class="linea" >Calificación: Apta para mayores de 13 años</li>
+                        <li class="linea" >Duración: 158 minutos</li>
+                        <li class="linea" >Género: Histórica , Biográfica</li>
+                        <li class="linea" >Director: Ridley Scott</li>
+                        <li class="linea" >Actores: Joaquin Phoenix, Vanessa Kirby, Ludivine Sagnier</li>
+                        <li class="linea" >Origen: Reino Unido, Estados Unidos</li>
+                    </ul>
                   </div>
-              </div>
-
-              <div>
-                  <button class="boton-ver" type="button"> VER </button>
+                    <a href="/" class="button" > VER </a>
+                  </div>
+                    <div class="trailer">
+                      <iframe width="560" height="315" src="https://www.youtube.com/watch?v=NjMJwewmcfA" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                  </div>
               </div>
         <% } %>
     </div>
 
   </main>
   <%- include('./partials/footer') %>
-
+  <script src="/js/categorias-script.js"></script>
 </body>
-
+  
 </html>
