@@ -46,6 +46,12 @@ let cols = {
     fecha_estreno: {
         type: dataTypes.DATE
     },
+    origen: {
+        type: dataTypes.INTEGER
+    },
+    duracion: {
+        type: dataTypes.STRING
+    },
     id_categoria_pelicula: {
         type: dataTypes.INTEGER
     }

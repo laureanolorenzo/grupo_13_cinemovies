@@ -39,7 +39,7 @@ const rutaCarrito = require('./routes/carritoRouter');
 const rutaUsuarios = require ('./routes/usersRouter');
 const rutaHome = require('./routes/mainRouter');
 const rutaProducto = require('./routes/productoRouter');
-
+const rutaTMDB = require('./routes/tmdbRouter');
 
 //cookie parser
 const cookieParser = require('cookie-parser');
@@ -63,6 +63,8 @@ app.use(loggedInMiddleware); //Para setear "user" en locals si esta logueado. No
 // Uso de los routers principales
 
 app.use(rutaProducto);
+
+app.use(rutaTMDB);
 
 // Servidor
 const PORT = 3000;
