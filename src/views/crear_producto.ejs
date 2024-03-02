@@ -14,10 +14,10 @@
 
                     <form class="section-input" method="POST" action="crear_producto/process" enctype="multipart/form-data">
                         <label class="field">Título
-                            <input type="text" class="input-text" name="title" id="titulo" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                            <input type="text" class="input-text" name="title" id="title" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
                         <label class="field" for="year"> Año
-                            <input type="number" name="year" id="year" min="1980" max="2023" value="2023" class="input-text">
+                            <input type="number" name="year" id="year" min="1900" max="2023" value="2023" class="input-text">
                         </label>
                         <label class="field" for="estreno">Estreno
                             <select name="estreno" id="estreno" class="input-text">
@@ -27,16 +27,16 @@
                             </select>
                         </label>
                         <label class="field" for="descripcion"> Descripción
-                            <input type="text" class="input-text" name="description" id="descripcion" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                            <input type="text" class="input-text" name="description" id="description" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
                         <label class="field">Director
                             <input type="text" class="input-text" name="director" id="director" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
                         <label class="field">Reparto
-                            <input type="text" class="input-text" name="cast" id="reparto" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                            <input type="text" class="input-text" name="cast" id="cast" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
                         <label class="field">Puntuación
-                            <input type="number" class="input-text" name="rating" id="puntacion" min="1" max= "5" placeholder="5"  oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                            <input type="number" class="input-text" name="rating" id="rating" min="1" max= "5" placeholder="5"  oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
                         <label class="field" for="clasificacion_edad">Clasificación
                             <select name="clasificacion_edad" id="clasificacion_edad" class="input-text">
@@ -58,23 +58,35 @@
                         <!-- <label class="field" for="rating">Rating #### NO FUNCIONA!
                             <select name="rating" id="rating" class="input-text">
                                 <option value="" disabled selected hidden>Seleccionar</option>
-                            <% for (const x of estructuraMovie['ratings']) { %>
+                            <% for (const x of categorias) { %>
                                 <option value ="<%= x %>"><%= x %></option>
                             <% } %>
                         </label> -->
                         <!-- <br><br><br> <div></div> -->
                         
                         <label class="field" for="categoria">Categoría
-                            <select name="category" id="categoria" class="input-text">
+                            <select name="category" id="category" class="input-text">
                                 <option value="" disabled selected hidden>Seleccionar</option>
-                            <% for (const i of estructuraMovie['categories']) { %>
-                                <option value ="<%= i %>"><%= i %></option>
+                            <% for (let i= 0; i<categorias.length; i++) { %>
+                                <option value ="<%= categorias[i].id %>"><%= categorias[i].titulo %></option>
                             <% } %>
                             </select>
                         </label>
 
+                        <label class="field" for="awards"> Premios 
+                            <input type="number" name="awards" id="awards" min="0" max="20" value="0" class="input-text">
+                        </label>
+
+                        <label class="field" for="language"> Idioma
+                            <input type="text" name="language" id="language" class="input-text">
+                        </label>
+
+                        <label class="field" for="release_date">Fecha de estreno
+                            <input type="date" name="release_date" id="release_date" class="input-text">
+                        </label>
+
                         <label for="imagen" class="field">Póster de la película
-                            <input type="file" name="image" id="imagen" class="input-text">
+                            <input type="file" name="image" id="image" class="input-text">
                         </label>
 
                         <label for="banner" class="field">Banner de la película
