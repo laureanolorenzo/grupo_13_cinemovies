@@ -60,6 +60,7 @@ const productoController = {
 
         fs.writeFile(moviesPath, moviesList, () => {res.redirect("/")}); //sobrescribe el archivo movies.json pero sin las peliculas que borramos
     },
+
     editar_productoView(req,res){
         let jsonPeliculas = listMovies()
         let idParams = req.params.id;
@@ -73,6 +74,7 @@ const productoController = {
          res.render('editar_producto', {peliAEditar:peliAEditar,estructuraMovie:estructuraMovie, user: req.session.userLoggedIn });
 
     },
+    
     editar_producto(req,res){
 
        let jsonPeliculas = listMovies();
@@ -141,58 +143,91 @@ const productoController = {
     
     
     },
+
     crear_productoView(req,res) {
-        const admin = true;
-        const estructuraMovie = {
-            categories : listCategories(), // Nuevas categorias deben ir acá!
-            year : anio,
-            ratings: ['1','2','3','4','5']
-        }
-        if (!admin) {
-            res.send('No tiene permiso para realizar esta acción');
-        }
-        res.render('crear_producto',{estructuraMovie, user: req.session.userLoggedIn }); // Incluir objeto (que venga de JSON con los datos de cada producto)
+
+        db.categorias_peliculas.findAll()
+            .then(function(categorias){
+                return res.render('crear_producto', {categorias:categorias})
+            })
+
+
+
+        // const admin = true;
+        // const estructuraMovie = {
+        //    categories : listCategories(), // Nuevas categorias deben ir acá!
+        //    year : anio,
+        //    ratings: ['1','2','3','4','5']
+        // }
+        // if (!admin) {
+        //    res.send('No tiene permiso para realizar esta acción');
+        // }
+        // res.render('crear_producto',{estructuraMovie, user: req.session.userLoggedIn }); // Incluir objeto (que venga de JSON con los datos de cada producto)
     },
 
     crear_productoProcess(req,res, next) {
-        if (req.body) {
-            const moviesPath = path.resolve(__dirname, '../datos/movies.json');
-            const movies = fs.readFileSync(moviesPath, 'utf-8');
-            let lastId;
-            let moviesObj;
-            if (movies.length === 0) {
-                moviesObj = [];
-                lastId = 0;
-            } else {
-                moviesObj = JSON.parse(movies);
-                lastId = moviesObj[moviesObj.length - 1].id;
 
-            }
-            let newMovie = req.body;
-            const file = req.files;
-            // if (!file) {
-            //     res.send('Por favor suba una imagen para su película'); // Buscar una mejor forma de validarlo!
-            //    return next(new Error('Por favor suba una imagen para su película'));
-            // }
-            // newMovie['image'] = file['filename'];            
-            if (file.image !=undefined && file.banner !=undefined) {
-                newMovie['image'] = file.image[0].filename;
-                newMovie['banner'] = file.banner[0].filename;
-                newMovie['duration'] =  newMovie['duration'] + " minutos";
-                newMovie['id'] = lastId + 1;
-                moviesObj.push(newMovie);
-                fs.writeFileSync(moviesPath,JSON.stringify(moviesObj,null,2));
-                res.redirect('/');
-            } else {
-                res.send('Debe agregar un póster y un banner para la película');
-                // Para despues podemos hacer una vista con un boton que te lleve devuelta al form con los datos ya cargados.
-            };
+        db.Peliculas.create({
+            titulo: req.body.title,
+            anio: req.body.year,
+            es_estreno: req.body.estreno,
+            descripcion: req.body.description,
+            director: req.body.director,
+            reparto: req.body.cast,
+            puntuacion: req.body.rating,
+            clasificacion: req.body.clasificacion_edad,
+            duracion: req.body.duration,
+            origen: req.body.origin,
+            poster: req.body.image,
+            banner: req.body.banner,
+            awards: req.body.awards,
+            idioma: req.body.language,
+            fecha_estreno: req.body.release_date,
+            id_categoria_pelicula: req.body.category
+        });
+
+        res.redirect('/home');
+
+        // if (req.body) {
+        //     const moviesPath = path.resolve(__dirname, '../datos/movies.json');
+        //     const movies = fs.readFileSync(moviesPath, 'utf-8');
+        //     let lastId;
+        //     let moviesObj;
+        //     if (movies.length === 0) {
+        //         moviesObj = [];
+        //         lastId = 0;
+        //     } else {
+        //         moviesObj = JSON.parse(movies);
+        //         lastId = moviesObj[moviesObj.length - 1].id;
+
+        //     }
+        //     let newMovie = req.body;
+        //     const file = req.files;
+        //     // if (!file) {
+        //     //     res.send('Por favor suba una imagen para su película'); // Buscar una mejor forma de validarlo!
+        //     //    return next(new Error('Por favor suba una imagen para su película'));
+        //     // }
+        //     // newMovie['image'] = file['filename'];            
+        //     if (file.image !=undefined && file.banner !=undefined) {
+        //         newMovie['image'] = file.image[0].filename;
+        //         newMovie['banner'] = file.banner[0].filename;
+        //         newMovie['duration'] =  newMovie['duration'] + " minutos";
+        //         newMovie['id'] = lastId + 1;
+        //         moviesObj.push(newMovie);
+        //         fs.writeFileSync(moviesPath,JSON.stringify(moviesObj,null,2));
+        //         res.redirect('/');
+        //     } else {
+        //         res.send('Debe agregar un póster y un banner para la película');
+        //         // Para despues podemos hacer una vista con un boton que te lleve devuelta al form con los datos ya cargados.
+        //     };
 
 
-        } else {
-            next(new Error('Se ha producido un error. Por favor vuelva a intentarlo.'));
-        }
+        // } else {
+        //     next(new Error('Se ha producido un error. Por favor vuelva a intentarlo.'));
+        // }
+
     },
+
     async allCategoriesView(req,res) {
         // const categoriesJson = fs.readFileSync(categoriesRuta, {'encoding': 'utf-8'});
         let categorias = await db.categorias_peliculas.findAll();
