@@ -15,29 +15,13 @@
     <div class="carrusel">
       <div id="slider">
         <div class="slides">
-          <div class="slider">
+        <% for(let j = 0; j<estrenos.length; j++) { %>
+          <a href="<%= estrenos[j] ? '/detalle_producto/' + estrenos[j] : '/' %>" class="slider">
             <div class="image">
-              <img src="/images/cover1.jpeg">
+              <img src="<%= estrenos[j]?estrenos[j].banner : `/images/cover${j+1}.jpeg`%>" alt="<%= estrenos[j].id %>">
             </div>
-          </div>
-          <div class="slider">
-            <div class="image">
-              <img src="/images/cover2.jpeg">
-            </div>
-          </div>
-          <div class="slider">
-            <div class="legend"></div>
-            <div class="image">
-              <img src="/images/cover3.jpeg">
-            </div>
-          </div>
-          <div class="slider">
-            <div class="legend"></div>
-            <div class="image">
-              <img src="/images/cover4.jpeg">
-            </div>
-          </div>
-        </div>
+          </a>
+        <% } %>
         <div class="switch">
           <ul>
             <li>
@@ -50,7 +34,47 @@
         </div>
       </div>
     </div>
+    </div>
     <div class="wrapper">
+    <!-- //   <div class="carrusel">
+    //   <div id="slider">
+    //     <div class="slides">
+    //       <div class="slider">
+    //         <div class="image">
+    //           <img src="/images/cover1.jpeg">
+    //         </div>
+    //       </div>
+    //       <div class="slider">
+    //         <div class="image">
+    //           <img src="/images/cover2.jpeg">
+    //         </div>
+    //       </div>
+    //       <div class="slider">
+    //         <div class="legend"></div>
+    //         <div class="image">
+    //           <img src="/images/cover3.jpeg">
+    //         </div>
+    //       </div>
+    //       <div class="slider">
+    //         <div class="legend"></div>
+    //         <div class="image">
+    //           <img src="/images/cover4.jpeg">
+    //         </div>
+    //       </div>
+    //     </div>
+    //     <div class="switch">
+    //       <ul>
+    //         <li>
+    //           <div class="on"></div>
+    //         </li>
+    //         <li></li>
+    //         <li></li>
+    //         <li></li>
+    //       </ul>
+    //     </div>
+    //   </div>
+    // </div> -->
+    
       <div class="home-main_content">
         <div class="categorias">
           <div class="categoria-title">
@@ -98,6 +122,26 @@
             <% } %>
           </div>
         </div>
+        <!-- Seccion de proximos estrenos! -->
+        <div class="categoria-title">
+          <h3>Próximamente sólo en Cinemovies</h3>
+        </div>
+        <div class="loader"></div>
+        <div class="categoria-list upcoming">
+          
+          <!-- Aca creo que es mejor usar ejs y ya directamente darle funcionalidad -->
+          <!-- El atributo categ creo que se debe reemplazar por id en algun momento -->
+          <!-- <% for (let x = 0; x < 5; x++) { %>  -->
+            <!-- cuidado, son muchos llamados a la API?? -->
+            <!-- <a href="" class="categoria upcoming"></a>
+            <a href="/categorias/ " class="categoria">
+              <div class="background-img backg- "> -->
+                <!-- colocar con background-image -->
+              <!-- </div>
+              <h4><4>
+            </a>
+          <% } %> -->
+        </div>
         <div class="kiosco">
           <div class="kiosco-title">
             <h3>kiosco</h3>
@@ -140,7 +184,8 @@
     </div>
   </div>
 
-  <%- include('./partials/footer') %>
+<%- include('./partials/footer') %>
+<script src="/js/home-script.js"></script>
 </body>
 </html>
 
@@ -152,4 +197,3 @@
 <a href="detalle_producto">DETALLE PRODUCTO</a>
 <a href="/ir_a_pagar">PAGAR</a>
 <a href="/kiosco">KIOSCO</a>
-<a href="/registro">REGISTRO</a> -->

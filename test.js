@@ -19,10 +19,12 @@ async function createCategoria() {
     console.log(movie)
 }
 
-createCategoria();
+// createCategoria();
 
 console.log()
-
+let today = new Date();
+let releaseDate = new Date('2023-01-02');
+console.log(today < releaseDate)
 // console.log(db.categorias_peliculas.findAll());
 // console.log(db.funciones.findAll());
 // console.log(db.roles.findAll());

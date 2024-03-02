@@ -11,7 +11,6 @@ const { response } = require('express');
 const db = require('../../database/models');
 // Vars
 const resLang = 'es-AR';
-const movieID = 695721;
 const trendingURL = `https://api.themoviedb.org/3/trending/movie/week?language=${resLang}&page=1`;
 // Funcion para retornar cualquier pedido de la API
 async function getTmdbResponse(url) {
@@ -78,10 +77,24 @@ async function getPopularMovies(nResults = 10) { //Peliculas aleatorias en la li
     }
     return Array.from(ids);
 }
+async function checkUpcomingFit(result) {
+    let resultInDb = await db.Peliculas.findOne(
+        {where: {tmdb_id : result.id}}
+    )
+    let today = new Date();
+    let releaseDate = new Date(result.release_date);
+    let released = today > releaseDate;
+    resultInDb = resultInDb != null;
+    if (!result.title || !result.poster_path || !(['en','es'].includes(result.original_language)) || resultInDb) {
+        return false
+    }
+    return true
+    
+}
 // Buscar el id del genero que corresponda. Luego hacerlo con la base de datos!
 async function getGenreID(genre) {
     let categ = await db.categorias_peliculas.findOne(
-        {where: {categoria: genre}}
+        {where: {titulo: genre}}
     );
     return categ.id;
 }
@@ -97,7 +110,7 @@ async function getMovieByID(id,responseLang ='es-AR',saveLocal = false)  {
     if (!releaseInfo) {
         releaseInfo = res.data.release_dates.results.find(relDate => relDate.iso_3166_1 == 'US');
     }
-    let classification = releaseInfo ? releaseInfo.release_dates[0].certification : ''; // null?
+    let classification = releaseInfo ? releaseInfo.release_dates[0].certification : null; // null?
     let origen = '';
     res.data.production_countries.forEach(country => { origen += `${country.name}, `}); 
     origen = origen.slice(0,-2); // Que no quede coma espacio al final
@@ -106,12 +119,16 @@ async function getMovieByID(id,responseLang ='es-AR',saveLocal = false)  {
     let poster, banner;
     if (saveLocal){ // Importante, decidir si la imagen va a tener una path local o no! Incluso crear una variable en la base de datos!
         let localFileName = removeWhiteSpace(res.data.title) + path.extname(res.data.backdrop_path);
-        poster = `poster-${localFileName}`;
-        banner = (+isReleasingFromDateDiff(Date.parse(fecha_estreno)) == 1)? `banner-${localFileName}` : ''; //Si no es estreno, no guardar banner!
+        
+        banner = (+isReleasingFromDateDiff(Date.parse(fecha_estreno)) == 1)? `banner-${localFileName}` : null; //Si no es estreno, no guardar banner!
     } else {
-        poster = `https://image.tmdb.org/t/p/original${res.data.poster_path}`;
-        banner = (+isReleasingFromDateDiff(Date.parse(fecha_estreno)) == 1)? `https://image.tmdb.org/t/p/original${res.data.backdrop_path}` : ''
-    }
+        poster = res.data.poster_path?`https://image.tmdb.org/t/p/original${res.data.poster_path}`:null;
+        banner = (+isReleasingFromDateDiff(Date.parse(fecha_estreno)) == 1)&&(res.data.backdrop_path)? `https://image.tmdb.org/t/p/original${res.data.backdrop_path}` : null;
+        // if (origen == 'Argentina') {
+        //     banner = null; //Las de Arg pueden venir en mala calidad!
+        // }
+    } //Banner queremos si: 1) es estreno y 2) tiene banner! (Las pelis Arg. suelen no tener)
+    poster = res.data.poster_path?poster:null;
     return {
         titulo: res.data.title,
         fecha_estreno: fecha_estreno, //Luego manejar al mandar a la BD
@@ -300,7 +317,7 @@ const tmdbController = {
            1130053, 1217409, 1202087,
            1229873, 1245241, 1044920,
            1244034, 1204367, 1238612,
-           1241611, 1245239
+           1241611, 1245239,1011985
         ];
         // Si hay que redefinir los ids, descomentar lo de abajo!
         // const clasicosIds = await getClassics();
@@ -316,8 +333,10 @@ const tmdbController = {
                     newMovie = await getMovieByID(id);
                     newCredits = await getMovieCreditsByID(id);
                     var movieInst = new Movie({...newMovie,...newCredits});
-                    movieInst.insertIntoDataBase(); 
-                    console.log('Creando registro para peli con tmdbi:' + id);
+                    if (movieInst.poster && movieInst.titulo) {
+                        movieInst.insertIntoDataBase();
+                        console.log('Creando registro para peli con tmdbi:' + id); 
+                    }
                 } catch(e){ //Luego pensar otra logica!
                     console.log(e);
                 }
@@ -328,6 +347,36 @@ const tmdbController = {
         }
         res.send('Base de datos actualizada!');
         console.log('Base de datos actualizada!')
+    },
+    async getUpcoming(req,res) {
+        const fechaHoy = new Date();
+        const anio = fechaHoy.getFullYear();
+        const mes = String(fechaHoy.getMonth() + 1).padStart(2, '0');
+        const dia = String(fechaHoy.getDate()).padStart(2, '0');
+        min_date = `${anio}-${mes}-${dia}`;
+        // const url = `https://api.themoviedb.org/3/movie/upcoming?language=es-AR&page=1&sort_by=primary_release_date.desc`;
+        const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=es-AR&page=1&sort_by=popularity.desc&&primary_release_date.gte=${min_date}`
+        const response = await getTmdbResponse(url);
+        var upcomingMovies = [];
+        for (const result of response.data.results) {
+            // if (result.title && result.poster_path && ['en','es'].includes(result.original_language)) {
+            //     console.log('---------------------------------')
+            //     console.log(upcomingMovies.length)
+            if (await checkUpcomingFit(result)) {
+                if (upcomingMovies.length < 8) {
+                    upcomingMovies.push({
+                        'tmdbId':result.id,
+                        'titulo':result.title,
+                        'poster': `https://image.tmdb.org/t/p/original${result.poster_path}`,
+                        'fecha_estreno': result.release_date
+                    });
+                } else {
+                    break;
+                }
+            }
+        }
+    // console.log(upcomingMovies)
+    res.json(upcomingMovies);
     }
 }
 module.exports = tmdbController;
@@ -338,8 +387,9 @@ console.log('#####################\n\n\n\n\n\n\n###############')
 async function testingFunc() {
     // let movies = await getClassics(20)
     // let est = await getEstrenos(20)
-    let newMovie = await getMovieByID(68718);
-    console.log(newMovie)
+    let url = `https://api.themoviedb.org/3/movie/upcoming?language=es-AR&page=1&sort_by=popularity.desc`;
+    let res = await getTmdbResponse(url);
+    console.log(res.data.results)
 //     console.log('Clasicos',movies)
 //     console.log('Estrenos',est)
 }

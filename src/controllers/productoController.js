@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const db = require('../../database/models');
 
+
 // Rutas
 const categoriesRuta = path.join(__dirname, '../datos/categories.json');
 const moviesRuta = path.join(__dirname, '../datos/movies.json');
