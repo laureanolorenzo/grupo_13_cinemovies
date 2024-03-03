@@ -28,6 +28,8 @@ const multipleUpload = fileUpload.fields([{name: 'image', maxCount: 1}, {name: '
 
 router.get('/detalle_producto/:id', productoController.detalle_productoView);
 
+router.get('/listado_peliculas', productoController.listado_peliculas);
+
 
 
 

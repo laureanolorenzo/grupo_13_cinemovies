@@ -16,6 +16,15 @@ let {anio,ratingsMap,listCategories,listMovies,moviesPath} = require('../middlew
 // import listCategories from '../middlewares/funcs';
 
 const productoController = {
+    
+    listado_peliculas(req,res) {
+
+        db.Peliculas.findAll()
+            .then(function(productos){
+                return res.render('listado_peliculas', {productos:productos})
+        })
+    },
+
     detalle_productoView(req,res) {
         if(req.params.id){
             id = req.params.id
