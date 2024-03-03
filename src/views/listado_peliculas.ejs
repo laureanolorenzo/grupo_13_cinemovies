@@ -10,10 +10,10 @@
         <% } %>
 
         <main>
-            <h1>Todas las películas</h1>
-            <ul>
+            <h1 class="titulo-productos">Todas las películas</h1>
+            <ul class="lista-productos">
                 <% for (let i= 0; i<productos.length; i++) { %>
-                    <li> <img src="<%= productos[i].poster %>" alt="póster de la película"> <%= productos[i].titulo %></li>
+                    <li class="item-productos"> <img src="<%= productos[i].poster %>" alt="póster de la película"> <p><%= productos[i].titulo %></p></li>
                 <% } %>
             </ul>
         </main>
