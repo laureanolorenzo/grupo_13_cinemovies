@@ -13,7 +13,7 @@
             <h1 class="titulo-productos">Todas las películas</h1>
             <ul class="lista-productos">
                 <% for (let i= 0; i<productos.length; i++) { %>
-                    <li class="item-productos"> <img src="<%= productos[i].poster %>" alt="póster de la película"> <p><%= productos[i].titulo %></p></li>
+                    <li class="item-productos"> <a href="/detalle_producto/<%= productos[i].id %>"> <img src="<%= productos[i].poster %>" alt="póster de la película"> <p><%= productos[i].titulo %></p> </a></li>
                 <% } %>
             </ul>
         </main>

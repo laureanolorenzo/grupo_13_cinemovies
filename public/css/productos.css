@@ -24,10 +24,13 @@
     border-radius: 5px;
 }
 
-.item-productos p{
-    padding: 0 0 15px 0;
+.item-productos a {
+    text-decoration: none;
 }
 
+.item-productos p {
+    padding: 0 0 15px 0;
+}
 
 @media(min-width:481px){
     .item-productos {
@@ -43,5 +46,23 @@
 }
 
 @media(min-width:769px){
+    .lista-productos {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
+    .item-productos {
+        flex-direction: column;
+        max-width: 15%;
+        margin: 15px 15px;
+        flex-basis: 60%;
+    }
+
+    .item-productos img {
+        width: 10vw;
+        height: 15vw;
+    }
+    
 }
