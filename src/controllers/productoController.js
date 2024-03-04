@@ -26,20 +26,31 @@ const productoController = {
     },
 
     detalle_productoView(req,res) {
-        if(req.params.id){
-            id = req.params.id
-        }
-        let movies = JSON.parse(fs.readFileSync(path.join(__dirname, '../datos/movies.json'))); 
 
-        let movieToShow = movies.find(movie => movie.id == id);
-        if (!movieToShow) { // Si el usuario "typea" un id a mano que no existe, lo lleva a "error"
-            return res.redirect('/error-404');
-        } 
+        db.categorias_peliculas.findAll()
+            .then(function(categorias){
+                db.Peliculas.findAll()
+                    .then(function(detallePelicula){
+                            let detalleProductoId = req.params.id;
+                            return res.render('detalle_producto', {detallePelicula:detallePelicula, detalleProductoId:detalleProductoId, categorias:categorias});
+                        })
+            })
+        
 
-        const idPelicula = req.params.id
+        // if(req.params.id){
+        //     id = req.params.id
+        // }
+        // let movies = JSON.parse(fs.readFileSync(path.join(__dirname, '../datos/movies.json'))); 
 
-        movieToShow['rating'] = ratingsMap[movieToShow['rating']];
-        res.render('detalle_producto' , {datos: movieToShow, idPelicula: idPelicula, user: req.session.userLoggedIn});
+        // let movieToShow = movies.find(movie => movie.id == id);
+        // if (!movieToShow) { // Si el usuario "typea" un id a mano que no existe, lo lleva a "error"
+        //     return res.redirect('/error-404');
+        // } 
+
+        // const idPelicula = req.params.id
+
+        // movieToShow['rating'] = ratingsMap[movieToShow['rating']];
+        // res.render('detalle_producto' , {datos: movieToShow, idPelicula: idPelicula, user: req.session.userLoggedIn});
     },
 
     borrar_producto(req,res){
