@@ -17,7 +17,6 @@ let multerDiskStorage = multer.diskStorage({ //Se guarda como variable para usar
     }
 })
 
-
 const productoController = require('../controllers/productoController');
 
 const fileUpload = multer({storage: multerDiskStorage});
@@ -28,20 +27,15 @@ const multipleUpload = fileUpload.fields([{name: 'image', maxCount: 1}, {name: '
 
 router.get('/detalle_producto/:id', productoController.detalle_productoView);
 
+router.post('/detalle_producto/borrar_producto/:id', productoController.borrar_producto);
 
 
 router.get('/listado_peliculas', productoController.listado_peliculas);
 
 
-
 router.get('/crear_producto', productoController.crear_productoView);
 
 router.post('/crear_producto/process', multipleUpload, productoController.crear_productoProcess);
-
-
-
-router.delete('/detalle_producto/:id', productoController.borrar_producto);
-
 
 
 router.get('/editar_producto/:id', productoController.editar_productoView);

@@ -61,8 +61,6 @@ const productoController = {
             }
         })
 
-        console.log(req.params.id)
-
         res.redirect('/listado_peliculas')
 
         // const moviesPath = path.resolve(__dirname, '../datos/movies.json');

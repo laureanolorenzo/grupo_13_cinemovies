@@ -24,8 +24,9 @@
                         <p> Director: <%= detallePelicula[i].director %></p>
                         <p> Reparto: <%= detallePelicula[i].reparto %></p>
                         <p> Descripción: <%= detallePelicula[i].descripcion %></p>
+                    
                     </div>
-                <% } else if (detalleProductoId > detallePelicula.length) { %>
+                    <% } else if (detalleProductoId > Object.values(detallePelicula).pop().id) { %>
                     <h1>La película que buscas no existe</h1>
                     <% break %>
                 <% } %>
@@ -54,20 +55,12 @@
                 <button class="reserve-button">Reservar</button>
 
                 <% for (let i=0; i<detallePelicula.length; i++){ %>
-                    <% if (detallePelicula[i] === detalleProductoId){ %>
-                        <form method="POST" action="/detalle_producto/<%=detallePelicula[i]%>?_method=DELETE">
-                            <button type="submit" class="delete-button" onclick="return confirm('Eliminar?')">Eliminar producto</button>
+                    <% if (detallePelicula[i].id == detalleProductoId) { %>
+                        <form method="POST" action="borrar_producto/<%=detallePelicula[i].id%>">
+                            <button type="submit" class="reserve-button"">Eliminar</button>
                         </form>
-                        <a href="/editar_producto/<%=detallePelicula[i]%>" class= "delete-button">Editar</a>
                     <% } %>
                 <% } %>
-
-
-                <form method="POST" action="/detalle_producto/<%=detallePelicula%>?_method=DELETE">
-                    <button type="submit" class="delete-button" onclick="return confirm('Eliminar?')">Eliminar producto</button>
-                </form>
-
-                <!-- <p> idPelicula%>ASFDFAA</p> -->
 
                 <a href="/" class="back-button">Volver</a>
             </div>
