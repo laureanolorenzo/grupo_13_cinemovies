@@ -6,6 +6,7 @@ const usersPath = path.join(__dirname,'../datos/users.json');
 const User = require('../../models/User');
 const session = require('express-session');
 const cookie = require('cookie-parser');
+const db = require('../../database/models');
 
 const {validationResult} = require('express-validator');
 function checkPasswordValidity(pw) { //Donde va esto?? En un archivo aparte??
@@ -37,7 +38,7 @@ function checkPasswordValidity(pw) { //Donde va esto?? En un archivo aparte??
 }
 const usersController = {
     usersView(req,res) {
-        res.render('users', { user: req.session.userLoggedIn }); // Incluir objeto (que venga de JSON con los datos de cada producto)
+        res.render('perfilUsuario', { user: req.session.userLoggedIn }); // Incluir objeto (que venga de JSON con los datos de cada producto)
     },
 
     usersRegister (req,res){
@@ -48,54 +49,73 @@ const usersController = {
     },
 
     registerView(req,res) {
-        res.render('registro', { user: req.session.userLoggedIn })
-    },
-     postRegisterData(req,res) {
-        let emailInDB = User.findByField('email', req.body.email);
-        let userInDB = User.findByField('user',req.body.user);
-        let errors = validationResult(req).mapped(); 
-        if (emailInDB) { //Case mejor?? O directamente una funcion que reciba un booleano
-            if (Object.keys(errors).length != 0) {
-                errors['email'] = {msg:'*El email ya está en uso'}
-            } else {
-                errors = {email:{msg:'*El email ya está en uso'}};
-            }
-        }
-        if (userInDB) {
-            if (Object.keys(errors).length != 0) {
-                errors['user'] = {msg:'*El nombre de usuario no está disponible'};
-            } else {
-                errors = {user:{msg:'*El nombre de usuario no está disponible'}};
-            }
-        }
-        if (req.body.password != req.body.passwordRepeat) { // Hay mejores formas de hacer esto???
-            if (Object.keys(errors).length == 0) { //si el email ya está registrado te recarga la pagina y no te crea el usuario, 
-                errors = {password:{msg:'*Las contraseñas deben coincidir'}}
-            } else {
-                errors['password'] = errors.password ? errors.password : {msg: '*Las contraseñas deben coincidir'};
-            }
-        }
-        if (!checkPasswordValidity(req.body.password)) {
-            errors['password'] = errors?.password? errors.password : {msg:'*La contraseña debe contener al menos una letra minúscula, una letra mayúscula, y un número, y sólo puede contener caracteres alfanuméricos'};
-        }
-        // If final por si hay errores o no
-        if (Object.keys(errors).length > 0) { // Un solo check al final
-            if (errors.password && errors.passwordRepeat) {
-                delete errors.passwordRepeat
-            }
-            return res.render('registro',{
-                errors,
-                oldData: req.body,
-                user: req.session.userLoggedIn
+        db.roles.findAll()
+            .then(function(roles){
+                return res.render('registro', {roles:roles})
             })
-        } else {
-            userData = {
-                ...req.body,
-                'profilePic': req.file?.filename ? req.file.filename : 'default-profilePic.jpg'
-            }
-            User.create(userData);
-            res.redirect('home');
-        }
+    },
+    
+    postRegisterData(req,res) {
+
+        db.Usuarios.create({
+            nombre: req.body.username,
+            email: req.body.email,
+            contrasena: bcrypt.hashSync(req.body.password),
+            foto: req.body.avatar,
+            id_rol: req.body.rol
+        });
+
+        res.redirect('/home');
+        
+        // let emailInDB = User.findByField('email', req.body.email);
+        // let userInDB = User.findByField('user',req.body.user);
+        // let errors = validationResult(req).mapped(); 
+        // if (emailInDB) { //Case mejor?? O directamente una funcion que reciba un booleano
+        //     if (Object.keys(errors).length != 0) {
+        //         errors['email'] = {msg:'*El email ya está en uso'}
+        //     } else {
+        //         errors = {email:{msg:'*El email ya está en uso'}};
+        //     }
+        // }
+        // if (userInDB) {
+        //     if (Object.keys(errors).length != 0) {
+        //         errors['user'] = {msg:'*El nombre de usuario no está disponible'};
+        //     } else {
+        //         errors = {user:{msg:'*El nombre de usuario no está disponible'}};
+        //     }
+        // }
+        // if (req.body.password != req.body.passwordRepeat) { // Hay mejores formas de hacer esto???
+        //     if (Object.keys(errors).length == 0) { //si el email ya está registrado te recarga la pagina y no te crea el usuario, 
+        //         errors = {password:{msg:'*Las contraseñas deben coincidir'}}
+        //     } else {
+        //         errors['password'] = errors.password ? errors.password : {msg: '*Las contraseñas deben coincidir'};
+        //     }
+        // }
+        // if (!checkPasswordValidity(req.body.password)) {
+        //     errors['password'] = errors?.password? errors.password : {msg:'*La contraseña debe contener al menos una letra minúscula, una letra mayúscula, y un número, y sólo puede contener caracteres alfanuméricos'};
+        // }
+        // // If final por si hay errores o no
+        // if (Object.keys(errors).length > 0) { // Un solo check al final
+        //     if (errors.password && errors.passwordRepeat) {
+        //         delete errors.passwordRepeat
+        //     }
+        //     return res.render('registro',{
+        //         errors,
+        //         oldData: req.body,
+        //         user: req.session.userLoggedIn
+        //     })
+        // } else {
+        //     userData = {
+        //         ...req.body,
+        //         'profilePic': req.file?.filename ? req.file.filename : 'default-profilePic.jpg'
+        //     }
+        //     User.create(userData);
+        //     res.redirect('home');
+        // }
+
+
+
+        // LO DE ARRIBA ERA LO ANTERIOR
 
         // let usersString = fs.readFileSync(usersPath,{encoding:'utf-8'});
         // let users = JSON.parse(usersString);
@@ -118,8 +138,6 @@ const usersController = {
         // fs.writeFileSync(usersPath,usersToSave,{encoding: 'utf-8'})
         // res.redirect('home')
     },
-
-
 
     // loginView(req,res) {
     //     let usersString = fs.readFileSync(path.join(__dirname,'../datos/users.json'),{encoding:'utf-8'});
@@ -147,39 +165,56 @@ const usersController = {
         
     // },
 
-
     login: (req,res) => {
-        return res.render('login', {user: req.session.userLoggedIn} );
+        return res.render('login');
     },
 
     loginProcess: (req,res) => {
 
-        let userToLogin = User.findByField(['email','user'], req.body.email)
-        let errors = validationResult(req).mapped();
-        if (userToLogin) {
-            let passwordCompared = bcrypt.compareSync(req.body.password, userToLogin.password);
-            if (passwordCompared) {
-                delete userToLogin.password
-                delete userToLogin.passwordRepeat
-                req.session.userLoggedIn = userToLogin;
-                res.locals.userLoggedIn = req.session.userToLogin; // https://stackoverflow.com/questions/56698453/express-session-cannot-set-property-user-of-undefined
-                if (req.body.recordame) {
-                    const expirationDate = new Date('10 Jan 2025 00:00:00 PDT'); // Luego hacer dinamico
-                    req.session.cookie.expires = expirationDate;
-                } else {
-                    req.session.cookie.expires = false;
+
+        db.Usuarios.findAll()
+            .then(function(lista_usuarios){
+                for (let i=0; i<lista_usuarios.length; i++) {
+                    let comparacionContrasenas = bcrypt.compareSync(lista_usuarios[i].contrasena, req.body.password)
+                    if (lista_usuarios[i].email == req.body.email && comparacionContrasenas){
+                        console.log('iniciaste sesion')
+
+                        return res.redirect('/home')
+
+                    }
                 }
-                return res.redirect('/home')
-            } else {
-                if (Object.keys(errors).length == 0) { //Si no esta vacio, queremos que tomen prioridad los otros errores!
-                    errors['password'] = {msg: '*Usuario o contraseña incorrectos'};
-                }
-        }} else {
-            if (Object.keys(errors).length == 0) {
-            errors['password'] = {msg: '*Usuario o contraseña incorrectos'};
-                }} 
-        let {email,password} = req.body;
-        return res.render('login', {errors: errors,oldData: {email,password}});
+            })
+
+
+
+
+
+        // let userToLogin = User.findByField(['email','user'], req.body.email)
+        // let errors = validationResult(req).mapped();
+        // if (userToLogin) {
+        //     let passwordCompared = bcrypt.compareSync(req.body.password, userToLogin.password);
+        //     if (passwordCompared) {
+        //         delete userToLogin.password
+        //         delete userToLogin.passwordRepeat
+        //         req.session.userLoggedIn = userToLogin;
+        //         res.locals.userLoggedIn = req.session.userToLogin; // https://stackoverflow.com/questions/56698453/express-session-cannot-set-property-user-of-undefined
+        //         if (req.body.recordame) {
+        //             const expirationDate = new Date('10 Jan 2025 00:00:00 PDT'); // Luego hacer dinamico
+        //             req.session.cookie.expires = expirationDate;
+        //         } else {
+        //             req.session.cookie.expires = false;
+        //         }
+        //         return res.redirect('/home')
+        //     } else {
+        //         if (Object.keys(errors).length == 0) { //Si no esta vacio, queremos que tomen prioridad los otros errores!
+        //             errors['password'] = {msg: '*Usuario o contraseña incorrectos'};
+        //         }
+        // }} else {
+        //     if (Object.keys(errors).length == 0) {
+        //     errors['password'] = {msg: '*Usuario o contraseña incorrectos'};
+        //         }} 
+        // let {email,password} = req.body;
+        // return res.render('login', {errors: errors,oldData: {email,password}});
     },
 
     profile: (req,res) => {

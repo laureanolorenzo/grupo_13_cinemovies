@@ -18,6 +18,12 @@ module.exports = (sequelize, dataTypes) => {
         },
         id_rol: {
             type: dataTypes.INTEGER
+        },
+        email: {
+            type: dataTypes.STRING(100)
+        },
+        contrasena: {
+            type: dataTypes.STRING(100)
         }
     
     
@@ -29,8 +35,14 @@ module.exports = (sequelize, dataTypes) => {
     }
     
     
-        const Usuario = sequelize.define (alias, cols, config);
+    const Usuario = sequelize.define (alias, cols, config);
+
+    Usuario.associate = function(models) {
+        Usuario.belongsTo(models.roles, {
+            foreignKey: 'id_rol',
+            as: 'rol_usuario'
+    })}
     
-        return Usuario;
+    return Usuario;
     
-    }
+}

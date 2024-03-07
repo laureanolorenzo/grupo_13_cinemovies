@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('./partials/head') %>
+
+    <body class="register-body">
+
+        <% if (typeof user === 'undefined') { %>
+            <%- include('./partials/header') %>
+        <% } else { %>
+            <%- include('./partials/headerLoggedIn') %>
+        <% } %>
+        <main>
+            <div class="wrapper">
+                <div class="registro">
+                    <h2 class="titulo-login">Registro</h2>
+                    <section>
+                        <form class="section-input" action="/registro" method="POST" enctype="multipart/form-data">
+                            <label for="user" class="field">
+                                Nombre de usuario:
+                                <input class="input-text" type="text" name="user" id="nombre-usuario" value = "<%= locals.oldData?.user ? oldData.user : '' %>">
+                            </label>
+                            <div class="error-msg">
+                                <% if (locals.errors?.user) { %>
+                                    <p><%= errors.user.msg %></p>
+                                <% } %>
+                            </div>
+                            <label for="email" class="field">
+                                Correo electrónico:
+                                <input class="input-text" type="text" name="email" id="correo" value = "<%= locals.oldData?.email ? oldData.email : '' %>" >
+                            </label>
+                            <div class="error-msg">
+                                <% if (locals.errors?.email) { %>
+                                    <p><%= errors.email.msg %></p>
+                                <% } %>
+                            </div>
+                            <label for="password" class="field">
+                                Contraseña:
+                                <input class="input-text" type="password" name="password" id="contrasena">
+                            </label>
+                            <div class="error-msg">
+                                <% if (locals.errors?.password) { %>
+                                    <p><%= errors.password.msg %></p>
+                                <% } %>
+                            </div>
+                            <label for="password" class="field">
+                                Repetir contraseña:
+                                <input class="input-text" type="password" name="passwordRepeat" id="contrasena-repetida" >
+                            </label>
+                            <div class="error-msg">
+                                <% if (locals.errors && errors?.passwordRepeat) { %>
+                                    <p> <%= errors.passwordRepeat.msg %> </p>
+                                <% } %>
+                            </div>
+                            <label for="imagen" class="field">Foto de perfil
+                                <input type="file" name="profilePic" id="profilePic" class="input-text">
+                            </label>
+
+                            <label for="id_rol_usuario" class="field"> Rol 
+                                <select class="input-text" name="id_rol_usuario" id="id_rol_usuario">
+                                    <option value="" disabled selected hidden>Seleccionar</option>
+                                    <% for (let i=0; i<roles.lenght; i++) { %>
+                                        <option value="<%= roles[i].id %>"><%= roles[i].tipo %></option>
+                                    <% } %>
+                                </select>    
+                            </label>
+                            <div class="field">
+                                <button class="button" type="submit" id = "login-rg-btn">Registrarse</button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </main>
+
+        
+        
+    </body>
+</html>

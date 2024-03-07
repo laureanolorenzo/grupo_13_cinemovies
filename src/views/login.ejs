@@ -1,62 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('./partials/head') %>
-<body class="login-body">
-  <% if (typeof user === 'undefined') { %>
-    <%- include('./partials/header') %>
-  <% } else { %>
-    <%- include('./partials/headerLoggedIn') %>
-  <% } %>
-        <main class="main">
-          <div class="wrapper">
-            <div class="main-content">
-              <div class="title-underline">
-                <h2 class="titulo-login">Iniciar Sesión</h1>
-              </div>
-                <form class="login-form" action= "/login" method="post">
-                      <!-- <label for="user" class="field">
-                          Usuario:
-                          <input type="text" name="user" id="usuario" class="input-text" minlength="3" oninvalid="this.setCustomValidity('*Por favor ingrese un nombre de usuario válido (debe contener al menos 3 caracteres)')> 
-                        </label> -->
-                      <label for="email" class="field">
-                          Email:
-                          <input type="text" name="email" id="email" class="input-text" value = "<%= (locals.oldData?.email) ? oldData.email : '' %>"> <!-- minlength="3" oninvalid="this.setCustomValidity('*Por favor ingrese un nombre de usuario válido (debe contener al menos 3 caracteres)')">  -->
-                      </label>
-                        <% if (locals.errors && errors.email) { %>
-                          <div class="error-msg">
-                            <p><%= errors.email.msg %></p>
-                          </div>
-                        <% } %>
-      
-                      <label for="password" class="field">
-                          Contraseña:
-                          <input type="password" name="password" id="contraseña" class="input-text">
-                      </label>
-                      <% if (locals.errors && errors.password) { %>
-                        <div class="error-msg">
-                          <p><%= errors.password.msg %></p>
-                        </div>
-                      <% } %>
-                      
-                      <div class="login-bottom">
-                        <label for="recordame"> Mantener sesión iniciada</label>
-                        <input type="checkbox" name="recordame" id="recordame">
-                        <button type="submit" class="button" id="login-btn">Login</button>
+  <body class="login-body">
+    <% if (typeof user === 'undefined') { %>
+      <%- include('./partials/header') %>
+    <% } else { %>
+      <%- include('./partials/headerLoggedIn') %>
+    <% } %>
 
+      <main>
 
-                        <a href="#"><p>Olvidé mi contraseña</p></a>
-                      </div>
-                </form>
-                <form action="/registro" method="GET" form class="regis-ref">
-                    <label>
-                      No tienes cuenta?
-                      <button type="submit" class="button" id="login-rg-btn"> Regístrate</button>
-                    </label>
-              </form>
-            </div>
-          </wrapper>
-        </main>
-        <%- include('./partials/footer') %>
-        <script src="js/scripts-formulario.js"></script>
-</body>
+        <h2 class="titulo-login">Iniciar sesión</h2>
+
+        <form action="/login/process" method="POST" class="login-form">
+          <label for="email" class="field">Correo electrónico
+            <input type="text" name="email" id="email" class="input-text">
+          </label>
+
+          <label for="password" class="field">Contraseña
+            <input type="password" name="password" id="password" class="input-text">
+          </label>
+
+          <label for="recordame"> Mantener sesión iniciada</label>
+          <input type="checkbox" name="recordame" id="recordame">
+
+          <div class="login-bottom">
+            <button type="submit" class="button" id="login-btn">Ingresar</button>
+          </div>
+        </form>
+      </main>
+          
+    <%- include('./partials/footer') %>
+  </body>
 </html>

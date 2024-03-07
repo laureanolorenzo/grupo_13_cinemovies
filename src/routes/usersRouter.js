@@ -49,9 +49,13 @@ router.post('/registro',singleUpload, userValidations, usersController.postRegis
 
 // router.post('/login', usersController.postLoginData);
 
+
+
 router.get('/login', guestMiddleware, usersController.login);
 
-router.post('/login',userLoginValidations, usersController.loginProcess);
+router.post('/login/process',userLoginValidations, usersController.loginProcess);
+
+
 
 router.get('/perfil', ingresarAPerfilMiddleware, usersController.profile);
 

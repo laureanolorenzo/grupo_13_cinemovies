@@ -19,12 +19,5 @@
   "email": "laureanolorenzo@gmail.com",
   "password": "$2a$10$YaExXsb.pT21p9in0EAXUei6qqMR3sxkpjDqTTnuHq.hg379/xhS6",
   "profilePic": "default-profilePic.jpg"
- },
- {
-  "id": 4,
-  "user": "eze",
-  "email": "ezequielrosello14@gmail.com",
-  "password": "$2a$10$7qrEjPHMNo.b89iGHfvR/elpROb94VaAU18uuUGHaOBKs3D0NA9Ce",
-  "profilePic": "default-profilePic.jpg"
  }
 ]
