@@ -63,6 +63,10 @@
                 <% } %>
 
 
+                <form method="POST" action="/detalle_producto/<%=detallePelicula%>?_method=DELETE">
+                    <button type="submit" class="delete-button" onclick="return confirm('Eliminar?')">Eliminar producto</button>
+                </form>
+
                 <!-- <p> idPelicula%>ASFDFAA</p> -->
 
                 <a href="/" class="back-button">Volver</a>

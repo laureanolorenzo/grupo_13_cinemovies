@@ -32,6 +32,10 @@
     padding: 0 0 15px 0;
 }
 
+.titulo-editar-prod {
+    color: var(--colors-blanco);
+}
+
 @media(min-width:481px){
     .item-productos {
         font-size: 20px;

@@ -1,96 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
     <%- include('./partials/head') %>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinemovies</title>
-</head>
-<body>
-    <% if (typeof user === 'undefined') { %>
-        <%- include('./partials/header') %>
-    <% } else { %>
-        <%- include('./partials/headerLoggedIn') %>
-    <% } %>
+    <body>
+        <% if (typeof user === 'undefined') { %>
+            <%- include('./partials/header') %>
+        <% } else { %>
+            <%- include('./partials/headerLoggedIn') %>
+        <% } %>
+        <main>
+            <div class="wrapper">
+               
 
-    <h1>Estas editando: <%=peliAEditar.title%></h1>
-    <form action="/editar_producto/<%=peliAEditar.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <form class="section-input" method="POST" action="editar_producto/<%=peliculaAEditar.id%>">                  
+                    
+                    <label class="field">Título
+                        <input type="text" class="input-text" name="title" id="title" value="<%= peliculaAEditar.titulo %>" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                    </label>
+                    <label class="field" for="year"> Año
+                        <input type="number" name="year" id="year" value="<%= peliculaAEditar.anio %>"  min="1900" max="2023" value="2023" class="input-text">
+                    </label>
+                    <label class="field" for="estreno">Estreno
+                        <select name="estreno" id="estreno" class="input-text">
+                            <option value="" disabled selected hidden>Seleccionar</option>
+                            <option value="si">Si</option>
+                            <option value="no" >No</option>
+                        </select>
+                    </label>
+                    <label class="field" for="descripcion"> Descripción
+                        <input type="text" class="input-text" value="<%= peliculaAEditar.descripcion %>"  name="description" id="description" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                    </label>
+                    <label class="field">Director
+                        <input type="text" class="input-text" value="<%= peliculaAEditar.director %>"  name="director" id="director" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                    </label>
+                    <label class="field">Reparto
+                        <input type="text" class="input-text" value="<%= peliculaAEditar.reparto %>"  name="cast" id="cast" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                    </label>
+                    <label class="field">Puntuación
+                        <input type="number" class="input-text" name="rating" id="rating" min="1" max= "5" placeholder="5"  oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                    </label>
+                    <label class="field" for="clasificacion_edad">Clasificación
+                        <select name="clasificacion_edad" id="clasificacion_edad" class="input-text">
+                            <option value="" disabled selected hidden>Seleccionar</option>
+                            <option value="Apta para todo público" >Apta para todo público</option>
+                            <option value="Apta para mayores de 13" >Apta para mayores de 13</option>
+                            <option value="Apta para mayores de 18" >Apta para mayores de 18</option>
+                        </select>
+                    </label>
+                    <label class="field" for="duration"> Duración (en minutos)
+                        <input type="number" name="duration" id="duration" value="<%= peliculaAEditar.duracion %>"  min="1" max="300" value="120" class="input-text">
+                    </label>
+                    <label class="field">Origen
+                        <input type="text" class="input-text" name="origin" id="origin" minlength="1" value="<%= peliculaAEditar.origen %>"  oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
+                    </label>
+                                        
+                    <label class="field" for="categoria">Categoría
+                        <select name="category" id="category" class="input-text">
+                            <% for (let i=0; i<genero.length; i++) { %>
+                                <% if (genero[i].id == peliculaAEditar.id_categoria_pelicula) { %>
+                                    <option value="<%=genero[i].id%>" selected>
+                                        <%= genero[i].titulo %>
+                                    </option>
+                                <% } else { %>
+                                    <option value="<%=genero[i].id%>">
+                                        <%=genero[i].titulo%>
+                                    </option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                    </label>
 
-        <label class="field">Título
-            <input type="text" class="input-text" name="title" value="<%=peliAEditar.title%>" id="titulo" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
-        </label>
+                    <label class="field" for="awards"> Premios 
+                        <input type="number" name="awards" id="awards" min="0" value="0" class="input-text">
+                    </label>
 
-        <label class="field" for="year"> Año
-            <input type="number" name="year" value="<%=peliAEditar.year%>" id="year" min="1980" max="2023" class="input-text">
-        </label>
+                    <label class="field" for="language"> Idioma
+                        <input type="text" name="language" id="language" value="<%= peliculaAEditar.idioma %>"  class="input-text">
+                    </label>
 
-        <label class="field" for="estreno">Estreno
-            <select name="estreno" id="estreno" class="input-text">
-                <!-- <option value="" disabled selected hidden>Seleccionar</option> -->
-                <option value="si" <%= peliAEditar.estreno =='si'? 'selected' : '' %> >Si</option>
-                <option value="no" <%= peliAEditar.estreno== 'no'? 'selected' : '' %> >No</option>
-            </select>
-        </label>
+                    <label class="field" for="release_date">Fecha de estreno
+                        <input type="date" name="release_date" id="release_date" class="input-text">
+                    </label>
 
-        <label class="field" for="descripcion"> Descripción
-            <input type="text" class="input-text" name="description" value="<%=peliAEditar.description%>" id="descripcion"   minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')" >
-        </label>
+                    <label for="imagen" class="field">Póster de la película
+                        <input type="file" name="image" id="image" class="input-text">
+                    </label>
 
-        <label class="field">Director
-            <input type="text" class="input-text" name="director" value="<%=peliAEditar.director%>" id="director" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
-        </label>
+                    <label for="banner" class="field">Banner de la película
+                        <input type="file" name="banner" id="banner" class="input-text">
+                    </label>
 
-        <label class="field">Reparto
-            <input type="text" class="input-text" name="cast" id="reparto" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')" value=<%=peliAEditar.cast%>>
-        </label>
-        <label class="field" for="categoria">Categoría
-            <select name="category" id="categoria" class="input-text">
-                <option value="" disabled selected hidden>Seleccionar</option>
-            <% for (const i of estructuraMovie['categories']) { %>
-                <option value ="<%= i %>"<%= peliAEditar.category == i ? 'selected': '' %>><%= i %></option>
-            <% } %>
-            </select>
-        </label>
-        <label class="field">Puntuación
-            <input type="number" class="input-text" name="rating" id="puntacion" min="1" max= "5" placeholder="5"  oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')" value=<%=peliAEditar.rating%>>
-        </label>
-
-        <label class="field" for="clasificacion_edad">Clasificación
-            <select name="clasificacion_edad" id="clasificacion_edad" class="input-text" value=<%=peliAEditar.clasificacion_edad%>>
-                <!-- <option value="" disabled selected hidden>Seleccionar</option> -->
-                <option value="Apta para todo público" <%= peliAEditar.clasificacion_edad =='Apta para todo público'? 'selected' : '' %> >Apta para todo público</option>
-                <option value="Apta para mayores de 13" <%= peliAEditar.clasificacion_edad =='Apta para mayores de 13'? 'selected' : '' %> >Apta para mayores de 13</option>
-                <option value="Apta para mayores de 18" <%= peliAEditar.clasificacion_edad =='Apta para mayores de 18'? 'selected' : '' %> >Apta para mayores de 18</option>
-                
-            </select>
-        </label>
-
-        <label class="field" for="duration"> Duración (en minutos)
-            <input type="number" name="duration" id="duration" min="1" max="300" class="input-text" value=<%=peliAEditar.duration%>>
-        </label>
-
-        <label class="field">Origen
-            <input type="text" class="input-text" name="origin" id="origin" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')" value=<%=peliAEditar.origin%>>
-        </label>
-
-        
-
-        <label for="imagen" class="field">Póster de la película
-            <input type="file" name="image" id="imagen" class="input-text">
-        </label>
-
-        <label for="banner" class="field">Banner de la película
-            <input type="file" name="banner" id="banner" class="input-text">
-        </label>
-
-        <div class="field">
-            <button class="button" type="submit">Editar</button>
-        </div>
-    </form> 
-</body>
-</html>
-</body>
+                    <div class="field">
+                        <button class="button" type="submit" id = "login-rg-btn">Editar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <%- include('./partials/footer') %>
+    </body>
 </html>

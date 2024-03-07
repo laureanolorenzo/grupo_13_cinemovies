@@ -55,112 +55,168 @@ const productoController = {
 
     borrar_producto(req,res){
 
-        const moviesPath = path.resolve(__dirname, '../datos/movies.json');
-        const movies = fs.readFileSync(moviesPath, 'utf-8');
-        let moviesList = JSON.parse(movies);
+        db.Peliculas.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
 
-        let idUrl = req.params.id
+        console.log(req.params.id)
 
-        for (let i=0; i<(movies.length-1); i++){
-            if (moviesList[i] != undefined && moviesList[i].id == idUrl){
+        res.redirect('/listado_peliculas')
 
-                let nombrePoster = moviesList[i].image;
-                let nombreBanner = moviesList[i].banner;
+        // const moviesPath = path.resolve(__dirname, '../datos/movies.json');
+        // const movies = fs.readFileSync(moviesPath, 'utf-8');
+        // let moviesList = JSON.parse(movies);
 
-                const posterPath = path.resolve(__dirname, `../../public/images/movies/${nombrePoster}`);
-                const bannerPath = path.resolve(__dirname, `../../public/images/movies/${nombreBanner}`);
+        // let idUrl = req.params.id
 
-                fs.unlink(posterPath, () => {null}); //para borrar las imagenes de la peli de la carpeta movies
-                fs.unlink(bannerPath, () => {null});
+        // for (let i=0; i<(movies.length-1); i++){
+        //     if (moviesList[i] != undefined && moviesList[i].id == idUrl){
 
-                moviesList.splice(i,1);
-            };
-        }
+        //         let nombrePoster = moviesList[i].image;
+        //         let nombreBanner = moviesList[i].banner;
 
-        moviesList = JSON.stringify(moviesList,null,2);
+        //         const posterPath = path.resolve(__dirname, `../../public/images/movies/${nombrePoster}`);
+        //         const bannerPath = path.resolve(__dirname, `../../public/images/movies/${nombreBanner}`);
 
-        fs.writeFile(moviesPath, moviesList, () => {res.redirect("/")}); //sobrescribe el archivo movies.json pero sin las peliculas que borramos
+        //         fs.unlink(posterPath, () => {null}); //para borrar las imagenes de la peli de la carpeta movies
+        //         fs.unlink(bannerPath, () => {null});
+
+        //         moviesList.splice(i,1);
+        //     };
+        // }
+
+        // moviesList = JSON.stringify(moviesList,null,2);
+
+        // fs.writeFile(moviesPath, moviesList, () => {res.redirect("/")}); //sobrescribe el archivo movies.json pero sin las peliculas que borramos
     },
 
     editar_productoView(req,res){
-        let jsonPeliculas = listMovies()
-        let idParams = req.params.id;
-        const estructuraMovie = {
-            categories : listCategories(), // Nuevas categorias deben ir acá!
-            year : anio,
-            ratings: ['1','2','3','4','5']
-        }
-        let peliAEditar = jsonPeliculas.find(jsonPeliculas => jsonPeliculas.id == idParams);
+        
+        let pedidoPelicula = db.Peliculas.findByPk(req.params.id);
 
-         res.render('editar_producto', {peliAEditar:peliAEditar,estructuraMovie:estructuraMovie, user: req.session.userLoggedIn });
+        let pedidoGenero = db.categorias_peliculas.findAll();
+
+        Promise.all([pedidoPelicula, pedidoGenero])
+            .then(function([peliculaAEditar, genero]) {
+                res.render('editar_producto', {peliculaAEditar:peliculaAEditar, genero:genero})
+            })
+
+        // db.Peliculas.findAll()
+        //     .then(function(peliculaAEditar){
+        //         db.categorias_peliculas.findAll()
+        //             .then(function(categorias){
+        //                 let detalleProductoId = req.params.id;
+        //                 return res.render('editar_producto', {peliculaAEditar:peliculaAEditar, categorias:categorias, detalleProductoId:detalleProductoId})
+        //             })
+        //     })
+
+        // let jsonPeliculas = listMovies()
+        // let idParams = req.params.id;
+        // const estructuraMovie = {
+        //     categories : listCategories(), // Nuevas categorias deben ir acá!
+        //     year : anio,
+        //     ratings: ['1','2','3','4','5']
+        // }
+        // let peliAEditar = jsonPeliculas.find(jsonPeliculas => jsonPeliculas.id == idParams);
+
+        //  res.render('editar_producto', {peliAEditar:peliAEditar,estructuraMovie:estructuraMovie, user: req.session.userLoggedIn });
 
     },
     
     editar_producto(req,res){
 
-       let jsonPeliculas = listMovies();
+        db.Peliculas.update({
+            titulo: req.body.title,
+            anio: req.body.year,
+            es_estreno: req.body.estreno,
+            descripcion: req.body.description,
+            director: req.body.director,
+            reparto: req.body.cast,
+            puntuacion: req.body.rating,
+            clasificacion: req.body.clasificacion_edad,
+            duracion: req.body.duration,
+            origen: req.body.origin,
+            poster: req.body.image,
+            banner: req.body.banner,
+            awards: req.body.awards,
+            idioma: req.body.language,
+            fecha_estreno: req.body.release_date,
+            id_categoria_pelicula: req.body.category
+        }, {
+            where: {
+                id: req.params.id
+            }
+        });
+
+        console.log(req.params.id)
+
+        res.redirect(`detalle_producto/${req.params.id}`); 
+
+    //    let jsonPeliculas = listMovies();
     
 
-        let idParams = req.params.id; 
-        let peliAEditar = jsonPeliculas.find(peli => peli.id == idParams); // La peli en su estado anterior
+    //     let idParams = req.params.id; 
+    //     let peliAEditar = jsonPeliculas.find(peli => peli.id == idParams); // La peli en su estado anterior
 
-        if(typeof peliAEditar == "undefined" ){
-            res.send("No se encontro la pelicula"); // Podriamos hacer un mensaje de error aca
-        }else{
-            // VER LO QUE LLEGA DE IMAGEN
+    //     if(typeof peliAEditar == "undefined" ){
+    //         res.send("No se encontro la pelicula"); // Podriamos hacer un mensaje de error aca
+    //     }else{
+    //         // VER LO QUE LLEGA DE IMAGEN
 
 
-            let peliEditada = {
-                id: peliAEditar.id,
-                title: req.body.title,
-                year: req.body.year,
-                estreno: req.body.estreno,
-                description: req.body.description, 
-                director: req.body.director, 
-                cast: req.body.cast,
-                rating: req.body.rating,
-                clasificacion_edad: req.body.clasificacion_edad, 
-                duration: req.body.duration,
-                origin: req.body.origin,
-                category: req.body.category,
-                image: peliAEditar.image // Luego se va a sobreescribir si llegan imagenes.
+    //         let peliEditada = {
+    //             id: peliAEditar.id,
+    //             title: req.body.title,
+    //             year: req.body.year,
+    //             estreno: req.body.estreno,
+    //             description: req.body.description, 
+    //             director: req.body.director, 
+    //             cast: req.body.cast,
+    //             rating: req.body.rating,
+    //             clasificacion_edad: req.body.clasificacion_edad, 
+    //             duration: req.body.duration,
+    //             origin: req.body.origin,
+    //             category: req.body.category,
+    //             image: peliAEditar.image // Luego se va a sobreescribir si llegan imagenes.
                 
-            }
-            // Si llegan imagenes, si llega imagen, reemplazarla. Y si llega banner, reemplazarlo.
-            if (Object.keys(req.files).length !== 0) {
-                // return res.send(req.files);
-                const file = req.files;
-                const imagesPath = path.resolve(__dirname,'../../public/images/movies');
-                const bannerPath = path.resolve(__dirname,'../../public/images/movies'); // Por ahora lo dejamos asi. Luego ver la forma de guardar 2 archivos en carpetas separadas.
-                if (file.image) {
-                    if (peliAEditar.image) { // Borrar la imagen ya existente para no acumular archivos
-                        // console.log(`${imagesPath}/${peliAEditar.image}`);
-                        fs.unlinkSync(`${imagesPath}/${peliAEditar.image}`);
+    //         }
+    //         // Si llegan imagenes, si llega imagen, reemplazarla. Y si llega banner, reemplazarlo.
+    //         if (Object.keys(req.files).length !== 0) {
+    //             // return res.send(req.files);
+    //             const file = req.files;
+    //             const imagesPath = path.resolve(__dirname,'../../public/images/movies');
+    //             const bannerPath = path.resolve(__dirname,'../../public/images/movies'); // Por ahora lo dejamos asi. Luego ver la forma de guardar 2 archivos en carpetas separadas.
+    //             if (file.image) {
+    //                 if (peliAEditar.image) { // Borrar la imagen ya existente para no acumular archivos
+    //                     // console.log(`${imagesPath}/${peliAEditar.image}`);
+    //                     fs.unlinkSync(`${imagesPath}/${peliAEditar.image}`);
 
-                    }
-                    peliEditada['image'] = file.image[0].filename ; // Reemplazar el nombre en el json para que luego ejs pueda referenciarlo
-                }
-                if (peliAEditar.banner) { 
-                    peliEditada['banner'] = file.banner !=undefined?file.banner[0].filename : peliAEditar.banner;
-                    if (peliAEditar.banner != 'defaultBanner.jpg') { // Creo que se podria hacer con otra logica mejor
-                        // console.log(`${bannerPath}/${peliAEditar.banner}`);
-                        fs.unlinkSync(`${bannerPath}/${peliAEditar.banner}`)// Borrar el banner si tenia uno
-                    }
+    //                 }
+    //                 peliEditada['image'] = file.image[0].filename ; // Reemplazar el nombre en el json para que luego ejs pueda referenciarlo
+    //             }
+    //             if (peliAEditar.banner) { 
+    //                 peliEditada['banner'] = file.banner !=undefined?file.banner[0].filename : peliAEditar.banner;
+    //                 if (peliAEditar.banner != 'defaultBanner.jpg') { // Creo que se podria hacer con otra logica mejor
+    //                     // console.log(`${bannerPath}/${peliAEditar.banner}`);
+    //                     fs.unlinkSync(`${bannerPath}/${peliAEditar.banner}`)// Borrar el banner si tenia uno
+    //                 }
 
-                } else { //Si no habia banner y no llega, poner "defaultBanner.jpg"
-                    peliEditada['banner'] = file.banner !=undefined?file.banner[0].filename : 'defaultBanner.jpg'; // Crearlo mas tarde
-                }
-            // } else {
-            //     // return res.send(req.body)
-            //     // res.send('Hubo un error al procesar los archivos')
-            };
+    //             } else { //Si no habia banner y no llega, poner "defaultBanner.jpg"
+    //                 peliEditada['banner'] = file.banner !=undefined?file.banner[0].filename : 'defaultBanner.jpg'; // Crearlo mas tarde
+    //             }
+    //         // } else {
+    //         //     // return res.send(req.body)
+    //         //     // res.send('Hubo un error al procesar los archivos')
+    //         };
 
-            let posicionPelicula = jsonPeliculas.findIndex(x => x.id == idParams)
-            jsonPeliculas[posicionPelicula] = peliEditada;
-            fs.writeFileSync(moviesPath, JSON.stringify(jsonPeliculas, null, " "));
+    //         let posicionPelicula = jsonPeliculas.findIndex(x => x.id == idParams)
+    //         jsonPeliculas[posicionPelicula] = peliEditada;
+    //         fs.writeFileSync(moviesPath, JSON.stringify(jsonPeliculas, null, " "));
 
-            res.redirect('/'); 
-        } 
+    //         res.redirect('/'); 
+        // } 
     
     
     },
