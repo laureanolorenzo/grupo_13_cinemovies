@@ -40,7 +40,7 @@ router.post('/crear_producto/process', multipleUpload, productoController.crear_
 
 router.get('/editar_producto/:id', productoController.editar_productoView);
 
-router.post('/editar_producto/:id', multipleUpload ,productoController.editar_producto);
+router.post('/editar_producto/process/:id', multipleUpload ,productoController.editar_producto);
 
 //Categorias
 

@@ -11,7 +11,7 @@
             <div class="wrapper">
                
 
-                <form class="section-input" method="POST" action="editar_producto/<%=peliculaAEditar.id%>">                  
+                <form class="section-input" method="POST" action="process/<%=peliculaAEditar.id%>">                  
                     
                     <label class="field">Título
                         <input type="text" class="input-text" name="title" id="title" value="<%= peliculaAEditar.titulo %>" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">

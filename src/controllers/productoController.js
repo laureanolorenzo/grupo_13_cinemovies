@@ -147,10 +147,8 @@ const productoController = {
                 id: req.params.id
             }
         });
-
-        console.log(req.params.id)
-
-        res.redirect(`detalle_producto/${req.params.id}`); 
+        
+        res.redirect(`/detalle_producto/${req.params.id}`); 
 
     //    let jsonPeliculas = listMovies();
     

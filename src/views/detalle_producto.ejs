@@ -54,8 +54,10 @@
             <div class="buttons-detalle">
                 <button class="reserve-button">Reservar</button>
 
+                
                 <% for (let i=0; i<detallePelicula.length; i++){ %>
                     <% if (detallePelicula[i].id == detalleProductoId) { %>
+                        <a href="/editar_producto/<%=detallePelicula[i].id%>" class="back-button">Editar</a>
                         <form method="POST" action="borrar_producto/<%=detallePelicula[i].id%>">
                             <button type="submit" class="reserve-button"">Eliminar</button>
                         </form>
