@@ -136,8 +136,8 @@ const productoController = {
             clasificacion: req.body.clasificacion_edad,
             duracion: req.body.duration,
             origen: req.body.origin,
-            poster: req.body.image,
-            banner: req.body.banner,
+            poster: req.files['image'][0],
+            banner: req.files['banner'][0],
             awards: req.body.awards,
             idioma: req.body.language,
             fecha_estreno: req.body.release_date,
@@ -239,10 +239,9 @@ const productoController = {
     },
 
     crear_productoProcess(req,res, next) {
-
         db.Peliculas.create({
             titulo: req.body.title,
-            anio: req.body.year,
+            anio: req.body.release_date.split('/')[0],
             es_estreno: req.body.estreno,
             descripcion: req.body.description,
             director: req.body.director,
@@ -251,12 +250,13 @@ const productoController = {
             clasificacion: req.body.clasificacion_edad,
             duracion: req.body.duration,
             origen: req.body.origin,
-            poster: req.body.image,
-            banner: req.body.banner,
+            poster: req.files['image'][0]['filename'], //Obligatorio
+            banner: req.files['banner']?req.files['banner'][0]['filename']:null,
             awards: req.body.awards,
             idioma: req.body.language,
             fecha_estreno: req.body.release_date,
-            id_categoria_pelicula: req.body.category
+            id_categoria_pelicula: req.body.category,
+            local: 1 //Para que el ejs sepa que el archivo de la Imagen es local
         });
 
         res.redirect('/home');
@@ -316,8 +316,7 @@ const productoController = {
         // let categories = JSON.parse(categoriesJson);
         const categories = await db.categorias_peliculas.findAll();
 
-        const moviesJson = fs.readFileSync(moviesRuta, {'encoding': 'utf-8'});
-        const movies = JSON.parse(moviesJson);
+        // const moviesJson = fs.readFileSync(moviesRuta, {'encoding': 'utf-8'});
         const requestedCateg = req.params.categoria;
         const categoriaParaMostrar = await db.categorias_peliculas.findOne(
             {where: {categoria: requestedCateg}}
@@ -326,7 +325,10 @@ const productoController = {
         if (categoriaParaMostrar === undefined) {
             res.send('No se encontro la categoria'); // Manejarlo distinto en el futuro?? Seria sit. en la que el usuario pone la categ. a mano
         }
-        const filteredMovies = movies.filter(movie => (movie.category == categoriaParaMostrar.titulo)); //Luego del crud combinar con id_categoria_pelicula
+        // const filteredMovies = movies.filter(movie => (movie.category == categoriaParaMostrar.titulo)); //Luego del crud combinar con id_categoria_pelicula
+        const filteredMovies = await db.Peliculas.findAll(
+            {where: {id_categoria_pelicula:categoriaParaMostrar.id}}
+        )
         // console.log(filteredMovies);
         // res.send('HOLA')
         res.render('categorias', {datos: filteredMovies,categories:categories, user: req.session.userLoggedIn });
@@ -335,14 +337,9 @@ const productoController = {
 
     categoriasView(req,res) {
         // Categorias
-
-
         if (!(req.params.categoria)) {
              res.render('categorias', {datos: filteredMovies,categories:categories, user: req.session.userLoggedIn }); //Luego cambiar!!!
         } else {
-
-            
-
         }
     },
 

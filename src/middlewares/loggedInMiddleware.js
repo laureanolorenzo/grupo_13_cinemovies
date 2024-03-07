@@ -5,4 +5,5 @@ function loggedInMiddleware(req, res, next) {
     }
     next();
 }
+
 module.exports = loggedInMiddleware;

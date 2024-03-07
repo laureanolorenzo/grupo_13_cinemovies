@@ -43,14 +43,14 @@
                 <h3 class="titulo-pelicula"><%= peli.title %></h3>
                 <div class="contenido">
 
-                  <img class="poster" src="/images/movies/<%= peli.image %>">
+                  <img class="poster" src="<%= peli.local?`/images/movies/${peli.poster}`:peli.poster %>"
                   <ul class="detalle-pelicula">
-                      <li class="linea" >Clasificación: <%= peli.clasificacion_edad %></li>
-                      <li class="linea" >Duración: <%= peli.duration %></li>
-                      <li class="linea" >Género: <%= peli.category %></li>
+                      <li class="linea" >Clasificación: <%= peli.clasificacion %></li>
+                      <li class="linea" >Duración: <%= peli.duracion %></li>
+                      <li class="linea" >Género: <%= peli.categoria %></li>
                       <li class="linea" >Director: <%= peli.director %></li>
-                      <li class="linea" >Cast: <%= peli.cast %></li>
-                      <li class="linea" >Origen: <%= peli.origin %></li>
+                      <!-- <li class="linea" >Cast: <%= peli.reparto %></li>
+                      <li class="linea" >Origen: <%= peli.origen %></li> -->
                   </ul>
                 </div>
                 <a href="/detalle_producto/<%= peli.id %>" class="button" > VER </a>

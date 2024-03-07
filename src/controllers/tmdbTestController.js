@@ -136,7 +136,7 @@ async function getMovieByID(id,responseLang ='es-AR',saveLocal = false)  {
         es_estreno: +isReleasingFromDateDiff(Date.parse(fecha_estreno)), //Aparentemente ya el mas adelante convierte true en 1 y false en 0
         descripcion: res.data.overview,
         puntuacion: res.data.vote_average.toFixed(2),
-        clasificacion: classification,
+        clasificacion: classification?classification:'N/A',
         duracion: res.data.runtime,
         origen: origen,
         poster: poster,
@@ -144,7 +144,7 @@ async function getMovieByID(id,responseLang ='es-AR',saveLocal = false)  {
         awards: awards == null?'N/A':awards,
         idioma: languageMapping[res.data.original_language],
         id_categoria_pelicula:  await getGenreID(res.data.genres[0].name), //Funcion para buscar el id del genero basado en res.data.genres[0].name (es distinto el id en la API). Chequear que vengan en castellano!
-        local: saveLocal, //Luego se borra esta propiedad antes de mandar a la base de datos
+        local: +saveLocal, //Luego se borra esta propiedad antes de mandar a la base de datos
         tmdb_id: res.data.id
     }
 }
@@ -233,7 +233,6 @@ class Movie {
                     saveImageToDisk(this.banner);
                 }
             }
-            delete this.local; //No queremos que vaya a la DB por ahora
             return await db.Peliculas.create(this);
         } catch(e) {
             // Remover la imagen del disco

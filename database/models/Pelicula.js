@@ -57,6 +57,9 @@ let cols = {
     },
     tmdb_id: {
         type: dataTypes.INTEGER
+    },
+    local: {
+        type: dataTypes.TINYINT
     }
 
 

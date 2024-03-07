@@ -16,9 +16,6 @@
                         <label class="field">Título
                             <input type="text" class="input-text" name="title" id="title" minlength="1" oninvalid="this.setCustomValidity('*El campo no puede quedar vacío')">
                         </label>
-                        <label class="field" for="year"> Año
-                            <input type="number" name="year" id="year" min="1900" max="2023" value="2023" class="input-text">
-                        </label>
                         <label class="field" for="estreno">Estreno
                             <select name="estreno" id="estreno" class="input-text">
                                 <option value="" disabled selected hidden>Seleccionar</option>
@@ -82,7 +79,7 @@
                         </label>
 
                         <label class="field" for="release_date">Fecha de estreno
-                            <input type="date" name="release_date" id="release_date" class="input-text">
+                            <input type="date" name="release_date" id="release_date" class="input-text" id = "datePickerId">
                         </label>
 
                         <label for="imagen" class="field">Póster de la película
@@ -99,6 +96,7 @@
                     </form>
                 </div>
             </main>
+            <script>datePickerId.max = new Date().toISOString().split("T")[0];</script>
             <%- include('./partials/footer') %>
     </body>
 

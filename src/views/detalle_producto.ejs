@@ -11,7 +11,7 @@
         <div class="container">
             <% for (let i=0; i<detallePelicula.length; i++){   %>
                 <% if (detallePelicula[i].id == detalleProductoId) { %>
-                    <img src="<%= detallePelicula[i].poster %>" alt="">
+                    <img src= "<%= detallePelicula[i].local?`/images/movies/${detallePelicula[i].poster}`:detallePelicula[i].poster %>" alt="">
                     <div class="details">
                         <h1> <%= detallePelicula[i].titulo %> </h1>
                         <p>Genero: <% for (let j=0; j<categorias.length; j++){ %>

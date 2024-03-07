@@ -16,7 +16,7 @@
       <div id="slider">
         <div class="slides">
         <% for(let j = 0; j<estrenos.length; j++) { %>
-          <a href="<%= estrenos[j] ? '/detalle_producto/' + estrenos[j] : '/' %>" class="slider">
+          <a href="<%= estrenos[j] ? '/detalle_producto/' + estrenos[j].id : '/' %>" class="slider">
             <div class="image">
               <img src="<%= estrenos[j]?estrenos[j].banner : `/images/cover${j+1}.jpeg`%>" alt="<%= estrenos[j].id %>">
             </div>
@@ -36,45 +36,6 @@
     </div>
     </div>
     <div class="wrapper">
-    <!-- //   <div class="carrusel">
-    //   <div id="slider">
-    //     <div class="slides">
-    //       <div class="slider">
-    //         <div class="image">
-    //           <img src="/images/cover1.jpeg">
-    //         </div>
-    //       </div>
-    //       <div class="slider">
-    //         <div class="image">
-    //           <img src="/images/cover2.jpeg">
-    //         </div>
-    //       </div>
-    //       <div class="slider">
-    //         <div class="legend"></div>
-    //         <div class="image">
-    //           <img src="/images/cover3.jpeg">
-    //         </div>
-    //       </div>
-    //       <div class="slider">
-    //         <div class="legend"></div>
-    //         <div class="image">
-    //           <img src="/images/cover4.jpeg">
-    //         </div>
-    //       </div>
-    //     </div>
-    //     <div class="switch">
-    //       <ul>
-    //         <li>
-    //           <div class="on"></div>
-    //         </li>
-    //         <li></li>
-    //         <li></li>
-    //         <li></li>
-    //       </ul>
-    //     </div>
-    //   </div>
-    // </div> -->
-    
       <div class="home-main_content">
         <div class="categorias">
           <div class="categoria-title">

@@ -23,6 +23,8 @@ const fileUpload = multer({storage: multerDiskStorage});
 
 const multipleUpload = fileUpload.fields([{name: 'image', maxCount: 1}, {name: 'banner', maxCount: 1}]);
 
+
+
 // Productos
 
 router.get('/detalle_producto/:id', productoController.detalle_productoView);
@@ -36,7 +38,6 @@ router.get('/listado_peliculas', productoController.listado_peliculas);
 router.get('/crear_producto', productoController.crear_productoView);
 
 router.post('/crear_producto/process', multipleUpload, productoController.crear_productoProcess);
-
 
 router.get('/editar_producto/:id', productoController.editar_productoView);
 
