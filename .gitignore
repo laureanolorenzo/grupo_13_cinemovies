@@ -1,3 +1,4 @@
 node_modules
 src/datos/APIAuth.txt
 src/datos/omdbAPI.txt
+src/.env

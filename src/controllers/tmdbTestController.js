@@ -3,8 +3,19 @@
 const path = require('path');
 const fs = require('fs');
 const axios = require('axios');
-const accessToken = fs.readFileSync(path.join(__dirname,'../datos/APIAuth.txt'),{'encoding':'utf-8'});
-const omdbAPIKey = fs.readFileSync(path.join(__dirname,'../datos/omdbAPI.txt'),{'encoding':'utf-8'});
+require('dotenv').config('../../src/');
+let accessToken = fs.readFileSync(path.join(__dirname,'../datos/APIAuth.txt'),{'encoding':'utf-8'});
+
+if (!accessToken) {
+    accessToken = process.env.TMDB_API_KEY
+}
+
+
+let omdbAPIKey = fs.readFileSync(path.join(__dirname,'../datos/omdbAPI.txt'),{'encoding':'utf-8'});
+if (!omdbAPIKey) {
+    omdbAPIKey = process.env.OMDB_API_KEY;
+}
+console.log(accessToken)
 const {removeWhiteSpace} = require('../middlewares/funcs');
 const { response } = require('express');
 // const Peliculas = require("./database/models/Peliculas");
