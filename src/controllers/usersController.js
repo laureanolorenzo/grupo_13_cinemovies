@@ -7,8 +7,10 @@ const User = require('../../models/User');
 const session = require('express-session');
 const cookie = require('cookie-parser');
 const db = require('../../database/models');
-
+const {Op} = require('sequelize');
+ 
 const {validationResult} = require('express-validator');
+const { error } = require('console');
 function checkPasswordValidity(pw) { //Donde va esto?? En un archivo aparte??
     let [upper,lower,digit,alpha] = [false,false,false,false];
     let forbiddenChars = ['#', '%', '&', '{', '}', '\\', '<', '>', '*', '?', '/', ' ', '$', '!', "'", '"', ':', '@', '+', '`', '|', '=',':','.'];
@@ -57,12 +59,11 @@ const usersController = {
             })
     },
     
-    postRegisterData(req,res) {
-
-        db.Usuarios.create({
+    async postRegisterData(req,res) {
+        await db.Usuarios.create({
             nombre: req.body.username,
             email: req.body.email,
-            contrasena: bcrypt.hashSync(req.body.password),
+            password: bcrypt.hashSync(req.body.password),
             foto: req.body.avatar,
             id_rol: req.body.rol
         });
@@ -171,25 +172,48 @@ const usersController = {
         return res.render('login');
     },
 
-    loginProcess: (req,res) => {
+    loginProcess: async (req,res) => {
+        let errorMsg;
+        // db.Usuarios.findAll()
+        //     .then(function(lista_usuarios){
 
-        db.Usuarios.findAll()
-            .then(function(lista_usuarios){
+        //         let usuarioIngresado = req.body.username;
+        //         let contrasenaIngresada = bcrypt.hashSync(req.body.password)
 
-                let usuarioIngresado = req.body.username;
-                let contrasenaIngresada = bcrypt.hashSync(req.body.password)
-
-                for (let i=0; i<lista_usuarios.length; i++) {
+        //         for (let i=0; i<lista_usuarios.length; i++) {
                     
-                    let comparacionContrasenas = bcrypt.compareSync(lista_usuarios[i].contrasena, req.body.password)
-                    if (lista_usuarios[i].email == req.body.email && comparacionContrasenas){
-                        console.log('iniciaste sesion')
+        //             let comparacionContrasenas = bcrypt.compareSync(lista_usuarios[i].contrasena, req.body.password)
+        //             if (lista_usuarios[i].email == req.body.email && comparacionContrasenas){
+        //                 console.log('iniciaste sesion')
 
-                        return res.redirect('/home')
+        //                 return res.redirect('/home')
 
-                    }
+        //             }
+        //         }
+        //     })
+
+        const userToLog = await db.Usuarios.findOne({
+            where: {[Op.or] : {
+                nombre: req.body.email,
+                email: req.body.email
                 }
-            })
+            }
+        })
+        if (!userToLog) {
+            errorMsg = 'Usuario o contraseña incorrectos'
+            return res.render('login',{'errormsg':errorMsg});
+        }
+        if (bcrypt.compareSync(req.body.password,userToLog.password)) {
+            req.session.idUsuario = userToLog.id;
+            delete userToLog.password
+            delete userToLog.passwordRepeat
+            req.session.userLoggedIn = userToLog;
+            res.locals.userLoggedIn = req.session.userToLog; // https://stackoverflow.com/questions/56698453/express-session-cannot-set-property-user-of-undefined
+            res.redirect('/home'); //Login exitoso
+        } else {
+            errorMsg = 'Usuario o contraseña incorrectos'
+            return res.render('login',{'errormsg':errorMsg});
+        }
 
         // let userToLogin = User.findByField(['email','user'], req.body.email)
         // let errors = validationResult(req).mapped();
@@ -219,12 +243,16 @@ const usersController = {
         // return res.render('login', {errors: errors,oldData: {email,password}});
     },
 
-    profile: (req,res) => {
-        db.Usuarios.findAll()
-            .then(function(registrados){
-                usuarioActual = req.params.id;
-                return res.render('perfilUsuario', {registrados:registrados, usuarioActual:usuarioActual})
-            })
+    profile: async (req,res) => {
+        let user = await db.Usuarios.findOne(
+            {where: {id:req.session.idUsuario}}
+        );
+        return res.render('perfilUsuario',{usuarioActual:user})
+    //     await db.Usuarios.findAll()
+    //         .then(function(registrados){
+    //             usuarioActual = req.params.id;
+    //             return res.render('perfilUsuario', {registrados:registrados, usuarioActual:usuarioActual})
+    //         })
     },
 
     logout: (req,res) => {

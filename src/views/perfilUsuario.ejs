@@ -11,17 +11,10 @@
     <main class="main-perfil">
 
         <section class="section-datos-perfil">
-            <!-- reemplazar el src de la imagen por <%= user.imagen %> cuando pongamos imagen de perfil al registrarse -->
-            <% for (let i=0; i<registrados.length; i++) { %>
-
-                <% if (registrados[i].id == usuarioActual) { %>
-
-                    <img src="<%= registrados[i].foto %>" alt="Foto de perfil"> 
-                    <h1>¡Hola, <%= registrados[i].nombre %>!</h1>  
-
-                <% } %>
-
-            <% } %>
+            <div class="user-profile">
+                <img src="<%= usuarioActual.foto %>" alt="Foto de perfil"> 
+                <h1>¡Hola, <%= usuarioActual.nombre %>!</h1>  
+            </div>
         </section>
 
     </main>

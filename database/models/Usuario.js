@@ -20,10 +20,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.INTEGER
         },
         email: {
-            type: dataTypes.STRING(100)
+            type: dataTypes.STRING(70)
         },
-        contrasena: {
-            type: dataTypes.STRING(100)
+        password: {
+            type: dataTypes.STRING(70)
         }
     
     

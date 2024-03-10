@@ -81,6 +81,9 @@ main {
     padding: 4px;
     color: var(--colors-naranja);
 }
+#recordame-label {
+    color: white;
+}
 
 /* Hacer que aparezca el mensaje si no se encuentra al usuario */
 /* #error-msg {

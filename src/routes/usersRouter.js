@@ -57,7 +57,8 @@ router.post('/login/process',userLoginValidations, usersController.loginProcess)
 
 
 
-router.get('/perfil/:id', ingresarAPerfilMiddleware, usersController.profile);
+// router.get('/perfil/:id', ingresarAPerfilMiddleware, usersController.profile);
+router.get('/perfil',ingresarAPerfilMiddleware, usersController.profile)
 
 router.get('/cerrarSesion', usersController.logout)
 

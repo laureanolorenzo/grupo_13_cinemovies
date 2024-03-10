@@ -15,7 +15,6 @@ let omdbAPIKey = fs.readFileSync(path.join(__dirname,'../datos/omdbAPI.txt'),{'e
 if (!omdbAPIKey) {
     omdbAPIKey = process.env.OMDB_API_KEY;
 }
-console.log(accessToken)
 const {removeWhiteSpace} = require('../middlewares/funcs');
 const { response } = require('express');
 // const Peliculas = require("./database/models/Peliculas");
@@ -393,7 +392,7 @@ module.exports = tmdbController;
 
 
 
-console.log('#####################\n\n\n\n\n\n\n###############')
+
 async function testingFunc() {
     // let movies = await getClassics(20)
     // let est = await getEstrenos(20)
