@@ -208,7 +208,7 @@ const usersController = {
             delete userToLog.password
             delete userToLog.passwordRepeat
             req.session.userLoggedIn = userToLog;
-            res.locals.userLoggedIn = req.session.userToLog; // https://stackoverflow.com/questions/56698453/express-session-cannot-set-property-user-of-undefined
+            res.locals.userLoggedIn = userToLog; // https://stackoverflow.com/questions/56698453/express-session-cannot-set-property-user-of-undefined
             res.redirect('/home'); //Login exitoso
         } else {
             errorMsg = 'Usuario o contraseña incorrectos'

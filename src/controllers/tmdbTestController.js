@@ -40,7 +40,7 @@ async function getTmdbResponse(url) {
 function isReleasingFromDateDiff(releaseDate) {
     let difference = Date.now() - releaseDate;
     let daysDifference = Math.floor(difference/1000/60/60/24);
-    return daysDifference < 60; // 2 meses
+    return daysDifference < 120; // 4 meses
 }
 // Funcion para obtener awards (de la otra API =/ )
 async function getAwards(id) {
@@ -311,29 +311,31 @@ async function getClassics(maxN=2) {
 const tmdbController = {
     async rellenarDB(req,res) { 
         const clasicosIds = [
-            1072790,  792307, 940551,
-            1211483,  609681, 787699,
-             438631,  572802, 980137,
-            1022796, 1072790, 792307,
-             940551, 1211483, 609681,
-             787699,  438631, 572802,
-             980137, 1022796
-        ];
+            940551, 792307, 1072790,
+            870404, 787699,  438631,
+            984249, 866398,  609681,
+            940551, 792307, 1072790,
+            870404, 787699,  438631,
+            984249, 866398,  609681,
+            940551, 792307
+          ]
         const estrenosIds = [
-            792307,  693134,  673593,
-            634492,  915935,  365620,
-            666277,  840430,  839369,
-           1130053, 1217409, 1202087,
-           1229873, 1245241, 1044920,
-           1244034, 1204367, 1238612,
-           1241611, 1245239,1011985
-        ];
+            1011985,  693134,  673593,
+             838240,  634492,  666277,
+             840430,  365620,  994108,
+             839369, 1249452, 1249454,
+            1130053, 1038877, 1202087,
+            1251477, 1251960, 1254932,
+            1229873, 1208033, 1256382,
+            1251346, 1204367, 1044920,
+            1244034
+          ];
         // Si hay que redefinir los ids, descomentar lo de abajo!
-        // const clasicosIds = await getClassics();
-        // const estrenosIds = await getEstrenos();
+        // const clasicosIds = await getClassics(20);
+        // const estrenosIds = await getEstrenos(25);
         let newMovie,newCredits,match;
         let nuevosIds = new Set([...clasicosIds,...estrenosIds]);
-        for (const id of Array.from(nuevosIds)) {
+        for (const id of nuevosIds) {
             match = await db.Peliculas.findOne({
                 where: {tmdb_id: id}
             });

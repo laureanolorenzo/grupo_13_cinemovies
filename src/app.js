@@ -50,6 +50,7 @@ app.use(cookieParser())
 // app.use(bodyParser.json());
 
 // Usos de los routers
+app.use(loggedInMiddleware);  //Para setear "user" en locals si esta logueado. No podia acceder a req.session desde EJS
 
 app.use(rutaHome);
 
@@ -59,7 +60,7 @@ app.use(rutaCarrito);
 
 app.use (rutaUsuarios);
 
-app.use(loggedInMiddleware); //Para setear "user" en locals si esta logueado. No podia acceder a req.session desde EJS
+
 
 // Uso de los routers principales
 
