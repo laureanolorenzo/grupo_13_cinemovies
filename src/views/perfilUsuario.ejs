@@ -6,26 +6,22 @@
 <body>
 
 
-    <%- include('./partials/headerLoggedIn') %>
+     include('./partials/headerLoggedIn') 
 
     <main class="main-perfil">
 
         <section class="section-datos-perfil">
             <!-- reemplazar el src de la imagen por <%= user.imagen %> cuando pongamos imagen de perfil al registrarse -->
-            <img src="images/users/<%= user.profilePic %>" alt="Foto de perfil"> 
-            <h1>¡Hola, <%= user.user %>!</h1>  
-        </section>
+            <% for (let i=0; i<registrados.length; i++) { %>
 
-        <section class="section-peliculas-perfil">
-            <h3>Películas favoritas</h3>
-            <img src="images/LA LA LAND.jpeg" alt="películas favoritas">
-            <img src="images/el gran pez.jpeg" alt="películas favoritas">
-            <h3>Películas vistas</h3>
-            <img src="images/LA LA LAND.jpeg" alt="películas vistas">
-            <img src="images/el gran pez.jpeg" alt="películas vistas">
-            <img src="images/la vida es bela.jpeg" alt="películas vistas">
-            <img src="images/oppenheimer.jpg" alt="películas vistas">
-            <img src="images/match point.jpg" alt="películas vistas">
+                <% if (registrados[i].id == usuarioActual) { %>
+
+                    <img src="<%= registrados[i].foto %>" alt="Foto de perfil"> 
+                    <h1>¡Hola, <%= registrados[i].nombre %>!</h1>  
+
+                <% } %>
+
+            <% } %>
         </section>
 
     </main>

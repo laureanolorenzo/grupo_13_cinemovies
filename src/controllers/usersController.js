@@ -36,17 +36,19 @@ function checkPasswordValidity(pw) { //Donde va esto?? En un archivo aparte??
     }
     return (upper && lower && digit && alpha);
 }
+
 const usersController = {
     usersView(req,res) {
-        res.render('perfilUsuario', { user: req.session.userLoggedIn }); // Incluir objeto (que venga de JSON con los datos de cada producto)
+        // res.render('perfilUsuario', { user: req.session.userLoggedIn }); // Incluir objeto (que venga de JSON con los datos de cada producto)
+        res.render('perfilUsuario'); // Incluir objeto (que venga de JSON con los datos de cada producto)
     },
 
-    usersRegister (req,res){
-        return res.send ({
-            body: req.body,
-            file: req.file
-        })
-    },
+    // usersRegister (req,res){
+    //     return res.send ({
+    //         body: req.body,
+    //         file: req.file
+    //     })
+    // },
 
     registerView(req,res) {
         db.roles.findAll()
@@ -171,10 +173,14 @@ const usersController = {
 
     loginProcess: (req,res) => {
 
-
         db.Usuarios.findAll()
             .then(function(lista_usuarios){
+
+                let usuarioIngresado = req.body.username;
+                let contrasenaIngresada = bcrypt.hashSync(req.body.password)
+
                 for (let i=0; i<lista_usuarios.length; i++) {
+                    
                     let comparacionContrasenas = bcrypt.compareSync(lista_usuarios[i].contrasena, req.body.password)
                     if (lista_usuarios[i].email == req.body.email && comparacionContrasenas){
                         console.log('iniciaste sesion')
@@ -184,10 +190,6 @@ const usersController = {
                     }
                 }
             })
-
-
-
-
 
         // let userToLogin = User.findByField(['email','user'], req.body.email)
         // let errors = validationResult(req).mapped();
@@ -218,7 +220,11 @@ const usersController = {
     },
 
     profile: (req,res) => {
-        return res.render('perfilUsuario', { user: req.session.userLoggedIn });
+        db.Usuarios.findAll()
+            .then(function(registrados){
+                usuarioActual = req.params.id;
+                return res.render('perfilUsuario', {registrados:registrados, usuarioActual:usuarioActual})
+            })
     },
 
     logout: (req,res) => {

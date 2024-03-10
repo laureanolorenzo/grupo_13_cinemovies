@@ -31,7 +31,6 @@ router.get('/detalle_producto/:id', productoController.detalle_productoView);
 
 router.post('/detalle_producto/borrar_producto/:id', productoController.borrar_producto);
 
-
 router.get('/listado_peliculas', productoController.listado_peliculas);
 
 

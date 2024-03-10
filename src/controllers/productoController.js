@@ -53,6 +53,19 @@ const productoController = {
         // res.render('detalle_producto' , {datos: movieToShow, idPelicula: idPelicula, user: req.session.userLoggedIn});
     },
 
+    buscar(req,res) {
+        let busqueda = req.body.barra_busqueda;
+        db.Peliculas.findAll({
+            where: {
+                nombre: {
+                    $like: '%busqueda%'
+                }
+            }
+        }).then(function(resultadoBusqueda){
+            return res.render('buscarProductos', {resultadoBusqueda:resultadoBusqueda})
+        })
+    },
+
     borrar_producto(req,res){
 
         db.Peliculas.destroy({

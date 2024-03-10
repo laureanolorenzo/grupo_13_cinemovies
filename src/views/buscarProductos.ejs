@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head') %>    
+    <body class="kiosco-body">
+
+        <% if (typeof user === 'undefined') { %>
+            <%- include('./partials/header') %>
+        <% } else { %>
+            <%- include('./partials/headerLoggedIn') %>
+        <% } %>
+
+        <main>
+            <h1 class="titulo-productos">Resultados de la búsqueda</h1>
+            <ul class="lista-productos">
+                <% for (let i= 0; i<resultadoBusqueda.length; i++) { %>
+                    <li class="item-productos"> <a href="/detalle_producto/<%= resultadoBusqueda[i].id %>"> <img src="<%= resultadoBusqueda[i].poster %>" alt="póster de la película"> <p><%= resultadoBusqueda[i].titulo %></p> </a></li>
+                <% } %>
+            </ul>
+        </main>
+
+
+
+        <%- include('./partials/footer') %>
+        
+    </body>
+</html>

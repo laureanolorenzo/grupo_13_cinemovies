@@ -10,6 +10,15 @@
         <% } %>
 
         <main>
+
+            <form action="/busqueda_producto" method="GET">
+                <label for="barra_busqueda">
+                    <input type="text" name="barra_busqueda" id="barra_busqueda" placeholder="Buscar...">
+                </label>
+                <button type="submit"> Buscar</button>
+
+            </form>
+
             <h1 class="titulo-productos">Todas las películas</h1>
             <ul class="lista-productos">
                 <% for (let i= 0; i<productos.length; i++) { %>
