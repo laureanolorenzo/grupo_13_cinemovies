@@ -7,10 +7,27 @@
     <%- include('./partials/headerLoggedIn') %>
 
     <main>
-        <form action="/editar_usuario/process" method="POST">
+        <form action="/editar_usuario/process" method="POST" class="section-input">
 
+            <label class="field" for="nombre">Nombre de usuario: 
+                <input class="input-text" type="text" name="nombre" id="nombre" placeholder=" <%= usuarioAEditar.nombre %> ">
+            </label>
 
-            <button type="submit">ENVIAR</button>
+            <label class="field" for="foto">Cambiar imagen: 
+                <input class="input-text" type="file" name="foto" id="foto">
+            </label>
+
+            <label class="field" for="email">Correo electrónico: 
+                <input class="input-text" type="text" name="email" id="email" placeholder=" <%= usuarioAEditar.email %> ">
+            </label>
+
+            <label class="field" for="password">Contraseña nueva: 
+                <input class="input-text" type="password" name="password" id="password" placeholder=" Contraseña nueva ">
+            </label>
+
+            <div class="field">
+                <button type="submit" class="button">ENVIAR</button>
+            </div>
         </form>
     </main>
 

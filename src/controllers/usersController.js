@@ -260,12 +260,38 @@ const usersController = {
     //         })
     },
     
-    editar_usuarioView: (req,res) => {
-        res.render('editar_usuario')
+    editar_usuarioView: async (req,res) => {
+
+        if (req.session.idUsuario) {
+
+            let usuarioAEditar = await db.Usuarios.findOne(
+                {where: {id:req.session.idUsuario}}
+            );
+            
+            res.render('editar_usuario', {usuarioAEditar:usuarioAEditar})
+
+        } else {
+
+            res.render('login')
+
+        }
+
     },
 
     editar_usuarioProcess: (req,res) => {
-        res.redirect('/perfil')
+
+        db.Usuarios.update({
+            nombre: req.body.nombre,
+            foto: req.body.foto,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password)
+        }, {
+            where: {
+                id: req.session.idUsuario
+            }
+        });
+        
+        res.redirect(`/perfil`); 
     },
     
     logout: (req,res) => {
