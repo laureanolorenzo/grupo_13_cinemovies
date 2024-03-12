@@ -55,6 +55,7 @@ const usersController = {
     registerView(req,res) {
         db.roles.findAll()
             .then(function(roles){
+                console.log(roles)
                 return res.render('registro', {roles:roles})
             })
     },
@@ -247,14 +248,26 @@ const usersController = {
         let user = await db.Usuarios.findOne(
             {where: {id:req.session.idUsuario}}
         );
-        return res.render('perfilUsuario',{usuarioActual:user})
+        let rol = await db.roles.findAll()
+            .then(function(rol){
+
+                return res.render('perfilUsuario',{usuarioActual:user, rol:rol})
+            })
     //     await db.Usuarios.findAll()
     //         .then(function(registrados){
     //             usuarioActual = req.params.id;
     //             return res.render('perfilUsuario', {registrados:registrados, usuarioActual:usuarioActual})
     //         })
     },
+    
+    editar_usuarioView: (req,res) => {
+        res.render('editar_usuario')
+    },
 
+    editar_usuarioProcess: (req,res) => {
+        res.redirect('/perfil')
+    },
+    
     logout: (req,res) => {
         // delete req.session.userLoggedIn;
         req.session.destroy();

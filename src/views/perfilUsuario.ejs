@@ -15,6 +15,20 @@
                 <img src="<%= usuarioActual.foto %>" alt="Foto de perfil"> 
                 <h1>¡Hola, <%= usuarioActual.nombre %>!</h1>  
             </div>
+            <div class="user-profile">
+                <h2>Información personal</h2>
+                <ul>
+                    <li>Nombre de usuario: <%= usuarioActual.nombre %></li>
+                    <li>Correo electrónico: <%= usuarioActual.email %></li>
+                    <li>Rol: 
+                        <% for (let i=0; i<rol.length; i++) { %>
+                            <% if (rol[i].id == usuarioActual.id_rol) { %>
+                                <%= rol[i].tipo %>
+                            <% } %>
+                        <% } %>
+                    </li>
+                </ul>
+            </div>
         </section>
 
     </main>

@@ -62,4 +62,9 @@ router.get('/perfil',ingresarAPerfilMiddleware, usersController.profile)
 
 router.get('/cerrarSesion', usersController.logout)
 
+
+router.get('/editar_usuario', usersController.editar_usuarioView);
+
+router.post('/editar_usuario/process', usersController.editar_usuarioProcess);
+
 module.exports = router; //
