@@ -34,6 +34,13 @@ router.post('/detalle_producto/borrar_producto/:id', productoController.borrar_p
 router.get('/listado_peliculas', productoController.listado_peliculas);
 
 
+// Busqueda de productos
+
+router.post('/buscar_producto', productoController.buscar)
+
+
+// Creación y edición de productos
+
 router.get('/crear_producto', productoController.crear_productoView);
 
 router.post('/crear_producto/process', multipleUpload, productoController.crear_productoProcess);

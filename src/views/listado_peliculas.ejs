@@ -10,16 +10,17 @@
         <% } %>
 
         <main>
-
-            <form action="/busqueda_producto" method="GET">
-                <label for="barra_busqueda">
-                    <input type="text" name="barra_busqueda" id="barra_busqueda" placeholder="Buscar...">
+            <form action="/buscar_producto" method="POST" class="form-buscar">
+                <label for="barra_busqueda" class="label-buscar">
+                    <input class="input-buscar" type="text" name="barra_busqueda" id="barra_busqueda" placeholder="Ingrese el nombre de la película">
                 </label>
-                <button type="submit"> Buscar</button>
-
+                <div class="div-buscar">
+                    <button class="boton-buscar" type="submit">Buscar</button>
+                </div>
             </form>
-
+            
             <h1 class="titulo-productos">Todas las películas</h1>
+            
             <ul class="lista-productos">
                 <% for (let i= 0; i<productos.length; i++) { %>
                     <li class="item-productos"> <a href="/detalle_producto/<%= productos[i].id %>"> <img src="<%= productos[i].local?`/images/movies/${productos[i].poster}`:productos[i].poster %>" alt="póster de la película"> <p><%= productos[i].titulo %></p> </a></li>

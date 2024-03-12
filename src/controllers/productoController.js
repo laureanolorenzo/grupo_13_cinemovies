@@ -12,6 +12,7 @@ const moviesRuta = path.join(__dirname, '../datos/movies.json');
 
 //Funciones, datos generales, etc.
 let {anio,ratingsMap,listCategories,listMovies,moviesPath} = require('../middlewares/funcs');
+const { error } = require('console');
 
 // import listCategories from '../middlewares/funcs';
 
@@ -53,17 +54,19 @@ const productoController = {
         // res.render('detalle_producto' , {datos: movieToShow, idPelicula: idPelicula, user: req.session.userLoggedIn});
     },
 
-    buscar(req,res) {
+    buscar: async (req,res) => {
         let busqueda = req.body.barra_busqueda;
-        db.Peliculas.findAll({
+        let resultado = await db.Peliculas.findOne({
             where: {
-                nombre: {
-                    $like: '%busqueda%'
-                }
+                titulo: busqueda
             }
-        }).then(function(resultadoBusqueda){
-            return res.render('buscarProductos', {resultadoBusqueda:resultadoBusqueda})
         })
+        
+        if (resultado) {
+            return res.redirect(`/detalle_producto/${resultado.id}`)
+        } else {
+            return res.redirect('listado_peliculas')
+        }
     },
 
     borrar_producto(req,res){
