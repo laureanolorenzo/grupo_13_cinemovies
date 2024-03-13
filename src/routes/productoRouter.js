@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {removeWhiteSpace} = require('../middlewares/funcs');
 const path = require('path');
+const adminMiddleware = require('../middlewares/adminMiddleware');
 
 // Multer 
 const multer = require('multer');
@@ -41,7 +42,7 @@ router.post('/buscar_producto', productoController.buscar)
 
 // Creación y edición de productos
 
-router.get('/crear_producto', productoController.crear_productoView);
+router.get('/crear_producto',adminMiddleware, productoController.crear_productoView);
 
 router.post('/crear_producto/process', multipleUpload, productoController.crear_productoProcess);
 

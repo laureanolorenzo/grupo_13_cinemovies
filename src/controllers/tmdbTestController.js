@@ -144,7 +144,7 @@ async function getMovieByID(id,responseLang ='es-AR',saveLocal = false)  {
         fecha_estreno: fecha_estreno, //Luego manejar al mandar a la BD
         anio: new Date(Date.parse(res.data.release_date)).getFullYear(),
         es_estreno: +isReleasingFromDateDiff(Date.parse(fecha_estreno)), //Aparentemente ya el mas adelante convierte true en 1 y false en 0
-        descripcion: res.data.overview.length < 250 ? res.data.overview : res.data.overview.slice(0,250),
+        descripcion: res.data.overview.length < 250 ? res.data.overview : res.data.overview.slice(0,250) + '...',
         puntuacion: res.data.vote_average.toFixed(2),
         clasificacion: classification?classification:'N/A',
         duracion: res.data.runtime,
@@ -224,8 +224,15 @@ class Movie {
         try {
             if (this) {
                 let strRepr =`(`;
+                let testStrRepr = `(`
                 for (const prop in this) {
-                    strRepr += `'${this[prop]}', `; //Chequear que hayan comillas!
+                    testStrRepr += `${prop},` 
+                }
+                testStrRepr += ')';
+                // console.log(testStrRepr)
+                for (const prop in this) {
+                    strRepr += (this[prop] == null)? `null,`:`'${this[prop]}',`;
+                    // strRepr += `${(this[prop]) == null?null:'this[prop]'}, `; //Chequear que hayan comillas!
                 }
                 return strRepr.slice(0,-2) + `)`;
             } else {
@@ -359,6 +366,7 @@ const tmdbController = {
         }
         res.send('Base de datos actualizada!');
         console.log('Base de datos actualizada!')
+
     },
     async getUpcoming(req,res) {
         const fechaHoy = new Date();
@@ -391,44 +399,17 @@ const tmdbController = {
     res.json(upcomingMovies);
     }
 }
-// module.exports = tmdbController;
+module.exports = tmdbController;
 
 
 
 
 async function testingFunc() {
-    // let movies = await getClassics(20)
-    // let est = await getEstrenos(20)
-    // let url = `https://api.themoviedb.org/3/movie/upcoming?language=es-AR&page=1&sort_by=popularity.desc`;
-    // let res = await getTmdbResponse(url);
-    // console.log(res.data.results)
-    let clasicosIds = [
-        870404, 872585, 438631,
-        609681, 870404, 872585,
-        438631, 609681, 870404,
-        872585, 438631, 609681,
-        870404, 872585, 438631,
-        609681, 870404, 872585,
-        438631, 609681
-      ];
-    let estrenosIds = [
-        1011985,  693134,  838240,
-         634492,  673593,  840430,
-         666277,  365620,  994108,
-         839369, 1249452, 1130053,
-        1249454, 1202087, 1254932,
-        1038877, 1256382, 1251477,
-        1245241, 1251960, 1251960,
-        1242045, 1229873, 1204367,
-        1249280
-      ];
-    let testMovie = await getMovieByID(clasicosIds[0])
-    console.log(testMovie.getStringRepr())
-    // const clasicosIds = await getClassics(20);
-    // const estrenosIds = await getEstrenos(25);
-    // console.log(clasicosIds);
-    // console.log(estrenosIds);
-//     console.log('Clasicos',movies)
-//     console.log('Estrenos',est)
-}
-testingFunc()
+    let newMovie = await getMovieByID(940551);
+    let newCredits = await getMovieCreditsByID(940551);
+    var movieInst = new Movie({...newMovie,...newCredits});
+    console.log(movieInst.getStringRepr())
+    }
+
+
+// testingFunc()

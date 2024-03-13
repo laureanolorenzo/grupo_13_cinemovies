@@ -1,6 +1,3 @@
 node_modules
-src/datos/APIAuth.txt
-src/datos/omdbAPI.txt
-src/.env
 ./database/config/config.js
 database/config/config

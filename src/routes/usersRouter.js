@@ -11,7 +11,7 @@ const {removeWhiteSpace} = require('../middlewares/funcs');
 
 let multerDiskStorage = multer.diskStorage({ //Se guarda como variable para usarse luego
 	filename(req,file,callback) {
-		let fileName = removeWhiteSpace(req.body.user) + '-' + Date.now() + path.extname(file.originalname); // Date.now() da un numero unico, y path.extname la extension de la imagen original. Se puede combinar con datos del req, por ejempl
+		let fileName = removeWhiteSpace(req.body.username) + '-' + Date.now() + path.extname(file.originalname); // Date.now() da un numero unico, y path.extname la extension de la imagen original. Se puede combinar con datos del req, por ejempl
 		callback(null,fileName) },
 	destination(req,file,callback) {
 		let folder = path.join(__dirname,'../../public/images/users'); // Donde se va a guardar
@@ -21,7 +21,7 @@ let multerDiskStorage = multer.diskStorage({ //Se guarda como variable para usar
 
 
 fileUpload = multer({storage: multerDiskStorage});
-singleUpload = fileUpload.single('profilePic');
+singleUpload = fileUpload.single('avatar');
 
 const userValidations = [
     body('email').notEmpty().withMessage('*Por favor escriba su correo electrónico').isLength({min: 5, max: 40}).withMessage('*Email inválido'),
@@ -42,7 +42,8 @@ router.get('/usuario', usersController.usersView);
 
 router.get('/registro', guestMiddleware, usersController.registerView);
 
-router.post('/registro',singleUpload, userValidations, usersController.postRegisterData); 
+router.post('/registro', singleUpload, userValidations, usersController.postRegisterData);
+
 // Siempre mandar multer antes en el router: https://stackoverflow.com/questions/63632356/multer-and-express-validator-creating-problem-in-validation
 
 // router.get('/login', usersController.loginView);
@@ -65,6 +66,6 @@ router.get('/cerrarSesion', usersController.logout)
 
 router.get('/editar_usuario', usersController.editar_usuarioView);
 
-router.post('/editar_usuario/process', usersController.editar_usuarioProcess);
+router.post('/editar_usuario/process',singleUpload, usersController.editar_usuarioProcess);
 
 module.exports = router; //

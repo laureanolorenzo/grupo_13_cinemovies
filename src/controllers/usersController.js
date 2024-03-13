@@ -55,7 +55,6 @@ const usersController = {
     registerView(req,res) {
         db.roles.findAll()
             .then(function(roles){
-                console.log(roles)
                 return res.render('registro', {roles:roles})
             })
     },
@@ -65,10 +64,9 @@ const usersController = {
             nombre: req.body.username,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password),
-            foto: req.body.avatar,
-            id_rol: req.body.rol
+            foto: req.file.filename,
+            id_rol: req.body.rol,
         });
-
         res.redirect('/home');
         
         // let emailInDB = User.findByField('email', req.body.email);
