@@ -144,7 +144,7 @@ async function getMovieByID(id,responseLang ='es-AR',saveLocal = false)  {
         fecha_estreno: fecha_estreno, //Luego manejar al mandar a la BD
         anio: new Date(Date.parse(res.data.release_date)).getFullYear(),
         es_estreno: +isReleasingFromDateDiff(Date.parse(fecha_estreno)), //Aparentemente ya el mas adelante convierte true en 1 y false en 0
-        descripcion: res.data.overview,
+        descripcion: res.data.overview.length < 250 ? res.data.overview : res.data.overview.slice(0,250),
         puntuacion: res.data.vote_average.toFixed(2),
         clasificacion: classification?classification:'N/A',
         duracion: res.data.runtime,
@@ -310,29 +310,29 @@ async function getClassics(maxN=2) {
 
 const tmdbController = {
     async rellenarDB(req,res) { 
-        const clasicosIds = [
-            940551, 792307, 1072790,
-            870404, 787699,  438631,
-            984249, 866398,  609681,
-            940551, 792307, 1072790,
-            870404, 787699,  438631,
-            984249, 866398,  609681,
-            940551, 792307
-          ]
-        const estrenosIds = [
-            1011985,  693134,  673593,
-             838240,  634492,  666277,
-             840430,  365620,  994108,
-             839369, 1249452, 1249454,
-            1130053, 1038877, 1202087,
-            1251477, 1251960, 1254932,
-            1229873, 1208033, 1256382,
-            1251346, 1204367, 1044920,
-            1244034
-          ];
+        // const clasicosIds = [
+        //     940551, 792307, 1072790,
+        //     870404, 787699,  438631,
+        //     984249, 866398,  609681,
+        //     940551, 792307, 1072790,
+        //     870404, 787699,  438631,
+        //     984249, 866398,  609681,
+        //     940551, 792307
+        //   ]
+        // const estrenosIds = [
+        //     1011985,  693134,  673593,
+        //      838240,  634492,  666277,
+        //      840430,  365620,  994108,
+        //      839369, 1249452, 1249454,
+        //     1130053, 1038877, 1202087,
+        //     1251477, 1251960, 1254932,
+        //     1229873, 1208033, 1256382,
+        //     1251346, 1204367, 1044920,
+        //     1244034
+        //   ];
         // Si hay que redefinir los ids, descomentar lo de abajo!
-        // const clasicosIds = await getClassics(20);
-        // const estrenosIds = await getEstrenos(25);
+        const clasicosIds = await getClassics(20);
+        const estrenosIds = await getEstrenos(25);
         let newMovie,newCredits,match;
         let nuevosIds = new Set([...clasicosIds,...estrenosIds]);
         for (const id of nuevosIds) {
@@ -350,10 +350,11 @@ const tmdbController = {
                     }
                 } catch(e){ //Luego pensar otra logica!
                     console.log(e);
+                    continue
                 }
             }
             else {
-                console.log('Peli ' + id + 'ya existe en la base de datos');
+                console.log('Peli ' + id + ' ya existe en la base de datos');
             }
         }
         res.send('Base de datos actualizada!');
