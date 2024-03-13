@@ -16,19 +16,19 @@ CREATE TABLE `usuarios` (
 
 CREATE TABLE `peliculas` (
    `id` INT AUTO_INCREMENT,
-   `titulo` VARCHAR(50),
+   `titulo` VARCHAR(255),
    `anio` INT,
    `es_estreno` TINYINT,
    `descripcion` VARCHAR(255),
-   `director` VARCHAR(50),
+   `director` VARCHAR(255),
    `reparto` VARCHAR(255),
    `puntuacion` FLOAT,
-   `clasificacion` VARCHAR(20),
+   `clasificacion` VARCHAR(100),
    `duracion` INT,
-   `origen` VARCHAR(50),
+   `origen` VARCHAR(255),
    `poster` VARCHAR(255),
    `banner` VARCHAR(255),
-   `awards` VARCHAR(50),
+   `awards` VARCHAR(255),
    `idioma` VARCHAR(20),
    `fecha_estreno` DATE,
    `id_categoria_pelicula` INT,
@@ -69,6 +69,11 @@ ALTER TABLE `funciones` ADD CONSTRAINT `FK_354ba8a2-90d7-4fda-8cc2-1e1a78fe4f2d`
 
 ALTER TABLE `funciones` ADD CONSTRAINT `FK_38b8a0fb-92cb-4423-aa9a-014e09f8231f` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios`(`id`)  ;
 
+
+INSERT INTO roles (tipo)
+VALUES
+('admin'),
+('invitado');
 
 INSERT INTO categorias_peliculas (titulo,categoria, poster)
 VALUES 
