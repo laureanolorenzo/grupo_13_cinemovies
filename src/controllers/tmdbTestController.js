@@ -391,7 +391,7 @@ const tmdbController = {
     res.json(upcomingMovies);
     }
 }
-module.exports = tmdbController;
+// module.exports = tmdbController;
 
 
 
@@ -399,10 +399,36 @@ module.exports = tmdbController;
 async function testingFunc() {
     // let movies = await getClassics(20)
     // let est = await getEstrenos(20)
-    let url = `https://api.themoviedb.org/3/movie/upcoming?language=es-AR&page=1&sort_by=popularity.desc`;
-    let res = await getTmdbResponse(url);
-    console.log(res.data.results)
+    // let url = `https://api.themoviedb.org/3/movie/upcoming?language=es-AR&page=1&sort_by=popularity.desc`;
+    // let res = await getTmdbResponse(url);
+    // console.log(res.data.results)
+    let clasicosIds = [
+        870404, 872585, 438631,
+        609681, 870404, 872585,
+        438631, 609681, 870404,
+        872585, 438631, 609681,
+        870404, 872585, 438631,
+        609681, 870404, 872585,
+        438631, 609681
+      ];
+    let estrenosIds = [
+        1011985,  693134,  838240,
+         634492,  673593,  840430,
+         666277,  365620,  994108,
+         839369, 1249452, 1130053,
+        1249454, 1202087, 1254932,
+        1038877, 1256382, 1251477,
+        1245241, 1251960, 1251960,
+        1242045, 1229873, 1204367,
+        1249280
+      ];
+    let testMovie = await getMovieByID(clasicosIds[0])
+    console.log(testMovie.getStringRepr())
+    // const clasicosIds = await getClassics(20);
+    // const estrenosIds = await getEstrenos(25);
+    // console.log(clasicosIds);
+    // console.log(estrenosIds);
 //     console.log('Clasicos',movies)
 //     console.log('Estrenos',est)
 }
-// testingFunc()
+testingFunc()
